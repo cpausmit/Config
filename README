@@ -9,3 +9,12 @@ directory.
 To make sure the repository is easily included into the setup an install script
 is provided to ease the adaptation of the repository and at the same time keep
 it available for synchronization with the github repository.
+
+Install the Config package into your account. The starting point is a "git
+clone" of the Config.
+
+     git clone https://github.com/cpausmit/Config.git
+
+end the next step is to install all pieces in place
+
+     ./Config/Configure.sh
