@@ -1,0 +1,74 @@
+#!/usr/bin/perl
+use strict;
+################################################################################
+#
+sub show_documentation {
+  print STDOUT "
+
+  ACTION
+  ======
+
+    Small script to clean work area from tex output files which are not needed
+    anymore !
+
+
+  SYNTAX
+  ======
+
+    So far no parameters or options \n\n";}
+#
+# Called from user only
+# VERSION 1.0                                                (26/08/1998) C.Paus
+################################################################################
+my($n,$home,$ext,$file,$dir,$h);
+my($dele,$force);
+my(@exts,@files);
+#-------------------------------------------------------------------------------
+$n = `basename $0`; chop($n); $h="$n>";
+$home = $ENV{'HOME'} || $ENV{'LOGDIR'} || (getpwuid($<))[7] || die "No Home!\n";
+$dir =  $ENV{'PWD'};
+
+@exts = ("aux","dvi","bbl","blg","log","toc","lot","lof","bak","~.*~");
+$force = 0;
+
+if    ($ARGV[0] eq "-f") {
+  $force = 1;
+}
+elsif ($ARGV[0] eq "-h") {
+  &show_documentation;
+  exit 0;
+}
+
+@files = ();                              # start with empty array
+foreach $ext (@exts) {                    # make list of all files
+  opendir(DIR,"$dir") || die "$h cannot open $dir \n";
+  push(@files,grep(/\.$ext$/,readdir(DIR)));
+  closedir(DIR);
+}
+
+if ("@files" eq "" ) {printf "No files to be removed.\n"; exit(0);}
+
+printf "\nDELETE FILES:\n\n";
+
+foreach $file (@files) {
+  printf "$file\n";
+}
+
+if ($force == 1) {
+  $dele = "y";
+}
+else {
+  printf "\n";
+  printf "delete these files (y/n) [n]: ";
+  $dele=<STDIN>;
+}
+
+if ( $dele =~ /^\s*y/i ) {
+  foreach $file (@files) {
+    system("rm $file");
+  }
+  printf "Done.\n";
+}
+else { printf "Nothing done.\n"; }
+
+exit 0;

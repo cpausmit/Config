@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# Produce a complete new update of the actual ps file.
+# Also the bibliography is updated.
+#
+if [ "$1" == "-p" ]; then
+  pdf=true; shift;
+fi
+
+# determine viewer
+VIEWER=`which evince`
+if [ ".$VIEWER" == "." ]; then
+  VIEWER=gv
+fi
+
+# define all relevant directories to search in
+TEXINPUTS="/home/paus/text/sty:/home/paus/text/sty/foiltex";
+TEXINPUTS="${TEXINPUTS}:/home/paus/text/def:/home/paus/teaching/text/def";
+TEXINPUTS="${TEXINPUTS}:/home/paus/text/oo";
+TEXINPUTS="${TEXINPUTS}:/home/paus/teaching/text/sty";
+TEXINPUTS="${TEXINPUTS}:/home/paus/text/revtex4";
+TEXINPUTS="${TEXINPUTS}:/usr/share/texmf/tex/generic/pstricks:";
+export TEXINPUTS
+
+quiet=false;
+if [ "$1" == "-q" ]; then
+  quiet=true; shift;
+fi
+
+file=`echo $1 | sed s'/.tex$//'`
+shift;
+
+pdflatex $file
+#latex $file     #  > /dev/null
+#dvips -Ppdf $file -o
+dvips -t letter -Ppdf $file -o  # 1> /dev/null 2> /dev/null
+if [ $quiet = "false" ]; then
+  $VIEWER $file.pdf &
+fi
+
+#if ! [ -z "$pdf" ]; then
+#  ps2pdf $file.ps $file.pdf &
+#fi
+
+exit 0;

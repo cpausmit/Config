@@ -1,0 +1,21 @@
+#!/bin/bash
+
+export Machine=$1
+if [ ".$Machine" == "." ]
+then
+  echo " No target machine set. Exit now!"
+  exit 1
+fi
+
+kinit=`klist`
+if [ ".$kinit" == "." ]
+then
+  echo " No Kerberos token! Run kinit now."
+  kinit -f
+fi
+
+ssh -YttL 8080:svmit01:80     \
+       -L 50070:svmit01:50070 \
+       -L 8081:svmit06:4000   \
+       -L 2222:${Machine}:22  \
+    lxplus.cern.ch

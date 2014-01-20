@@ -1,0 +1,42 @@
+#!/bin/csh
+
+  set c=`basename $0`; set c="${c}>"
+
+# clean the dirctory from *.bak and *~
+
+  set old = `set | grep -c nonomatch`
+    if ($old == 0) then
+    set nonomatch
+  endif
+  @ count_bak = 0
+  @ count_bak = `/bin/ls -1 | grep -c '\.bak'`
+
+# the .bak files
+
+  if ($count_bak != 0) then
+    echo "$c .bak: $count_bak file(s) deleted"
+    rm *.bak
+  else
+    echo "$c .bak: no match"
+  endif
+
+# the ~ files
+
+  @ count_emacs = 0
+  @ count_emacs = `/bin/ls -1 | grep -c \~`
+  if ($count_emacs != 0) then
+    echo "$c    ~: $count_emacs file(s) deleted"
+    rm *~
+  else
+    echo "$c    ~: no match"
+  endif
+
+# reset as before
+
+  unset count_bak
+  unset count_emacs
+  if ($old == 0) then
+    unset nonomatch
+  endif
+
+exit 0

@@ -1,0 +1,55 @@
+#!/bin/sh
+################################################################################
+#
+# Tiny script to get emacs in the right colors.
+#
+#      background foreground
+#  rl: red        bLack
+#  gl: green      bLack
+#  bl: blue       bLack
+#  rr: red        red
+#  gg: green      green
+#  bb: blue       blue
+#
+################################################################################
+
+  n="`basename $0`>"
+
+  font='-*-fixed-bold-r-*-18-*'
+
+  #if [ ".`whichLaptop`" == ".0" ]; then
+  #  echo "Found old laptop (adjust fonts)"
+  #  font='-*-fixed-bold-r-*-14-*'
+  #fi
+
+  # careful giving a path screws up the colours because emacs*..
+  # are not recognised
+  emacs=xemacs
+
+  case $1 in
+
+    bw) shift; bg='#ffffff'; fg='#000000';;
+    rl) shift; bg='#fff0b4'; fg='#000000';;
+    gl) shift; bg='#f0ffbe'; fg='#000000';;
+    bl) shift; bg='#ffffe6'; fg='#000000';;
+    rr) shift; bg='#fff0b4'; fg='#d21400';;
+    gg) shift; bg='#f0ffbe'; fg='#1e9b00';;
+    bb) shift; bg='#ffffe6'; fg='#3c3cc8';;
+    tt) shift; bg='#f0f0b4'; fg='#000000';;
+
+    -h) echo "$n use: rl | gl | bl | rr | gg | bb other emacs options";exit 0;;
+     *) bg=white; fg=darkgreen;;
+
+  esac
+
+  # start (x)emacs now
+
+  font=9x15bold
+  #font="-*-Fixed-bold-r-*-*-*-140-*-*-*-*-*-*"
+
+  echo \
+  $emacs -font $font -bg $bg -fg $fg $* 2>&1 &
+
+  $emacs -font $font -bg $bg -fg $fg $* 2>&1 &
+
+  exit 0;

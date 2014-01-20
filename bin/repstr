@@ -1,0 +1,92 @@
+#!/bin/ksh
+
+# decode the arguments
+
+ command=$0
+ if (( $# <= 2 )); then
+
+# error ending and function description
+
+  echo ' '
+  echo 'ACTION :'
+  echo '========'
+  echo '          first parameter is the search string second parameter'
+  echo '          is the replace string. All other parameter are files which'
+  echo '          will be searched through for the search string which will'
+  echo '          only for the first occurence in a line be replaced by the'
+  echo '          replace string. So maybe you have to do the operation'
+  echo '          several times to be sure that all search strings are'
+  echo '          replaced'
+  echo ' '
+  echo 'SYNTAX :'
+  echo '========'
+  echo '        ' $command  'SEARCH_STRING REPLACE_SRING FILE_1 [FILE_2 ....]'
+  echo ' '
+  echo '           SEARCH_STRING    string to search for'
+  echo '           REPLACE_STRING   string to put insead of SEARCH_STRING'
+  echo ' '
+  echo 'EXAMPLE:'
+  echo '========'
+  echo '        ' $command  'IPRO_TAG  IPRO_MEM  funplo.*.car'
+  echo ' '
+  echo '          DEFINING "K" AS NEW DELMITER'
+  echo ' '
+  echo '        ' $command  'IPRO_TAG  IPRO_MEM  -d K funplo.*.car'
+  echo ' '
+  exit 1
+ else
+  sstring="$1"; rstring="$2";
+  shift;        shift
+  echo 'ONLY FIRST OCCURRENCE PER LINE IS REPLACED'
+  echo "search>$sstring<   replace>$rstring<"
+#
+  if [ "$1" = "-d" ]; then
+    shift;DEL=$1;shift
+  else
+    DEL='@'
+  fi
+  DELg=`echo "$DEL g" | tr -d ' '`
+
+# check strings to avoid file loss
+
+  string_check_s=`echo $sstring |grep $DEL`
+  string_check_r=`echo $rstring |grep $DEL`
+  if [[ -z "$string_check_s" && -z "$string_check_r" ]]; then
+   echo ' '
+  else
+   echo "The current DELIMITER is $DEL which is part of the given strings."
+   echo "Choose a new with -d NEW_DELIMITER after the SEARCH and REPLACE"
+   echo "strings"
+   echo ' '
+   exit 1
+  fi
+
+# loop over the given files
+
+  files=$@
+
+#  sedstring=`echo "s$DEL$sstring$DEL$rstring$DELg"
+
+  for file in $files; do
+
+   if [ -d $file ]; then
+    echo "repstr> skipping directory ($file)"
+   else
+    echo 'repstr>' $file
+
+
+#   replace first occurrence in line
+
+#    echo "sed s$DEL$sstring$DEL$rstring$DEL $file > $file.repstr"
+#    sed "s$DEL$sstring$DEL$rstring$DEL" $file > $file.repstr
+#   gobal replace is too slow
+    sed "s$DEL$sstring$DEL$rstring$DELg" $file > $file.repstr
+
+    mv $file.repstr $file
+   fi
+
+  done
+  echo ' '
+ fi
+
+exit 0
