@@ -1,0 +1,289 @@
+! Xterm
+XTerm*Background:             #e4f7e4
+XTerm*Foreground:             Black
+XTerm*borderColor:            Black
+XTerm*borderWidth:            2
+XTerm*ScrollBar:              On
+XTerm*Scrollbar.foreground:   Black
+XTerm*Scrollbar.background:   White
+XTerm*Scrollbar.thickness:    7
+XTerm*scrollInput:            False
+XTerm*scrollKey:              True
+XTerm*cursorColor:            Red
+XTerm*pointerShape:           arrow
+XTerm*pointerColor:	      Blue
+XTerm*pointerColorBackground: White
+XTerm*boldFont:	              9x15bold
+XTerm*font:                   9x15bold
+XTerm*c132:                   On
+XTerm*eightBitInput:          False
+XTerm*dynamicColors:          True
+XTerm*reverseVideo:           False
+XTerm*saveLines:	      4096
+XTerm*sunFunctionKeys:        Off
+XTerm*visualBell:             False
+XTerm*color0:                 Black
+XTerm*color1:                 Red
+XTerm*color2:                 #00A000
+XTerm*color3:                 #C0A000
+XTerm*color4:                 Blue
+XTerm*color5:                 Magenta
+XTerm*color6:                 Cyan
+XTerm*color7:                 White
+XTerm*jumpScroll:             On
+XTerm*internalBorder:         0
+XTerm*logInhibit:             On
+XTerm*ttyModes:               erase ^h intr ^c kill ^u eof ^d susp ^z
+XTerm*VT100*geometry:         103x32-0+16
+XTerm*VT100.Translations:     #override \
+                              Shift<Key>Up:      scroll-back(1,line)     \n\
+                              Shift<Key>Down:    scroll-forw(1,line)     \n\
+                              <Key>Next:         scroll-forw(1,page)     \n\
+                              <Key>Prior:        scroll-back(1,page)     \n\
+                              Shift<Key>Next:    scroll-forw(1,halfpage) \n\
+                              Shift<Key>Prior:   scroll-back(1,halfpage) \n\
+
+! VMterm (a special Xterm to read mail in Ascii mode)
+vmterm*background:             White
+vmterm*foreground:             DarkBlue
+vmterm*cursorColor:            Red
+vmterm*pointerColor:           Blue
+vmterm*pointerColorBackground: White
+vmterm*curses:                 on
+vmterm*C132:                   true
+vmterm*VT100.geometry:         81x48-0+0
+vmterm*logging:                off
+vmterm*ScrollBar:              Off
+vmterm*Scrollbar*foreground:   Black
+vmterm*Scrollbar*background:   White
+vmterm*utmpInhibit:            true
+vmterm*cutToBeginningOfLine:   false
+vmterm*charClass:              33:48,45-47:48,58-59:48,64:48,91:48,93:48
+vmterm*VT100.Translations:     #override \
+     <Key>Prior:        string(0x1b) string(v) \n\
+     <Key>Next:         string(0x16) \n\
+     <Key>Home:         string(0x1b) string(<) \n\
+     <Key>End:          string(0x1b) string(>) \n\
+     <Key>Delete:       string(0x04) \n\
+     <Key>BackSpace:    string(0x7f) \n\
+     <Key>Insert:       string(0x1b) string([2~) \n\
+     <Key>Num_Lock:   string(0x1b) string(OP) \n\
+     <Key>KP_Divide:    string(0x1b) string(OQ) \n\
+     <Key>KP_Multiply:  string(0x1b) string(OR) \n\
+     <Key>KP_Subtract:  string(0x1b) string(OS) \n\
+     <Key>KP_Add:       string(0x1b) string(Ol) \n\
+     <Key>KP_Enter:     string(0x1b) string(OM) \n\
+     <Key>KP_Decimal:   string(0x1b) string(On) \n\
+     <Key>KP_0:         string(0x1b) string(Op) \n\
+     <Key>KP_1:         string(0x1b) string(Oq) \n\
+     <Key>KP_2:         string(0x1b) string(Or) \n\
+     <Key>KP_3:         string(0x1b) string(Os) \n\
+     <Key>KP_4:         string(0x1b) string(Ot) \n\
+     <Key>KP_5:         string(0x1b) string(Ou) \n\
+     <Key>KP_6:         string(0x1b) string(Ov) \n\
+     <Key>KP_7:         string(0x1b) string(Ow) \n\
+     <Key>KP_8:         string(0x1b) string(Ox) \n\
+     <Key>KP_9:         string(0x1b) string(Oy) \n\
+     <Key>F1:           string(0x1b) string(OP) \n\
+     <Key>F2:           string(0x1b) string(OQ) \n\
+     <Key>F3:           string(0x1b) string(OR) \n\
+     <Key>F4:           string(0x1b) string(OS) \n\
+     <Key>F5:           string(0x1b) string([15~) \n\
+     <Key>F6:           string(0x1b) string([17~) \n\
+     <Key>F7:           string(0x1b) string([18~) \n\
+     <Key>F8:           string(0x1b) string([19~) \n\
+     <Key>F9:           string(0x1b) string([20~) \n\
+     <Key>F10:          string(0x1b) string([21~) \n\
+     <Key>F11:          string(0x1b) string([23~) \n\
+     <Key>F12:          string(0x1b) string([24~) \n\
+
+! VXterm (a special Xterm)
+vxterm*background:             #ffefef
+vxterm*foreground:             Black
+vxterm*cursorColor:            Red
+vxterm*pointerColor:           Blue
+vxterm*pointerColorBackground: Black
+vxterm*curses:                 on
+vxterm*C132:                   true
+vxterm*VT100.geometry:         80x61-0+0
+vxterm*logging:                off
+vxterm*ScrollBar:              On
+vxterm*Scrollbar*foreground:   Black
+vxterm*Scrollbar*background:   White
+vxterm*utmpInhibit:            true
+vxterm*cutToBeginningOfLine:   false
+vxterm*charClass:              33:48,45-47:48,58-59:48,64:48,91:48,93:48
+vxterm*VT100.Translations:     #override \
+     <Key>Menu:         set-scrollbar(toggle) \n\
+Shift<Key>Up:           scroll-back(1,page) \n\
+     <Key>Up:           string(0x1b) string("[A") \n\
+Shift<Key>Down:         scroll-forw(1,page) \n\
+     <Key>Down:         string(0x1b) string("[B") \n\
+Shift<Key>Left:         string(0x1b) string("Ot") string(0x08) \n\
+     <Key>Left:         string(0x1b) string("[D") \n\
+Shift<Key>Right:        string(0x1b) string("Ot") string(0x1b) string("Or") \n\
+     <Key>Right:        string(0x1b) string("[C") \n\
+     <Key>Num_Lock:	string(0x1b) string(OP) \n\
+     <Key>KP_Divide:    string(0x1b) string(OQ) \n\
+     <Key>KP_Multiply:  string(0x1b) string(OR) \n\
+     <Key>KP_Subtract:  string(0x1b) string(OS) \n\
+Shift<Key>KP_Add:       string(0x1b) string(Om) \n\
+     <Key>KP_Add:       string(0x1b) string(Ol) \n\
+     <Key>KP_Enter:     string(0x1b) string(OM) \n\
+     <Key>KP_Decimal:   string(0x1b) string(On) \n\
+     <Key>KP_0:         string(0x1b) string(Op) \n\
+     <Key>KP_1:         string(0x1b) string(Oq) \n\
+     <Key>KP_2:         string(0x1b) string(Or) \n\
+     <Key>KP_3:         string(0x1b) string(Os) \n\
+     <Key>KP_4:         string(0x1b) string(Ot) \n\
+     <Key>KP_5:         string(0x1b) string(Ou) \n\
+     <Key>KP_6:         string(0x1b) string(Ov) \n\
+     <Key>KP_7:         string(0x1b) string(Ow) \n\
+     <Key>KP_8:         string(0x1b) string(Ox) \n\
+     <Key>KP_9:         string(0x1b) string(Oy) \n\
+     <Key>F1:           string(0x1b) string([18~) \n\
+     <Key>F2:           string(0x1b) string([19~) \n\
+     <Key>F3:           string(0x1b) string([20~) \n\
+     <Key>F4:           string(0x1b) string([21~) \n\
+     <Key>F5:           string(0x1b) string([23~) \n\
+     <Key>F6:           string(0x1b) string([24~) \n\
+     <Key>F7:           string(0x1b) string([25~) \n\
+     <Key>F8:           string(0x1b) string([26~) \n\
+     <Key>F9:           string(0x1b) string([31~) \n\
+     <Key>F10:          string(0x1b) string([32~) \n\
+     <Key>F11:          string(0x1b) string([33~) \n\
+     <Key>F12:          string(0x1b) string([34~) \n\
+     <Key>Insert:       string(0x1b) string([2~) \n\
+     <Key>Delete:       string(0x1b) string(Ol) \n\
+     <Key>Home:         string(0x1b) string(OP) string(0x1b) string(Ou) \n\
+     <Key>End:          string(0x1b) string(OP) string(0x1b) string(Ot) \n\
+     <Key>BackSpace:    string(0x7f) \n\
+     <Key>Next:         scroll-forw(1,page) \n\
+     <Key>Prior:        scroll-back(1,page) 
+
+!  XCalc
+xcalc*font:                     9x15bold
+xcalc.*.geometry:               +0-0
+
+!  XClock
+XClock*font:                    9x15bold
+XClock*background:              Black
+XClock*foreground:              Green
+XClock*hands:                   red
+XClock*highlight:               black
+XClock*update:                  1
+XClock*mode:                    digital
+XClock.*.geometry:              189x50-225-0
+
+!  Xload
+xload*font:                     9x15bold
+xload.*.foreground:             Green
+xload.*.background:             Black
+xload.*.borderColor:            Black
+xload.*.geometry:               70x50-153-0
+xload.*.highlight:              Red
+xload.*.borderWidth:            0
+
+
+!  emacs
+Emacs.bold.attributeFont:         -dt-*-medium-i-*
+Emacs.italic.attributeForeground: hotpink
+
+emacs.background:               #bffff0
+emacs.foreground:               Black
+emacs.borderWidth:              2
+emacs.cursorColor:              Red
+emacs.pointerColor:	        Blue
+emacs.pointerColorBackground:   White
+emacs.italic.attributeFont:     -*-fixed-medium-r-*-18-*
+!emacs*font:                     9x15bold
+!emacs.font:                     9x15bold
+emacs*bitmapIcon:               on
+!emacs*geometry:                 73x36+0+0
+emacs.font-lock-comment-face.attributeForeground: Brown
+!emacs.font-lock-comment-face.attributeBackground: White
+emacs.font-lock-function-name-face.attributeForeground: Blue
+!emacs.font-lock-function-name-face.attributeBackground: White
+emacs.font-lock-keyword-face.attributeForeground: ForestGreen
+!emacs.font-lock-keyword-face.attributeBackground: White
+emacs.font-lock-logical-face.attributeForeground: ForestGreen
+emacs.font-lock-logical-face.attributeBackground: Blue
+emacs.font-lock-reference-face.attributeForeground: Magenta
+!emacs.font-lock-reference-face.attributeBackground: White
+emacs.font-lock-string-face.attributeForeground: Orange
+!emacs.font-lock-string-face.attributeBackground: White
+emacs.font-lock-type-face.attributeForeground: Black
+emacs.font-lock-type-face.attributeBackground: #ffefef
+emacs.font-lock-variable-name-face.attributeForeground: Purple
+!emacs.font-lock-variable-name-face.attributeBackground: White
+!emacs*w3-node-style.attributeFont: *fixed-bold-*15*
+emacs*w3-node-style.attributeForeground: Red
+emacs*w3-node-style.attributeBackground: White
+emacs*w3-node-style.attributeUnderline: on
+!emacs*w3-visited-node-style.attributeFont: *fixed-bold-*15*
+emacs*w3-visited-node-style.attributeForeground: Blue
+emacs*w3-visited-node-style.attributeBackground: White
+emacs*w3-visited-node-style.attributeUnderline: on
+
+
+!xemacs.background:               #bffff0
+!xemacs.foreground:               Black
+xemacs.borderWidth:              2
+xemacs.cursorColor:              Red
+xemacs.pointerColor:	        Blue
+xemacs.pointerColorBackground:   White
+xemacs.italic.attributeFont:     -*-fixed-medium-r-*-18-*
+!xemacs*font:                     9x15bold
+!xemacs.font:                     9x15bold
+xemacs*bitmapIcon:               on
+!xemacs*geometry:                 73x36+0+0
+xemacs.font-lock-comment-face.attributeForeground: Brown
+!xemacs.font-lock-comment-face.attributeBackground: White
+xemacs.font-lock-function-name-face.attributeForeground: Blue
+!xemacs.font-lock-function-name-face.attributeBackground: White
+xemacs.font-lock-keyword-face.attributeForeground: ForestGreen
+!xemacs.font-lock-keyword-face.attributeBackground: White
+xemacs.font-lock-logical-face.attributeForeground: ForestGreen
+xemacs.font-lock-logical-face.attributeBackground: Blue
+xemacs.font-lock-reference-face.attributeForeground: Magenta
+!xemacs.font-lock-reference-face.attributeBackground: White
+xemacs.font-lock-string-face.attributeForeground: Orange
+!xemacs.font-lock-string-face.attributeBackground: White
+xemacs.font-lock-type-face.attributeForeground: Black
+xemacs.font-lock-type-face.attributeBackground: #ffefef
+xemacs.font-lock-variable-name-face.attributeForeground: Purple
+!xemacs.font-lock-variable-name-face.attributeBackground: White
+!xemacs*w3-node-style.attributeFont: *fixed-bold-*15*
+xemacs*w3-node-style.attributeForeground: Red
+xemacs*w3-node-style.attributeBackground: White
+xemacs*w3-node-style.attributeUnderline: on
+!xemacs*w3-visited-node-style.attributeFont: *fixed-bold-*15*
+xemacs*w3-visited-node-style.attributeForeground: Blue
+xemacs*w3-visited-node-style.attributeBackground: White
+xemacs*w3-visited-node-style.attributeUnderline: on
+
+!  xdvi
+xdvi*foreground:               Black
+xdvi*background:               White
+xdvi*densityPercent:           10
+xdvi*geometry:                 910x1400+0+0
+xdvi*paper:                    a4
+xdvi*shrinkFactor:             3
+
+!  Ghostview
+ghostview*font:                9x15bold
+ghostview*foreground:          Black
+ghostview*background:          White
+ghostview.printCommand:        flpr
+ghostview.magstep:             -1
+ghostview.geometry:            +0+0
+ghostview.pageMedia:           Letter
+
+!  Gv
+gv*font:                9x15bold
+gv*foreground:          Black
+gv*background:          White
+gv.PrintCommand:        flpr
+gv.magstep:             -1
+gv.geometry:            +0+0
+gv.pageMedia:           Letter
