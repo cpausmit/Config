@@ -1,7 +1,0 @@
-#!/bin/bash
-# setup the x-environment
-xrdb -merge /home/ana/.Xdefaults
-# make sure the export area is mounted
-/home/ana/bin/mountExport.sh
-
-exit 0
