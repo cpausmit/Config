@@ -1,0 +1,11 @@
+Repository: Config
+==================
+
+This is the repository for my configuration for all linux computers. It contains
+mostly generally useful tools that are useful for any setup. There are some dot
+files for configuration purposes but mostly there are the scripts in the bin
+directory.
+
+To make sure the repository is easily included into the setup an install script
+is provided to ease the adaptation of the repository and at the same time keep
+it available for synchronization with the github repository.
