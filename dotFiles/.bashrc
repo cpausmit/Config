@@ -36,3 +36,10 @@ then
   # initialize the cms aliases
   source $HOME/.aliases-cms
 fi
+
+if [ "`which git 2> /dev/null`" != "" ]
+then
+  git config --global user.name    "Christoph Paus"
+  git config --global user.email   paus@mit.edu
+  git config --global push.default simple
+fi
