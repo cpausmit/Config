@@ -24,7 +24,7 @@
 
   # careful giving a path screws up the colours because emacs*..
   # are not recognised
-  emacs=xemacs
+  emacs=emacs
 
   case $1 in
 
