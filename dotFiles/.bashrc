@@ -37,7 +37,7 @@ then
   source $HOME/.aliases-cms
 fi
 
-if [ "`which git 2> /dev/null`" != "" ]
+if [ "`which git 2> /dev/null`" != "" ] && ! [ -e "/$HOME/.gitconfig" ]
 then
   git config --global user.name    "Christoph Paus"
   git config --global user.email   paus@mit.edu
