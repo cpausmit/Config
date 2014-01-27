@@ -167,16 +167,17 @@ foreach my $sVidUrl (@{$aRes->{videos}}) {
 
 	if($aOpts->yt_dump_urls) {
 		printf("https://www.youtube.com/watch?v=%s\n", $sVidId);
-	} elsif($aOpts->yt_dump_to_file) {
-		printf($hDumpFile "https://www.youtube.com/watch?v=%s\n", $sVidId);
-	} else {
-		my $sParam = sprintf('%shttps://www.youtube.com/watch?v=%s',
-				$aOpts->yt_pass_on ? $aOpts->yt_pass_on . ' ' : '',
-				$sVidId);
-		`$sBinary $sParam`;
+#	} elsif($aOpts->yt_dump_to_file) {
+#		printf($hDumpFile "https://www.youtube.com/watch?v=%s\n", $sVidId);
+#	} else {
+#		my $sParam = sprintf('%shttps://www.youtube.com/watch?v=%s',
+#				$aOpts->yt_pass_on ? $aOpts->yt_pass_on . ' ' : '',
+#				$sVidId);
+#		`$sBinary $sParam`;
 	}
+
 }
 
-if($aOpts->yt_dump_to_file) {
-	close($hDumpFile);
+if ($aOpts->yt_dump_to_file) {
+  close($hDumpFile);
 }

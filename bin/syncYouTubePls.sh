@@ -8,10 +8,15 @@
 # times.
 #
 #  Packages to install:  ytplaylistfetcher (somewhere from the web)
-#                        - git clone git://git.carbon-project.org/ytplaylistfetcher.git
+#
 #                        - sudo yum install -y cclive clive lynx perl-Getopt-Long-Descriptive \
 #                                              perl-Web-Scraper  perl-LWP-Protocol-https \
 #                                              youtube-dl
+#
+#                        - mkdir $USER/Tools
+#                        - cd    $USER/Tools
+#                        - git clone git://git.carbon-project.org/ytplaylistfetcher.git
+#
 #
 #                                                                             Ch.Paus (Nov 06, 2011)
 #===================================================================================================
@@ -63,7 +68,8 @@ do
   echo " ytplaylistfetcher -d http://www.youtube.com/playlist?list=$pLstId >& sync.log"
   echo " Execute:  ytplaylistfetcher -d  http://www.youtube.com/playlist?list=$pLstId"  > sync.log
   echo " "                                                                             >> sync.log
-  ytplaylistfetcher -d http://www.youtube.com/playlist?list=$pLstId                    >> sync.log
+  #ytplaylistfetcher -d http://www.youtube.com/playlist?list=$pLstId                    >> sync.log
+
   
 done < $PLAYLISTS
 
