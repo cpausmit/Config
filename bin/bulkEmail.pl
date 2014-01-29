@@ -12,6 +12,10 @@ use List::MoreUtils qw(each_array);
 #               -- yum install -y  sendmail perl perl-List-AllUtils
 #                  sudo service    sendmail start
 #
+# To do: the current version is doing what it is supposed to do but it is a terrible piece of code
+#        major re-write needs to be done getting ride of perl special packages and making it clean
+#        and modular. Maybe I should just rewrite it in python?!  ;-)
+#
 #                                                       Version 1.0:   Jan 28, 2014 (Christoph Paus)
 #                                                             Written: Aug 25, 2009 (Christoph Paus)
 #---------------------------------------------------------------------------------------------------
