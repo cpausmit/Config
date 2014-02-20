@@ -3,6 +3,10 @@ if      ( ".$1" == ".backup" ) then
   find $HOME \( -name \*.~\*~ -o -name \*~ -o -name \*.bak -o \
                 -name .\*.~\*~ -o -name .\*~ -o -name .\*.bak \) \
        -exec ls -s {} \; -exec rm {} \;
+else if ( ".$1" == ".backup-local" ) then
+  find ./    \( -name \*.~\*~ -o -name \*~ -o -name \*.bak -o \
+                -name .\*.~\*~ -o -name .\*~ -o -name .\*.bak \) \
+       -exec ls -s {} \; -exec rm {} \;
 else if ( ".$1" == ".core" ) then
   find $HOME -type f \( -name core -o -name core.\[0-9\]\* \) \
        -exec ls -s {} \; -exec rm {} \;
