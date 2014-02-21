@@ -1,23 +1,29 @@
 #!/bin/bash
 DAYS=$1
 shift
+
 DIRECTORIES="$*"
 
 # remaining parameters are assumed to be directories to search otherwise the 'pwd' is used
 
-if [ "$DAYS" == "" ]; then 
+if [ "$DAYS" == "-h" ]
+then 
   echo 
   echo " Missing parameter:"
   echo 
-  echo "   usage: findRecentFile  <LastNDays> [ <directories-to-search> ]"
+  echo "   usage: findRecentFile  <LastNDays> [ <directories-to-search> = \"./\" ]"
   echo 
   exit 1
 fi
 
 # it seems trivial but I always have to research until I get it right
+if [ -z "$DAYS" ]
+then
+   DAYS="1"
+fi
 if [ -z "$DIRECTORIES" ]
 then
-   $DIRECTORIES="./"
+   DIRECTORIES="./"
 fi
 
 find $DIRECTORIES -ctime -$DAYS -type f \
