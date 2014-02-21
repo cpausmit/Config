@@ -38,7 +38,9 @@ sudo rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.
 sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
 sudo yum install -y AdobeReader_enu
 sudo yum install -y samba samba-client cifs-utils
-sudo yum install -y tcsh ksh xterm emacs nfs-utils nfs-utils-lib xorg-x11-fonts-misc bitmap-fonts clive cclive lynx
+sudo yum install -y tcsh ksh xterm emacs tetex \
+                    nfs-utils nfs-utils-lib xorg-x11-fonts-misc bitmap-fonts \
+                    clive cclive lynx
 
 sudo rpm -ivh http://fedora-sabnzbd.dyndns.org/SABnzbd/16/SABnzbd-release-1-2.noarch.rpm
 sudo yum install -y SABnzbd
