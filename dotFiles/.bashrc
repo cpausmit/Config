@@ -1,7 +1,7 @@
 # Source global definitions
 
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
 
 # User specific environment and startup programs
