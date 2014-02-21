@@ -1,5 +1,5 @@
 #!/bin/sh
-################################################################################
+#================================================================================
 #
 # Tiny script to get emacs in the right colors.
 #
@@ -11,19 +11,12 @@
 #  gg: green      green
 #  bb: blue       blue
 #
-################################################################################
+#================================================================================
 
   n="`basename $0`>"
 
-  font='-*-fixed-bold-r-*-18-*'
-
-  #if [ ".`whichLaptop`" == ".0" ]; then
-  #  echo "Found old laptop (adjust fonts)"
-  #  font='-*-fixed-bold-r-*-14-*'
-  #fi
-
   # careful giving a path screws up the colours because emacs*..
-  # are not recognised
+  # are not recognized
   emacs=emacs
 
   case $1 in
