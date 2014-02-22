@@ -1,7 +1,7 @@
 # Source global definitions
 
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
 
 # User specific environment and startup programs
@@ -26,7 +26,9 @@ export TEXINPUTS
 # Set general alias
 
 alias clb="clean.csh backup"
+alias cll="clean.csh backup-local"
 alias clc="clean.csh core"
+alias recent="findRecentFiles 1 ./"
 alias large="find $HOME -size +8000k -exec ls -sh {} \;"
 
 # Set other more specific aliases if appropriate

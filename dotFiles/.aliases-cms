@@ -1,14 +1,17 @@
 alias compile='cd $CMSSW_BASE/src/; scram b -j8; cd -'
 
+# skimminig
 alias hggSkm='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitHgg/bin/mithgg.sh;source $CMSSW_BASE/src/MitHgg/config/skm-hgg-0.env;source $CMSSW_BASE/src/MitProd/Processing/bin/processing.sh;'
 alias h4lSkm='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitHgg/bin/mithgg.sh;source $CMSSW_BASE/src/MitHgg/config/skm-h4l-0.env;source $CMSSW_BASE/src/MitProd/Processing/bin/processing.sh;'
 
+# standard
 alias cms025_bp3='export MIT_VERS=025;export MIT_TAG=Mit_025c_branch2;c=$H/cms;mkdir -p $c/cmssw/$MIT_VERS;cd $c/cmssw/$MIT_VERS;source $c/INIT 4_4_4; cd $c/root'
 alias cms029='export MIT_VERS=029;export MIT_TAG=Mit_029_pre1;c=$H/cms;mkdir -p $c/cmssw/$MIT_VERS;cd $c/cmssw/$MIT_VERS;source $c/INIT 5_3_2_patch4; cd $c/root'
 alias cms030='export MIT_VERS=030;export MIT_TAG=Mit_030;c=$H/cms;mkdir -p $c/cmssw/$MIT_VERS;cd $c/cmssw/$MIT_VERS;source $c/INIT 5_3_10_patch1; cd $c/root'
 alias cms031='export MIT_VERS=031;export MIT_TAG=Mit_031;c=$H/cms;mkdir -p $c/cmssw/$MIT_VERS;cd $c/cmssw/$MIT_VERS;source $c/INIT 5_3_10_patch1; cd $c/root'
 alias cms032='export MIT_VERS=032;export MIT_TAG=Mit_032;c=$H/cms;mkdir -p $c/cmssw/$MIT_VERS;cd $c/cmssw/$MIT_VERS;source $c/INIT 5_3_11; cd $c/root'
 
+# latest
 alias cms033='export MIT_VERS=033;export MIT_TAG=master;c=$H/cms;mkdir -p $c/cmssw/$MIT_VERS;cd $c/cmssw/$MIT_VERS;source $c/INIT 5_3_14_patch2; cd $c/root'
 
 alias hgg='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitHgg/bin/mithgg.sh;source $CMSSW_BASE/src/MitHgg/config/hgg.env;'

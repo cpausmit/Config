@@ -54,12 +54,20 @@ sudo yum install -y \
          alsa-lib.i686 fontconfig.i686 freetype.i686 glib2.i686 \
          libSM.i686 libXScrnSaver.i686 libXi.i686 libXrandr.i686 \
          libXrender.i686 libXv.i686 libstdc++.i686 pulseaudio-libs.i686 \
-         qt.i686 qt-x11.i686 zlib.i686 qtwebkit.i686
+         qt.i686 qt-x11.i686 zlib.i686 qtwebkit.i686 \
+         nxagent libreoffice
 
-# get the old gnome 2 style stuff
+# get the old gnome 2 style stuff for opennx
 yum -y groupinstall "MATE desktop"
 sudo yum install libpng15
 
 sudo yum localinstall Downloads/skype-4.2.0.11-fedora.i586.rpm
 sudo yum localinstall Downloads/opennx-0.16-725.fc18.x86_64.rpm
 
+# for the youtube downloader
+sudo yum install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Protocol-https
+
+# the opennx client
+wget http://opennx.net/static/opennx.repo
+sudo mv opennx.repo /etc/yum.repos.d/
+sudo yum install -y opennx
