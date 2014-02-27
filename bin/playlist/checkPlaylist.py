@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #----------------------------------------------------------------------------------------------------
 # Check whether all files mentioned in the Playlist are actually available and suggest alternatives
-# which have a different format.
+# which have a different format. The standard output of the script provides the new playlist.
 #----------------------------------------------------------------------------------------------------
 import sys, os, re, fnmatch
 
