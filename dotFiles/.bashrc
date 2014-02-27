@@ -8,7 +8,7 @@ fi
 
 PS1="\[\033[1;31m\][\$(date +%H:%M)]\[\033[1;30m\][\u@\h:\[\033[1;31m\]\w]\[\033[0m\] "
 
-PATH=$HOME/bin:/bin:/usr/bin:/usr/local/bin:/usr/bin/X11
+PATH=$HOME/bin:$HOME/bin/photos:/bin:/usr/bin:/usr/local/bin:/usr/bin/X11
 PATH=${PATH}:/usr/krb5/bin:/usr/kerberos/bin:/sbin:/usr/sbin
 export PATH
 
