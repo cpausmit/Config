@@ -45,7 +45,7 @@ sudo yum install -y AdobeReader_enu
 sudo yum install -y samba samba-client cifs-utils
 sudo yum install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Protocol-https \
                     tcsh ksh zsh xterm emacs nfs-utils nfs-utils-lib xorg-x11-fonts-misc bitmap-fonts \
-                    clive cclive lynx texlive-euenc*
+                    clive cclive lynx tetex texlive-endnotes texlive-euenc*
 
 sudo rpm -ivh http://fedora-sabnzbd.dyndns.org/SABnzbd/16/SABnzbd-release-1-2.noarch.rpm
 sudo yum install -y SABnzbd
