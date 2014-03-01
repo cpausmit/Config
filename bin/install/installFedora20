@@ -55,7 +55,7 @@ sudo yum install -y \
          libSM.i686 libXScrnSaver.i686 libXi.i686 libXrandr.i686 \
          libXrender.i686 libXv.i686 libstdc++.i686 pulseaudio-libs.i686 \
          qt.i686 qt-x11.i686 zlib.i686 qtwebkit.i686 \
-         nxagent libreoffice simple-mtpfs
+         nxagent libreoffice simple-mtpfs youtube-dl
 
 # get the old gnome 2 style stuff for opennx
 yum -y groupinstall "MATE desktop"
