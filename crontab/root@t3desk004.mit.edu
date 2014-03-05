@@ -3,3 +3,5 @@ SHELL = /bin/tcsh
 0 3 * * 0       /backup/csh/run-complete-backup-to-logfile.csh    >> /dev/null
 # Incremental any other day at 3:00 am
 0 3 * * 1-6     /backup/csh/run-incremental-backup-to-logfile.csh >> /dev/null
+# perform full backup of redmine database and attached files
+15 04 * * * root /home/paus/bin/backup/redmine-backup.sh >& /home/system/backup/redmine.log

@@ -1,14 +1,18 @@
 sudo yum install -y yum-plugin-fastestmirror
 
 sudo rpm -ivh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-20.noarch.rpm
-sudo rpm -ivh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-20.noarch.rpm
-
 sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-20-primary
+
+sudo rpm -ivh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-20.noarch.rpm
 sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-20-primary
+
+sudo yum -y update
+
 
 sudo yum groupinstall -y "KDE"
 
-sudo yum install -y kde-base-artwork kdeartwork kde-style-skulpture goddard-kde-theme constantine-kde-theme bluecurve-kde-theme backintime-kde
+sudo yum install -y kde-base-artwork kdeartwork kde-style-skulpture goddard-kde-theme \
+                    constantine-kde-theme bluecurve-kde-theme backintime-kde
 
 sudo yum install -y \
                  xmms xmms-mp3 xmms-faad2 xmms-flac xmms-pulse \
@@ -18,6 +22,7 @@ sudo yum install -y \
                  vlc
 
 sudo yum install -y wget
+
 wget http://www.mjmwired.net/resources/files/atrpms.repo
 sudo mv ./atrpms.repo /etc/yum.repos.d/atrpms.repo
 sudo rpm --import http://packages.atrpms.net/RPM-GPG-KEY.atrpms
@@ -28,7 +33,7 @@ sudo mv ./google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 sudo rpm --import https://dl-ssl.google.com/linux/linux_signing_key.pub
 sudo yum install -y google-chrome-stable
 
-sudo rpm -ivh http://www.mjmwired.net/resources/files/msttcore-fonts-2.0-3.noarch.rpm
+sudo rpm http://www.mjmwired.net/resources/files/msttcore-fonts-2.0-3.noarch.rpm
 sudo rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
 sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
 
@@ -38,9 +43,9 @@ sudo rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.
 sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
 sudo yum install -y AdobeReader_enu
 sudo yum install -y samba samba-client cifs-utils
-sudo yum install -y tcsh ksh xterm emacs tetex \
-                    nfs-utils nfs-utils-lib xorg-x11-fonts-misc bitmap-fonts \
-                    clive cclive lynx
+sudo yum install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Protocol-https \
+                    tcsh ksh zsh xterm emacs nfs-utils nfs-utils-lib xorg-x11-fonts-misc bitmap-fonts \
+                    clive cclive lynx tetex texlive-endnotes texlive-euenc*
 
 sudo rpm -ivh http://fedora-sabnzbd.dyndns.org/SABnzbd/16/SABnzbd-release-1-2.noarch.rpm
 sudo yum install -y SABnzbd
@@ -50,11 +55,14 @@ sudo yum install -y \
          libSM.i686 libXScrnSaver.i686 libXi.i686 libXrandr.i686 \
          libXrender.i686 libXv.i686 libstdc++.i686 pulseaudio-libs.i686 \
          qt.i686 qt-x11.i686 zlib.i686 qtwebkit.i686 \
-         nxagent libreoffice
+         nxagent libreoffice simple-mtpfs youtube-dl
 
 # get the old gnome 2 style stuff for opennx
 yum -y groupinstall "MATE desktop"
 sudo yum install libpng15
+
+sudo yum localinstall Downloads/skype-4.2.0.11-fedora.i586.rpm
+sudo yum localinstall Downloads/opennx-0.16-725.fc18.x86_64.rpm
 
 # for the youtube downloader
 sudo yum install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Protocol-https
@@ -63,6 +71,3 @@ sudo yum install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Proto
 wget http://opennx.net/static/opennx.repo
 sudo mv opennx.repo /etc/yum.repos.d/
 sudo yum install -y opennx
-
-## http://www.skype.com/en/download-skype/skype-for-linux/downloading/?type=fedora32
-#sudo yum localinstall -y ~/Downloads/skype-4.2.0.13-fedora.i586.rpm

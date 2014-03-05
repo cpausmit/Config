@@ -1,1 +1,2 @@
+# update repository mirros in redmine cache
 */5 * * * *     /home/paus/work/redmine/updateAll.sh >& /home/paus/work/redmine/lastUpdateAll.log

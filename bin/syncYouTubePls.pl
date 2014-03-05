@@ -22,27 +22,27 @@ use URI;
 my $DATABASE="$ENV{'HOME'}/Music";
 my $PLAYLISTS="./PlayLists.txt";
 if ("$ARGV[0]" != "") {
-	$PLAYLISTS="$ARGV[0]";
+  $PLAYLISTS="$ARGV[0]";
 }
 
 # Is the List of PlayList really there?
 
 if (-e "$PLAYLISTS") {
-	printf " List of playlists (exists): $PLAYLISTS\n";
+  printf " List of playlists (exists): $PLAYLISTS\n";
 }
 else {
-	printf " ERROR -- list of playlists ($PLAYLISTS) does not exist. EXIT!\n";
-	exit 1;
+  printf " ERROR -- list of playlists ($PLAYLISTS) does not exist. EXIT!\n";
+  exit 1;
 }
 
 # Do we have a database directory?
 
 if (-d "$DATABASE") {
-	printf " Database          (exists): $DATABASE\n";
+  printf " Database          (exists): $DATABASE\n";
 }
 else {
   printf " ERROR -- database does not exist. EXIT!\n";
-	exit 1;
+  exit 1;
 }
 
 # Start the loop through the play lists
@@ -50,73 +50,76 @@ else {
 open (INPUT,"<$PLAYLISTS");
 while (<INPUT>) {
 
-	chop($_);
+  chop($_);
 
-	my @f = split(" ",$_);
+  my @f = split(" ",$_);
 
-	my $dir  = $f[0];
-	my $plId = $f[1];
-	
-	printf "\n============================================================\n";
-	printf "  Next Playlist  -->  dir=$dir  plId=$plId\n";
-	printf   "============================================================\n\n";
+  my $dir  = $f[0];
+  if (! -d "$dir") {
+    mkdir "$dir";
+  }
+  my $plId = $f[1];
+  
+  printf "\n============================================================\n";
+  printf "  Next Playlist  -->  dir=$dir  plId=$plId\n";
+  printf   "============================================================\n\n";
 
-	my $oUri = URI->new('https://www.youtube.com/playlist?list='.$plId) ||
-			printf " ERROR -- Could not create URL object!  EXIT!\n";
-	my $oVideos = scraper { process '//a[contains(@class,"ux-thumb-wrap yt-uix-sessionlink")]',
-													"videos[]" => '@href'; };
-	my $results = $oVideos->scrape($oUri);
+  my $oUri = URI->new('https://www.youtube.com/playlist?list='.$plId) ||
+      printf " ERROR -- Could not create URL object!  EXIT!\n";
+  my $oVideos = scraper { process '//a[contains(@class,"ux-thumb-wrap yt-uix-sessionlink")]',
+                          "videos[]" => '@href'; };
+  my $results = $oVideos->scrape($oUri);
 
   # make list of existing files
-	my %existingTitlesHash = {};
-	opendir(DIR, $dir) or die $!;
-	my @files = grep {!/^\./} readdir(DIR);
+  my %existingTitlesHash = {};
+  opendir(DIR, $dir) or die $!;
+  my @files = grep {!/^\./} readdir(DIR);
 
-	for my $file (@files) {
-		print " Existing -- $file\n";
-		my $hash = `cleanString.sh cleanContractBasename \"$file\"`; chop($hash);
-				if (exists $existingTitlesHash{$hash}) {
-			printf "\n Requesting already filled spot: $hash -> $file (exists: $existingTitlesHash{$hash})\n";
-			my $cmd = " rm \"$dir/$file\"";
-			print(" Execute: $cmd\n\n");
-			system($cmd);
-		}
-		else {
-			$existingTitlesHash{$hash} = "$file";
-			printf " Added hash: $hash -> $file\n";
-		}
-	}
-	closedir(DIR);
+  for my $file (@files) {
+    print " Existing -- $file\n";
+    my $hash = `cleanString.sh cleanContractBasename \"$file\"`; chop($hash);
+        if (exists $existingTitlesHash{$hash}) {
+      printf "\n Requesting already filled spot: $hash -> $file (exists: $existingTitlesHash{$hash})\n";
+      my $cmd = " rm \"$dir/$file\"";
+      print(" Execute: $cmd\n\n");
+      system($cmd);
+    }
+    else {
+      $existingTitlesHash{$hash} = "$file";
+      printf " Added hash: $hash -> $file\n";
+    }
+  }
+  closedir(DIR);
 
-	# process the URLs in this list and download if needed
-	chdir($dir);
- 	foreach my $videoUrl (@{$results->{videos}}) {
+  # process the URLs in this list and download if needed
+  chdir($dir);
+   foreach my $videoUrl (@{$results->{videos}}) {
 
- 		my $videoId = $videoUrl;
+     my $videoId = $videoUrl;
 
- 		$videoId =~ s/^(https?:\/\/www\.youtube\.com\/watch\?)(.*)?(v=[a-zA-Z0-9_\-]+)(.*)$/$3/;
- 		$videoId = substr($videoId,2);
- 		
- 		printf "\nURL: $videoUrl -> $videoId\n";
+     $videoId =~ s/^(https?:\/\/www\.youtube\.com\/watch\?)(.*)?(v=[a-zA-Z0-9_\-]+)(.*)$/$3/;
+     $videoId = substr($videoId,2);
+     
+     printf "\nURL: $videoUrl -> $videoId\n";
 
-		# get file name
- 		my $dl_cmd = "youtube-dl -o '%(title)s.%(ext)s' https://www.youtube.com/watch?v=$videoId";
- 		my $file = `$dl_cmd --get-filename`;  chop($file);
- 		my $hash = `cleanString.sh cleanContractBasename \"$file\"`; chop($hash);
+    # get file name
+     my $dl_cmd = "youtube-dl -o '%(title)s.%(ext)s' https://www.youtube.com/watch?v=$videoId";
+     my $file = `$dl_cmd --get-filename`;  chop($file);
+     my $hash = `cleanString.sh cleanContractBasename \"$file\"`; chop($hash);
 
-		# test whether file or something very similar exists already locally
- 		printf " Testing hash: $hash  -->  file: $file\n";
+    # test whether file or something very similar exists already locally
+     printf " Testing hash: $hash  -->  file: $file\n";
 
- 		if (exists $existingTitlesHash{$hash}) {
- 			printf " Matching file already found: $hash -> $file (exists: $existingTitlesHash{$hash})\n";
- 		}
-		else {
-			print(" Execute: $dl_cmd\n\n");
-			system($dl_cmd);
-		}
- 		
- 	}
-	chdir("../");
+     if (exists $existingTitlesHash{$hash}) {
+       printf " Matching file already found: $hash -> $file (exists: $existingTitlesHash{$hash})\n";
+     }
+    else {
+      print(" Execute: $dl_cmd\n\n");
+      system($dl_cmd);
+    }
+     
+   }
+  chdir("../");
 
 }
 
