@@ -1,3 +1,7 @@
+export H=$HOME
+
+alias cq="condor_q -global $USER"
+alias cqa="condor_q -global $USER -analyze"
 alias compile='cd $CMSSW_BASE/src/; scram b -j8; cd -'
 
 # skimminig
@@ -15,3 +19,6 @@ alias cms032='export MIT_VERS=032;export MIT_TAG=Mit_032;c=$H/cms;mkdir -p $c/cm
 alias cms033='export MIT_VERS=033;export MIT_TAG=master;c=$H/cms;mkdir -p $c/cmssw/$MIT_VERS;cd $c/cmssw/$MIT_VERS;source $c/INIT 5_3_14_patch2; cd $c/root'
 
 alias hgg='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitHgg/bin/mithgg.sh;source $CMSSW_BASE/src/MitHgg/config/hgg.env;'
+
+# boosted V analysis
+alias boo='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitMonoJet/bin/mitmonojet.sh;source $CMSSW_BASE/src/MitMonoJet/config/boostedv.env;source $CMSSW_BASE/src/MitProd/Processing/bin/processing.sh;'
