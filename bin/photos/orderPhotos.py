@@ -138,7 +138,8 @@ def makePhotoFileList(path,debug):
     return photoFileList
 
 def makeVideoFileList(path,debug):
-    cmd = 'find \"' + path + '\" \( -iname \*.3gp -o -iname \*.mov -o -iname \*.avi \)'
+    cmd = 'find \"' + path + \
+          '\" \( -iname \*.3gp -o -iname \*.mov -o -iname \*.m4a -o -iname \*.avi \)'
     if debug:
         print ' Search: ' + cmd
     videoFileList = []
