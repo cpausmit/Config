@@ -6,7 +6,7 @@
 #
 #                                                                                     C.Paus (~1993)
 # --------------------------------------------------------------------------------------------------
-# will run in korn shell ##!/bin/ksh
+# will also run in korn shell ##!/bin/ksh
 
 # decode the arguments
 command=$0
