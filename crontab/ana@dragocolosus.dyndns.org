@@ -1,0 +1,2 @@
+# Mirror 
+0 4 * * *  /home/ana/bin/photos/syncPhotos.pl >& /export/photos/log/cpAlbum.log

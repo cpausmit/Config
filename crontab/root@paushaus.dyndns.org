@@ -1,0 +1,2 @@
+# Mirror user home directory to home server
+0 5 * * *  /home/paus/bin/backup/syncHome.pl >> /dev/null

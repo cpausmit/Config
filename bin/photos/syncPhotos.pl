@@ -50,7 +50,7 @@ $cmd  = "rsync -avz -x --rsh=ssh $home $machine:$backup > $home/backup-log/curre
 printf "RSYNC: $cmd\n";
 $rc   = system("$cmd");
 
-$cmd  = "ssh $machine \"source .bash_profile; ./bin/makeGalleries.pl\" ";
+$cmd  = "ssh $machine \"source .bash_profile; makeGalleries.pl\" ";
 $cmd .=  ">> $home/backup-log/current.log";
 printf "UPDATE: $cmd\n";
 $rc   = system("$cmd");

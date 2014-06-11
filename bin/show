@@ -7,22 +7,30 @@
 # ------------------------------------------------------------------------------
 # do we want to have a quiet running
 quiet=false;
-if [ "$1" == "-q" ]; then
+if [ "$1" == "-q" ]
+then
   quiet=true; shift;
 fi
 
+# determine viewer
+VIEWER=`which okular`
+if [ ".$VIEWER" == "." ]
+then
+  VIEWER=gv
+fi
+
 # define all relevant directories to search in
-TEXINPUTS="/home/paus/text/sty:/home/paus/text/sty/foiltex";
-TEXINPUTS="${TEXINPUTS}:/home/paus/text/def:/home/paus/teaching/text/def";
-TEXINPUTS="${TEXINPUTS}:/home/paus/text/oo";
-TEXINPUTS="${TEXINPUTS}:/home/paus/teaching/text/sty";
-TEXINPUTS="${TEXINPUTS}:/home/paus/text/revtex4";
+TEXINPUTS="/home/$USER/text/sty:/home/$USER/text/sty/foiltex";
+TEXINPUTS="${TEXINPUTS}:/home/$USER/text/def:/home/$USER/teaching/text/def";
+TEXINPUTS="${TEXINPUTS}:/home/$USER/text/oo";
+TEXINPUTS="${TEXINPUTS}:/home/$USER/teaching/text/sty";
+TEXINPUTS="${TEXINPUTS}:/home/$USER/text/revtex4";
 TEXINPUTS="${TEXINPUTS}:/usr/share/texmf/tex/generic/pstricks:";
 export TEXINPUTS
 
 # make sure to cleanup the file name
 file=`echo $1 | sed s'/.tex$//'`
-shift;
+shift
 
 # the new tools are being used
 lualatex $file

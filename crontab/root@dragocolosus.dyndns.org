@@ -1,0 +1,2 @@
+# the temperature monitor
+*/10 * * * * /home/ana/Tools/rrd/rrd_logger.pl > /home/ana/Tools/rrd/rrd_logger.log
