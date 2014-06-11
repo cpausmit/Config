@@ -1,16 +1,14 @@
 #!/bin/sh
+# ------------------------------------------------------------------------------
 #
-# Produce a complete new update of the actual ps file.
-# Also the bibliography is updated.
+# Produce a complete new update of the actual ps file.  Also the bibliography is
+# updated.
 #
-if [ "$1" == "-p" ]; then
-  pdf=true; shift;
-fi
-
-# determine viewer
-VIEWER=`which evince`
-if [ ".$VIEWER" == "." ]; then
-  VIEWER=gv
+# ------------------------------------------------------------------------------
+# do we want to have a quiet running
+quiet=false;
+if [ "$1" == "-q" ]; then
+  quiet=true; shift;
 fi
 
 # define all relevant directories to search in
@@ -22,24 +20,26 @@ TEXINPUTS="${TEXINPUTS}:/home/paus/text/revtex4";
 TEXINPUTS="${TEXINPUTS}:/usr/share/texmf/tex/generic/pstricks:";
 export TEXINPUTS
 
-quiet=false;
-if [ "$1" == "-q" ]; then
-  quiet=true; shift;
-fi
-
+# make sure to cleanup the file name
 file=`echo $1 | sed s'/.tex$//'`
 shift;
 
-pdflatex $file
-#latex $file     #  > /dev/null
-#dvips -Ppdf $file -o
-dvips -t letter -Ppdf $file -o  # 1> /dev/null 2> /dev/null
-if [ $quiet = "false" ]; then
+# the new tools are being used
+lualatex $file
+
+# for sentimental purposes
+# pdflatex $file
+# latex    $file; dvips -t letter -Ppdf $file -o
+
+# make a display
+if [ $quiet = "false" ]
+then
+  # determine viewer
+  VIEWER=`which okular`
+  if [ ".$VIEWER" == "." ]; then
+    VIEWER=evince
+  fi
   $VIEWER $file.pdf &
 fi
-
-#if ! [ -z "$pdf" ]; then
-#  ps2pdf $file.ps $file.pdf &
-#fi
 
 exit 0;
