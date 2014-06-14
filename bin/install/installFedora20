@@ -8,20 +8,15 @@ sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-20-prima
 
 sudo yum -y update
 
-
 sudo yum groupinstall -y "KDE"
-
 sudo yum install -y kde-base-artwork kdeartwork kde-style-skulpture goddard-kde-theme \
                     constantine-kde-theme bluecurve-kde-theme backintime-kde
-
 sudo yum install -y \
                  xmms xmms-mp3 xmms-faad2 xmms-flac xmms-pulse \
                  xmms-skins audacious audacious-plugins-freeworld* rhythmbox \
                  gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg \
                  gstreamer-plugins-bad-nonfree amarok xine-lib-extras-freeworld \
-                 vlc
-
-sudo yum install -y wget
+                 vlc wget
 
 wget http://www.mjmwired.net/resources/files/atrpms.repo
 sudo mv ./atrpms.repo /etc/yum.repos.d/atrpms.repo
@@ -61,9 +56,6 @@ sudo yum install -y \
 yum -y groupinstall "MATE desktop"
 sudo yum install libpng15
 
-sudo yum localinstall Downloads/skype-4.2.0.11-fedora.i586.rpm
-sudo yum localinstall Downloads/opennx-0.16-725.fc18.x86_64.rpm
-
 # for the youtube downloader
 sudo yum install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Protocol-https
 
@@ -71,3 +63,10 @@ sudo yum install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Proto
 wget http://opennx.net/static/opennx.repo
 sudo mv opennx.repo /etc/yum.repos.d/
 sudo yum install -y opennx
+
+# love root and install it
+sudo yum install -y root*
+
+sudo yum localinstall Downloads/skype-4.2.0.11-fedora.i586.rpm
+#sudo yum localinstall Downloads/opennx-0.16-725.fc18.x86_64.rpm
+
