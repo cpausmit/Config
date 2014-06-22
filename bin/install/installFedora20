@@ -52,6 +52,9 @@ sudo yum install -y \
          qt.i686 qt-x11.i686 zlib.i686 qtwebkit.i686 \
          nxagent libreoffice simple-mtpfs youtube-dl
 
+sudo yum install -y \
+         texlive-zapfding texlive-texmf-fonts texlive-metapost
+
 # get the old gnome 2 style stuff for opennx
 yum -y groupinstall "MATE desktop"
 sudo yum install libpng15
