@@ -51,7 +51,7 @@ def getDateTime(data):
 
     return dateTime
 
-def getExif(fn):
+def getExif(fn,debug=False):
     cmd = 'exiftool \"' + fn + '"'
     ret = {}
     for line in os.popen(cmd).readlines():
@@ -61,7 +61,8 @@ def getExif(fn):
         key   = key.replace(' ','')
         key   = key.replace('/','')
         value = f[1]
-        print key + ' ' + value
+        if debug:
+            print key + ' ' + value
         ret[key] = value
     return ret
 
@@ -112,6 +113,8 @@ def newVideoData(data,model):
         fileName = dateTime + '_' + model + '.avi'
     elif "mov" in data['FileName'].lower():
         fileName = dateTime + '_' + model + '.mov'
+    elif "mp4" in data['FileName'].lower():
+        fileName = dateTime + '_' + model + '.mp4'
     else:
         fileName = dateTime + '_' + model + '.3gp'
     f        = date.split(':')
@@ -209,7 +212,7 @@ photoFileList = makePhotoFileList(path,debug)
 for photoFile in photoFileList:
     if debug:
         print photoFile
-    data      = getExif(photoFile)
+    data      = getExif(photoFile,debug)
     photoData = newPhotoData(data,model)
     if debug:
         print ' Time of picture------: ' + photoData['Time']
@@ -220,6 +223,19 @@ for photoFile in photoFileList:
     dir = photoData['Year'] + '/' + photoData['Month']
     cmd = 'mkdir -p ' + album + '/' + dir
     execute(cmd,debug,test)
+
+    source = photoFile
+    target = album + '/' + dir + '/' + photoData['FileName']
+    if os.path.isfile(target):
+        print ' File (%s) exists already.... %s'%(source,target)
+        # figure out whether they are the same
+        cmd = 'exiftool "' + source + '" | grep Brightness > source.brightness'
+        os.system(cmd)
+        cmd = 'exiftool "' + target + '" | grep Brightness > target.brightness'
+        os.system(cmd)
+
+        os.system('diff source.brightness target.brightness')
+        continue
 
     cmd = 'mv \"' + photoFile + '\" ' + album + '/' + dir + '/' + photoData['FileName']
     print ' Cmd: ' + cmd
