@@ -1,0 +1,12 @@
+# looks like the down key has the wrong meaning
+xmodmap -e "keycode 108 = Down"
+# looks like the keypad enter key has the wrong meaning
+xmodmap -e "keycode 113 = KP_Enter"
+# looks like the delete key has the wrong meaning
+xmodmap -e "keycode 111 = Delete"
+# looks like the next key (page down) has the wrong meaning
+xmodmap -e "keycode 109 = Next"
+# looks like the home key has the wrong meaning
+xmodmap -e "keycode 211 = Home"
+# looks like the insert key has the wrong meaning
+xmodmap -e "keycode 112 = Insert"

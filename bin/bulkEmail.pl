@@ -83,7 +83,8 @@ printf "\n";
 # Process each line in the setup file
 my $first = 0;
 my @keys  = ();
-open(INPUT,"cat $project/emailParameters.txt | grep -v ^# |");
+#open(INPUT,"cat $project/emailParameters.txt | grep -v ^# |");
+open(INPUT,"cat $project/emailParameters.csv | grep -v ^# |");
 while($line = <INPUT>) {
 
   chop($line);
@@ -93,6 +94,7 @@ while($line = <INPUT>) {
 
   # split the line into its fields
   @f = split(':',$line);
+  #@f = split(',',$line);
   
   # make sure to reset the values per line
   my @values = ();
@@ -118,71 +120,83 @@ while($line = <INPUT>) {
   else {
 
     # setup recipient e-mail
-    $recipientEmail = $values[0];
-    if ($DEBUG != 0) {
-      printf " Email: $recipientEmail\n";
+    for (my $i=0; $i<@keys; $i=$i+1) {
+	if ($keys[$i] eq "EMAIL") {
+          $recipientEmail = $values[$i];
+          if ($DEBUG != 0) {
+            printf " Email: $recipientEmail\n";
+          }
+        }
+      $_ =~ s/XX-$keys[$i]-XX/$values[$i]/;
     }
 
-    # step one: create specific raw email and make all personal
-    open(OUTPUT,"> $project/spool/${recipientEmail}_${template}.eml-raw");
-    open(PARSE, "$project/$template");
-    while (<PARSE>) {
-      for (my $i=0; $i<@keys; $i=$i+1) {
-	$_ =~ s/XX-$keys[$i]-XX/$values[$i]/;
-      }
-      printf OUTPUT "$_";
-    }
-    close(PARSE);
-    close(OUTPUT);
-    
-    # step two: extract additional email command line directions and remove them from raw file
-    open(OUTPUT,"> $project/spool/${recipientEmail}_${template}.eml");
-    open(PARSE, "$project/spool/${recipientEmail}_${template}.eml-raw");
-    while (<PARSE>) {
-      if (m/^subject:/i) {
-	chop($_);
-	@f = split(':',$_);
-	$tag = shift(@f);
-	$subject = join(':',@f);
-	$subject =~ s/^\s+//;
-	printf " Found subject tag ($tag): $subject\n";
-      }
-      elsif (m/^replyto:/i) {
-	chop($_);
-	@f = split(':',$_);
-	$tag = shift(@f);
-	$replyTo = join(':',@f);
-	$replyTo =~ s/^\s+//;
-	printf " Found replyto tag ($tag): $replyTo\n";
-      }
-      elsif (m/^cc:/i) {
-	chop($_);
-	@f = split(':',$_);
-	$tag = shift(@f);
-	$cc = join(':',@f);
-	$cc =~ s/^\s+//;
-	printf " Found carbon-copy tag  ($tag): $cc\n";
-      }
-      else {
-	printf OUTPUT "$_";
-      }
-    }
-    close(PARSE);
-    close(OUTPUT);
+##     $recipientEmail = $values[0];
+##     if ($DEBUG != 0) {
+##       printf " Email: $recipientEmail\n";
+##     }
 
-    # remove the raw eml file
-    system("rm $project/spool/${recipientEmail}_${template}.eml-raw");
-    
-    # finally produce the command line to send the email (email is not send by the tool)
-    $cmd  = "mail -s '$subject'";
-    if ("$cc" ne "") {
-      $cmd .= " -c $cc"; 
+    if ($recipientEmail ne "") {
+      # step one: create specific raw email and make all personal
+      open(OUTPUT,"> $project/spool/${recipientEmail}_${template}.eml-raw");
+      open(PARSE, "$project/$template");
+      while (<PARSE>) {
+        for (my $i=0; $i<@keys; $i=$i+1) {
+  	$_ =~ s/XX-$keys[$i]-XX/$values[$i]/;
+        }
+        printf OUTPUT "$_";
+      }
+      close(PARSE);
+      close(OUTPUT);
+      
+      # step two: extract additional email command line directions and remove them from raw file
+      open(OUTPUT,"> $project/spool/${recipientEmail}_${template}.eml");
+      open(PARSE, "$project/spool/${recipientEmail}_${template}.eml-raw");
+      while (<PARSE>) {
+        if (m/^subject:/i) {
+  	chop($_);
+  	@f = split(':',$_);
+  	$tag = shift(@f);
+  	$subject = join(':',@f);
+  	$subject =~ s/^\s+//;
+  	printf " Found subject tag ($tag): $subject\n";
+        }
+        elsif (m/^replyto:/i) {
+  	chop($_);
+  	@f = split(':',$_);
+  	$tag = shift(@f);
+  	$replyTo = join(':',@f);
+  	$replyTo =~ s/^\s+//;
+  	printf " Found replyto tag ($tag): $replyTo\n";
+        }
+        elsif (m/^cc:/i) {
+  	chop($_);
+  	@f = split(':',$_);
+  	$tag = shift(@f);
+  	$cc = join(':',@f);
+  	$cc =~ s/^\s+//;
+  	printf " Found carbon-copy tag  ($tag): $cc\n";
+        }
+        else {
+  	printf OUTPUT "$_";
+        }
+      }
+      close(PARSE);
+      close(OUTPUT);
+  
+      # remove the raw eml file
+      system("rm $project/spool/${recipientEmail}_${template}.eml-raw");
+      
+      # finally produce the command line to send the email (email is not send by the tool)
+      $cmd  = "mail -s '$subject'";
+      if ("$cc" ne "") {
+        $cmd .= " -c $cc"; 
+      }
+      if ("$replyTo" ne "") {
+        $cmd .= " -S replyto=$replyTo";
+      }
+      $cmd .= " $recipientEmail <  $project/spool/${recipientEmail}_${template}.eml\n";
+      printf "\n $cmd\n";
     }
-    if ("$replyTo" ne "") {
-      $cmd .= " -S replyto=$replyTo";
-    }
-    $cmd .= " $recipientEmail <  $project/spool/${recipientEmail}_${template}.eml\n";
-    printf "\n $cmd\n";
 
   }
 }
