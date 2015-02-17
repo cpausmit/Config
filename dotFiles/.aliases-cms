@@ -21,4 +21,4 @@ alias cms033='export MIT_VERS=033;export MIT_TAG=master;c=$H/cms;mkdir -p $c/cms
 alias hgg='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitHgg/bin/mithgg.sh;source $CMSSW_BASE/src/MitHgg/config/hgg.env;'
 
 # boosted V analysis
-alias boo='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitMonoJet/bin/mitmonojet.sh;source $CMSSW_BASE/src/MitMonoJet/config/boostedv.env;source $CMSSW_BASE/src/MitProd/Processing/bin/processing.sh;'
+alias boo='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitMonoJet/bin/mitmonojet.sh;source $CMSSW_BASE/src/MitMonoJet/config/boostedv.env;'
