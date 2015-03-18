@@ -7,7 +7,7 @@ To make sure the repository is easily included into the setup an install script 
 
 Install the Config package into your account. The starting point is a "git clone" of the Config
 
-     git clone https://github.com/cpausmit/Config.git
+     git clone https://github.com/cpausmit/Config
 
 The last step is to install all pieces in place with
 
