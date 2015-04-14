@@ -21,7 +21,7 @@ fi
 
 # define all relevant directories to search in
 TEXINPUTS="/home/$USER/latex/sty:/home/$USER/latex/sty/foiltex";
-TEXINPUTS="${TEXINPUTS}:/home/$USER/latex/def";
+TEXINPUTS="${TEXINPUTS}:/home/$USER/latex/def:";
 export TEXINPUTS
 
 # make sure to cleanup the file name
@@ -29,6 +29,9 @@ file=`echo $1 | sed s'/.tex$//'`
 shift
 
 # the new tools are being used
+pwd
+ls -l
+echo "lualatex $file"
 lualatex $file
 
 # for sentimental purposes
