@@ -19,7 +19,7 @@ function linkDotFile {
   ln -s $HOME/Config/dotFiles/$file $HOME/
 }
 
-# First step is to soft link the $HOME/bin directory (safely)
+# First step is to soft link the $HOME/bin and $HOME/latex directories (safely)
 
 if [ -e "$HOME/bin" ]
 then
@@ -27,10 +27,20 @@ then
   echo " Found an existing bin directory. Move it to: $HOME/bin.$$"
   mv $HOME/bin  $HOME/bin.$$
 fi
-
 echo ""
 echo " Create soft link: ln -s $HOME/Config/bin $HOME/bin"; echo ""
 ln -s $HOME/Config/bin $HOME/bin
+
+if [ -e "$HOME/latex" ]
+then
+  echo ""
+  echo " Found an existing latex directory. Move it to: $HOME/latex.$$"
+  mv $HOME/latex  $HOME/latex.$$
+fi
+echo ""
+echo " Create soft link: ln -s $HOME/Config/latex $HOME/latex"; echo ""
+ln -s $HOME/Config/latex $HOME/latex
+
 
 # Next establish the dot files
 
@@ -43,4 +53,3 @@ echo ""
 echo " -- DONE --"
 
 exit 0
-

@@ -1,0 +1,131 @@
+%-------------------------------------------------------------------------------
+% private environments
+%-------------------------------------------------------------------------------
+%\setlength{\fboxrule}{4pt}
+
+%-------------------------------------------------------------------------------
+% Make sure math mode is properly set
+%-------------------------------------------------------------------------------
+\renewcommand{\rmdefault}{phv}
+\renewcommand{\itdefault}{sl}
+\DeclareMathAlphabet{\mathsf}{OT1}{phv}{m}{n}
+\DeclareMathAlphabet{\mathit}{OT1}{phv}{m}{sl}
+
+\newcommand{\mathup}{\mathsf}
+\renewcommand{\mathrm}{\mathsf}
+  
+%-------------------------------------------------------------------------------
+% Setup the useful colors
+%-------------------------------------------------------------------------------
+\definecolor{purple}{rgb}{0.9075,0.1255,0.9412}
+\definecolor{darkgreen}{rgb}{0.0,0.75,0.0}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.75}
+\definecolor{darkgray}{rgb}{0.5,0.5,0.5}
+\definecolor{darkred} {rgb}{0.543,0.0,0.0}
+\definecolor{lightblue}{rgb}{0.2,0.6,1.0}
+\definecolor{gray}{rgb}{0.7,0.7,0.7}
+\definecolor{gold}{rgb}{1.0,0.8,0.0}
+
+\newcommand{\black}   {\color{black}}
+\newcommand{\blue}    {\color{darkblue}}
+\newcommand{\cyan}    {\color{lightblue}}
+\newcommand{\green}   {\color{darkgreen}}
+\newcommand{\magenta} {\color{magenta}}
+\newcommand{\red}     {\color{red}}
+\newcommand{\yellow}  {\color{yellow}}
+\newcommand{\gray}    {\color{gray}}
+\newcommand{\darkgray}{\color{darkgray}}
+
+\newcommand{\gold}      {\color{gold}}
+\newcommand{\purple}    {\color{purple}}
+\newcommand{\darkblue}  {\color{darkblue}}
+\newcommand{\darkred}   {\color{darkred}}
+
+%-------------------------------------------------------------------------------
+% technicalities
+%-------------------------------------------------------------------------------
+
+\newcommand{\cpskpNN}{$ $\\[-2.0em]}
+\newcommand{\cpskpN}{$ $\\[-1.5em]}
+\newcommand{\cpskp}{$ $\\[-1.0em]}
+\newcommand{\cpSkp}{$ $\\[-0.5em]}
+\newcommand{\cpSKP}{$ $\\[-0.0em]}
+
+\newcommand{\pz}{\phantom{0}}
+\newcommand{\pzz}{\phantom{00}}
+\newcommand{\pfz}{\phantom{0000}}
+
+\newcommand{\bul}{\ding{46} }
+\newcommand{\bst}{\ding{80} }
+\newcommand{\bone}{\ding{202} }
+\newcommand{\btwo}{\ding{203} }
+\newcommand{\bthr}{\ding{204} }
+\newcommand{\bfou}{\ding{205} }
+
+\newcommand{\ten}[1]{\ensuremath{\times 10^{#1}}}
+\newcommand{\sye}[1]{\ensuremath{~\pm #1}}
+\newcommand{\ase}[2]{\ensuremath{^{~+ #1}_{~- #2}}}
+\newcommand{\expo}[1]{\ensuremath{\mathrm{e}^{#1}}}
+
+%-------------------------------------------------------------------------------
+% unit definitions
+%-------------------------------------------------------------------------------
+
+\newcommand{\fs}{\ensuremath{\mathrm{fs}}}
+\newcommand{\ps}{\ensuremath{\mathrm{ps}}}
+\newcommand{\ns}{\ensuremath{\mathrm{ns}}}
+\newcommand{\ips}{\ensuremath{\mathrm{ps^{-1}}}}
+\newcommand{\um}{\ensuremath{\mathrm{\mu m}}}
+\newcommand{\mm}{\ensuremath{\mathrm{mm}}}
+\newcommand{\cm}{\ensuremath{\mathrm{cm}}}
+\renewcommand{\deg}{\ensuremath{^\mathrm{o}}}
+\newcommand{\ifb}{\ensuremath{\mathrm{fb^{-1}}}}
+\newcommand{\ipb}{\ensuremath{\mathrm{pb^{-1}}}}
+\newcommand{\inb}{\ensuremath{\mathrm{nb^{-1}}}}
+\newcommand{\iub}{\ensuremath{\mathrm{\mu b^{-1}}}}
+\newcommand{\pb}{\ensuremath{\mathrm{pb}}}
+\newcommand{\nb}{\ensuremath{\mathrm{nb}}}
+\newcommand{\ub}{\ensuremath{\mathrm{\mu b}}}
+\newcommand{\eV}{\ensuremath{\mathrm{e\kern -0.1em V}}}
+\newcommand{\keV}{\ensuremath{\mathrm{ke\kern -0.1em V}}}
+\newcommand{\MeV}{\ensuremath{\mathrm{Me\kern -0.1em V}}}
+\newcommand{\GeV}{\ensuremath{\mathrm{Ge\kern -0.1em V}}}
+\newcommand{\TeV}{\ensuremath{\mathrm{Te\kern -0.1em V}}}
+\newcommand{\eVc}{\ensuremath{\mathrm{e\kern -0.1em V/}c}}
+\newcommand{\keVc}{\ensuremath{\mathrm{ke\kern -0.1em V/}c}}
+\newcommand{\MeVc}{\ensuremath{\mathrm{Me\kern -0.1em V/}c}}
+\newcommand{\GeVc}{\ensuremath{\mathrm{Ge\kern -0.1em V/}c}}
+\newcommand{\TeVc}{\ensuremath{\mathrm{Te\kern -0.1em V/}c}}
+\newcommand{\eVcc}{\ensuremath{\mathrm{e\kern -0.1em V/}c^2}}
+\newcommand{\keVcc}{\ensuremath{\mathrm{ke\kern -0.1em V/}c^2}}
+\newcommand{\MeVcc}{\ensuremath{\mathrm{Me\kern -0.1em V/}c^2}}
+\newcommand{\GeVcc}{\ensuremath{\mathrm{Ge\kern -0.1em V/}c^2}}
+\newcommand{\TeVcc}{\ensuremath{\mathrm{Te\kern -0.1em V/}c^2}}
+\newcommand{\Tesla}{\ensuremath{\mathrm{T}}}
+
+\newcommand{\kB}{\ensuremath{\mathrm{kBytes}}}
+\newcommand{\MB}{\ensuremath{\mathrm{MBytes}}}
+\newcommand{\GB}{\ensuremath{\mathrm{GBytes}}}
+\newcommand{\PB}{\ensuremath{\mathrm{PBytes}}}
+\newcommand{\TB}{\ensuremath{\mathrm{TBytes}}}
+\newcommand{\kBs}{\ensuremath{\mathrm{kBytes/s}}}
+\newcommand{\MBs}{\ensuremath{\mathrm{MBytes/s}}}
+
+\newcommand{\Hz}{\ensuremath{\mathrm{Hz}}}
+\newcommand{\kHz}{\ensuremath{\mathrm{kHz}}}
+\newcommand{\MHz}{\ensuremath{\mathrm{MHz}}}
+\newcommand{\GHz}{\ensuremath{\mathrm{GHz}}}
+
+\newcommand{\icmSQs}{\ensuremath{\mathrm{cm^{-2}s^{-1}}}}
+
+% particle pairs
+\newcommand{\EE}{\ensuremath{e^+e^-}}
+\newcommand{\PPBAR}{\ensuremath{p\overline{p}}}
+\newcommand{\BBBAR}{\ensuremath{b\overline{b}}}
+\newcommand{\CCBAR}{\ensuremath{c\overline{c}}}
+
+%-------------------------------------------------------------------------------
+% particle decay chain definitions
+%-------------------------------------------------------------------------------
+% helper
+\renewcommand{\to}{\ensuremath{\rightarrow}}

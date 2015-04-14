@@ -1,0 +1,32 @@
+% ---------------------------------------------------------------------
+% My MIT header style
+% ---------------------------------------------------------------------
+\definecolor{darkred}{rgb}{0.543,0.0,0.0}
+\newcommand{\darkred}{\color{darkred}}
+\newcommand{\mithead}[5]{%
+\begin{minipage}{0.2\textwidth}
+  $ $\\[-2em]
+%  \epsfig{file=/home/paus/text/eps/mitLogo.eps,%
+%          angle=0, width=\textwidth}\\
+%  \epsfig{file=/home/paus/text/eps/mitLogo.pdf,%
+%          angle=0, width=\textwidth}\\
+  \epsfig{file=/home/paus/text/eps/mitLogo.png,%
+          angle=0, width=\textwidth}\\
+\end{minipage}\hfill
+\begin{minipage}{0.74\textwidth}
+  \begin{flushright}
+    {\darkred
+      $ $\\[-3.8em]
+      \begin{tabular}[h]{ l l }
+	Massachusetts Institute of Technology~~~~ &
+        \multicolumn{1}{r}{}                       \\[-0.2em]
+	Laboratory for Nuclear Science            &
+        \multicolumn{1}{r}{#3}                     \\[0.1em]
+	\hline
+	#1                                          &
+	\multicolumn{1}{r}{#4}                     \\[-0.2em]
+        #2                                          &
+	\multicolumn{1}{r}{#5}                     \\[-0.2em]	
+    \end{tabular}}
+    \end{flushright}
+\end{minipage}}
