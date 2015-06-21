@@ -25,16 +25,6 @@ if ("$ARGV[0]" != "") {
   $PLAYLISTS="$ARGV[0]";
 }
 
-# Is the List of PlayList really there?
-
-if (-e "$PLAYLISTS") {
-  printf " List of playlists (exists): $PLAYLISTS\n";
-}
-else {
-  printf " ERROR -- list of playlists ($PLAYLISTS) does not exist. EXIT!\n";
-  exit 1;
-}
-
 # Do we have a database directory?
 
 if (-d "$DATABASE") {
@@ -42,6 +32,16 @@ if (-d "$DATABASE") {
 }
 else {
   printf " ERROR -- database does not exist. EXIT!\n";
+  exit 1;
+}
+
+# Is the List of PlayList really there?
+
+if (-e "$PLAYLISTS") {
+  printf " List of playlists (exists): $PLAYLISTS\n";
+}
+else {
+  printf " ERROR -- list of playlists ($PLAYLISTS) does not exist. EXIT!\n";
   exit 1;
 }
 

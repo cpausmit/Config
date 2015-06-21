@@ -1,0 +1,116 @@
+%%
+%% April 18, 2001
+%%
+%% shavafig.sty
+%%
+%% DESCRIPTION:
+%%   \centerfig[OPT]{FILENAME}{CAPTION} centers a eps figure.  The label for
+%%       the figure will be FILENAME.
+%%
+%%     OPT is a spec string argument to epsfig.  E.g. width=4in, height=5in.
+%%         Note that OPT will overide the default spec string 
+%%         'height=3.65in'
+%%
+%%     FILENAME is the name of the eps file without the .eps.  Default is to
+%%     look for the figure in the current directory unless it has been reset
+%%     with \setfiguredirectory.
+%%     
+%%     CAPTION is the caption for the figure
+%%
+%%   \setcenterfigwidth{WIDTH} sets the default spec string to 'width=WIDTH'
+%%
+%%   \setcenterfigheight{HEIGHT} sets the default spec string to 'height=HEIGHT'
+%%
+%%   \resetcenterfig sets default spec string to 'height=3.65in'
+%%
+%% INSTALLATION:
+%%   Put this file where your TeX looks for inputs.
+%%
+%% DOCUMENTATION:
+%%  See centerfig.tex, which might be appended to this file.
+%%
+%% CODE:
+%
+\NeedsTeXFormat{LaTeX2e}
+\RequirePackage{rotating}
+\RequirePackage{subfigure}
+
+\ProvidesPackage{shavafig}
+
+% Globals
+\newlength{\@def@fig@scalar}
+\setlength{\@def@fig@scalar}{3.65in}
+\newlength{\@fig@scalar}
+\setlength{\@fig@scalar}{\@def@fig@scalar}
+\newcommand{\@fig@spec}{height}
+\newcommand{\@fig@dir}{.}
+
+% Functions
+
+\newcommand{\setfiguredirectory}[1]
+{
+  \renewcommand{\@fig@dir}{#1}
+}
+
+\newcommand{\centerfig}[4][\@fig@spec=\@fig@scalar] 
+{ 
+  \begin{figure}[htbp]
+  \begin{center}
+  \epsfig{file=\@fig@dir/#2.eps,#1}
+  \caption[#4]{\label{#2}#3}
+  \end{center}
+  \end{figure}
+}
+
+\newcommand{\pairfig}[4]
+{ 
+  \begin{figure}[htbp]
+  \begin{center}
+  \subfigure[]{\epsfig{file=\@fig@dir/#1.eps,height={.38\textheight}}} \\
+  \subfigure[]{\epsfig{file=\@fig@dir/#2.eps,height={.38\textheight}}} \\
+  \caption[#4]{\label{#1}\label{#4}#3}
+  \end{center}
+  \end{figure}
+}
+
+\newcommand{\quadfig}[6][\@fig@spec=\@fig@scalar]
+{ 
+  \begin{figure}[htbp]
+  \begin{center}
+  \subfigure[]{\epsfig{file=\@fig@dir/#2.eps,width={.48\textwidth}}} 
+  \subfigure[]{\epsfig{file=\@fig@dir/#3.eps,width={.48\textwidth}}} \\
+  \subfigure[]{\epsfig{file=\@fig@dir/#4.eps,width={.48\textwidth}}} 
+  \subfigure[]{\epsfig{file=\@fig@dir/#5.eps,width={.48\textwidth}}} \\
+  \caption{\label{#2}\label{#3}#6}
+  \end{center}
+  \end{figure}
+}
+
+
+\newcommand{\landscapefig}[4][width=\textheight]
+{ 
+  \begin{sidewaysfigure}[htbp]
+  \centering
+  \epsfig{file=\@fig@dir/#2.eps,#1}
+  \caption[#4]{\label{#2}#3}
+  \end{sidewaysfigure}
+}
+
+\newcommand{\setcenterfigheight}[1]
+{ 
+  \renewcommand{\@fig@spec}{height}
+  \setlength{\@fig@scalar}{#1}
+}
+
+\newcommand{\setcenterfigwidth}[1]
+{ 
+  \renewcommand{\@fig@spec}{width}
+  \setlength{\@fig@scalar}{#1}
+}
+
+\newcommand{\resetcenterfig}
+{ 
+  \renewcommand{\@fig@spec}{height}
+  \setlength{\@fig@scalar}{\@def@fig@scalar}
+}
+

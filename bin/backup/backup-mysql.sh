@@ -4,15 +4,24 @@
 #
 #                                                                          C.Paus V 1.0 (Oct 02,2014)
 #----------------------------------------------------------------------------------------------------
-
 # Definitions
-BACKUP_SOURCE=/var/lib/mysql        # mysql base directory
 BACKUP_TARGET=/home/system/backup   # target directory for backup
+BACKUP_SOURCE=/var/lib/mysql        # mysql base directory
+
+# Use command line arguments is specified
+if ! [ -z "$1" ]
+then
+  BACKUP_TARGET="$1"
+fi
+if ! [ -z "$2" ]
+then
+  BACKUP_SOURCE="$2"
+fi
 
 # Timestamp to keep track of versions
 timeStamp=`date +"%Y-%m-%d@%H:%M:%S"`
 echo ""
-echo " Performing backup for myssql databases: $timeStamp"
+echo " Performing backup for mysql databases: $timeStamp"
 echo ""
 
 # Make sure target area exists
