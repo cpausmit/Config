@@ -1,0 +1,2 @@
+# perform full backup of mysql database and attached files
+20 04 * * * /home/paus/bin/backup/backup-mysql.sh /home/sysadmin/backup >& /home/system/backup/mysql.log
