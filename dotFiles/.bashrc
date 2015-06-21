@@ -35,7 +35,7 @@ alias large="find $HOME -size +8000k -exec ls -sh {} \;"
 
 # Set other more specific aliases if appropriate
 
-if [ -f "/home/$USER/cms/INIT" ]
+if [ -f "/home/$USER/CmsSetup/init.sh" ]
 then
   # initialize the cms aliases
   source $HOME/.aliases-cms
@@ -47,3 +47,4 @@ then
   git config --global user.email   paus@mit.edu
   git config --global push.default simple
 fi
+alias cms034='export MIT_VERS=034;export MIT_TAG=Mit_034;cd /home/paus/cms/cmssw/034;source ~cmsprod/CmsSetup/init.sh 5_3_14_patch2'
