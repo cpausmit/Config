@@ -1,0 +1,65 @@
+# make sure we get it fast
+sudo dnf install -y yum-plugin-fastestmirror
+
+# get the exra repositories
+sudo dnf -y install --nogpgcheck \
+  http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+  http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# update 
+sudo dnf -y update
+
+# we love kde
+sudo dnf install @kde-desktop
+sudo dnf install -y goddard-kde-theme constantine-kde-theme bluecurve-kde-theme backintime-kde
+
+# multimedia everything
+sudo dnf install -y \
+                 kodi \
+		 xmms xmms-mp3 xmms-faad2 xmms-flac xmms-pulse \
+                 xmms-skins audacious audacious-plugins-freeworld* rhythmbox \
+                 gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg \
+                 gstreamer-plugins-bad-nonfree amarok xine-lib-extras-freeworld \
+                 vlc wget
+
+# flash plugin
+sudo dnf -y install --nogpgcheck \
+  http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
+sudo dnf install flash-plugin
+
+# Need chrome? hmmm, hate it but netflix runs on it
+echo "
+[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://dl.google.com/linux/linux_signing_key.pub
+" > google-chrome.repo
+sudo mv google-chrome.repo /etc/yum.repos.d/google-chrome.repo
+sudo dnf install -y google-chrome-stable
+
+# Need dropbox? of course!
+echo "
+[Dropbox]
+name=Dropbox Repository
+baseurl=http://linux.dropbox.com/fedora/20/
+gpgkey=http://linux.dropbox.com/fedora/rpm-public-key.asc
+" > dropbox.repo
+sudo mv dropbox.repo /etc/yum.repos.d/dropbox.repo
+sudo dnf install nautilus-dropbox
+
+# some graphics tools
+sudo dnf install -y gimp inkscape blender pidgin
+
+# other libraries and tools
+sudo dnf install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Protocol-https \
+                    tcsh ksh zsh xterm emacs nfs-utils nfs-utils-lib xorg-x11-fonts-misc bitmap-fonts \
+                    clive cclive lynx tetex texlive-endnotes texlive-euenc*
+
+# additional fonts
+sudo dnf install -y \
+         texlive-zapfding texlive-texmf-fonts texlive-metapost
+
+# love root and install it
+sudo dnf install -y root*
