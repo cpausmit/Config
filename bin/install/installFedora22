@@ -2,7 +2,7 @@
 sudo dnf install -y yum-plugin-fastestmirror
 
 # get the exra repositories
-sudo dnf -y install --nogpgcheck \
+sudo dnf install -y --nogpgcheck \
   http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
   http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
@@ -10,7 +10,7 @@ sudo dnf -y install --nogpgcheck \
 sudo dnf -y update
 
 # we love kde
-sudo dnf install @kde-desktop
+sudo dnf install -y @kde-desktop
 sudo dnf install -y goddard-kde-theme constantine-kde-theme bluecurve-kde-theme backintime-kde
 
 # other basic libraries and tools
@@ -33,9 +33,9 @@ sudo dnf install -y vlc \
 		    xine-lib-extras-freeworld                    
 
 # flash plugin
-sudo dnf -y install --nogpgcheck \
+sudo dnf install -y --nogpgcheck \
   http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
-sudo dnf install flash-plugin
+sudo dnf install -y flash-plugin
 
 # Need chrome? hmmm, hate it but netflix runs on it
 echo "
@@ -57,7 +57,7 @@ baseurl=http://linux.dropbox.com/fedora/20/
 gpgkey=http://linux.dropbox.com/fedora/rpm-public-key.asc
 " > dropbox.repo
 sudo mv dropbox.repo /etc/yum.repos.d/dropbox.repo
-sudo dnf install nautilus-dropbox
+sudo dnf install -y nautilus-dropbox
 
 # some graphics tools
 sudo dnf install -y gimp inkscape blender pidgin
