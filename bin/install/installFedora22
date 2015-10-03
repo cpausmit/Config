@@ -19,6 +19,7 @@ sudo dnf install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Proto
                     clive cclive wget lynx tetex texlive-endnotes texlive-euenc*
 
 # additional fonts
+sudo dnf install -y x2goclient
 sudo dnf install -y texlive-zapfding texlive-texmf-fonts texlive-metapost
 
 # multimedia everything
