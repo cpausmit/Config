@@ -22,8 +22,7 @@ sudo dnf install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Proto
 sudo dnf install -y texlive-zapfding texlive-texmf-fonts texlive-metapost
 
 # multimedia everything
-sudo dnf install -y vlc \
-                    kodi \
+sudo dnf install -y firefox vlc kodi \
                     xmms xmms-mp3 xmms-faad2 xmms-flac xmms-pulse xmms-skins \
 		    audacious audacious-plugins-freeworld* \
 		    rhythmbox \
