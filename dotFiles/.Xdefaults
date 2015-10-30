@@ -191,8 +191,8 @@ emacs.cursorColor:              Red
 emacs.pointerColor:	        Blue
 emacs.pointerColorBackground:   White
 emacs*bitmapIcon:               on
-emacs*font:                     9x15bold
-emacs.font:                     9x15bold
+!emacs*font:                     9x15bold
+!emacs.font:                     9x15bold
 
 !  xdvi
 xdvi*foreground:               Black

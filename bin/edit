@@ -41,8 +41,10 @@
   #font="-*-Fixed-bold-r-*-*-*-140-*-*-*-*-*-*"
 
   echo \
-  $emacs -font $font -bg $bg -fg $fg $* 2>&1 &
+  $emacs -bg $bg -fg $fg $* 2>&1 &
+  #$emacs -font $font -bg $bg -fg $fg $* 2>&1 &
 
-  $emacs -font $font -bg $bg -fg $fg $* 2>&1 &
+  $emacs -bg $bg -fg $fg $* 2>&1 &
+  #$emacs -font $font -bg $bg -fg $fg $* 2>&1 &
 
   exit 0;
