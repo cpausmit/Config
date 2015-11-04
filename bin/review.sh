@@ -2,7 +2,8 @@
 # ----
 # Perfrom Energy Frontier Review
 # ----
-REVIEW_BASE=$HOME/Documents/doe/EnergyFrontierPanel2015
+REVIEW_BASE="$HOME/Documents/doe/EnergyFrontierPanel2015"
+PATTERN="$1"
 
 # fine our spot
 cd $REVIEW_BASE
