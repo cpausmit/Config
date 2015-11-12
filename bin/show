@@ -20,8 +20,8 @@ then
 fi
 
 # define all relevant directories to search in
-TEXINPUTS="/home/$USER/latex/sty:/home/$USER/latex/sty/foiltex";
-TEXINPUTS="${TEXINPUTS}:/home/$USER/latex/def:";
+TEXINPUTS="/home/$USER/Config/latex/sty:/home/$USER/Config/latex/sty/foiltex";
+TEXINPUTS="${TEXINPUTS}:/home/$USER/Config/latex/def:";
 export TEXINPUTS
 
 # make sure to cleanup the file name

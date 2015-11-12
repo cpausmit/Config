@@ -13,8 +13,9 @@ XTerm*cursorColor:            Red
 XTerm*pointerShape:           arrow
 XTerm*pointerColor:	      Blue
 XTerm*pointerColorBackground: White
-XTerm*boldFont:	              9x15bold
-XTerm*font:                   9x15bold
+! XTerm*boldFont:	              9x15bold
+! XTerm*font:                   9x15bold
+XTerm*facesize:               14
 XTerm*c132:                   On
 XTerm*eightBitInput:          False
 XTerm*dynamicColors:          True
@@ -191,8 +192,9 @@ emacs.cursorColor:              Red
 emacs.pointerColor:	        Blue
 emacs.pointerColorBackground:   White
 emacs*bitmapIcon:               on
-emacs*font:                     9x15bold
-emacs.font:                     9x15bold
+! emacs*font:                     9x15bold
+! emacs.font:                     9x15bold
+! emacs.fontsize:                 14
 
 !  xdvi
 xdvi*foreground:               Black

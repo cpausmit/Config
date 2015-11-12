@@ -17,12 +17,8 @@ export PATH
 export EDITOR=emacs
 export VISUAL=emacs
 
-TEXINPUTS="/home/$USER/text/sty:/home/$USER/text/sty/foiltex";
-TEXINPUTS="${TEXINPUTS}:/home/$USER/text/def:/home/$USER/teaching/text/def";
-TEXINPUTS="${TEXINPUTS}:/home/$USER/text/oo";
-TEXINPUTS="${TEXINPUTS}:/home/$USER/teaching/text/sty";
-TEXINPUTS="${TEXINPUTS}:/home/$USER/text/revtex4";
-TEXINPUTS="${TEXINPUTS}:/usr/share/texmf/tex/generic/pstricks:";
+TEXINPUTS="${TEXINPUTS}:/home/$USER/latex/sty:/home/$USER/latex/def:.";
+TEXINPUTS="${TEXINPUTS}:/usr/share/texlive/texmf-dist/tex/latex/base:/usr/share/texlive/texmf-dist/tex/latex/xcolor"
 export TEXINPUTS
 
 # Set general alias
@@ -32,6 +28,7 @@ alias cll="clean.csh backup-local"
 alias clc="clean.csh core"
 alias recent="findRecentFiles 1 ./"
 alias large="find $HOME -size +8000k -exec ls -sh {} \;"
+alias xterm="xterm -fa monospace -fs 16"
 
 # Set other more specific aliases if appropriate
 
