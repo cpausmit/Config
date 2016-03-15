@@ -4,6 +4,8 @@
 #
 #                                                                         v0.0 C.Paus (Aug 00, 2012)
 #===================================================================================================
+[ -z "$TIER2_USER" ] && TIER2_USER=$USER
+
 export X509_USER_PROXY=`voms-proxy-info -path`
 GATEWAY=se01.cmsaf.mit.edu                                         # GATEWAY=t2bat0210.cmsaf.mit.edu
 REMOTE_TICKET=${X509_USER_PROXY}.$$
