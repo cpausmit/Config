@@ -10,7 +10,7 @@ echo ""
 if [ -d /media/s4/DCIM/Camera ]
 then
   orderPhotos.py --debug --album=/export/photos/cpAlbum --path=/media/s4/DCIM \
-                 --model=T-Mobile-S4
+                 --model=T-Mobile-Ana
   echo ""
   echo " Downloading from the S4 is complete."
   echo ""
