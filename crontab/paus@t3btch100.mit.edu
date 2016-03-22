@@ -1,0 +1,2 @@
+# make smartcache monitor plots
+*/8 * * * * /home/paus/cms/cmssw/040/CMSSW_7_4_0/src/MitPlots/bin/makeSmartCacheTransferPlots.sh >& /home/paus/public_html/plots/lastUpdate.log
