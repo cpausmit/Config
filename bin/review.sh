@@ -2,7 +2,9 @@
 # ----
 # Perfrom Energy Frontier Review
 # ----
-REVIEW_BASE="$HOME/Documents/doe/EnergyFrontierPanel2015"
+[ "$REVIEW_BASE" == "" ] && \
+    REVIEW_BASE="$HOME/Documents/doe/EnergyFrontierPanel2015"
+
 PATTERN="$1"
 
 # fine our spot

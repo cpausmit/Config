@@ -33,15 +33,15 @@ alias cms034_6='export MIT_VERS=034;export MIT_TAG=master;c=$H/cms;mkdir -p $C/$
 alias hgg='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitHgg/bin/mithgg.sh;source $CMSSW_BASE/src/MitHgg/config/hgg.env;'
 
 # boosted V analysis
-alias boo='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitMonoJet/bin/mitmonojet.sh;source $CMSSW_BASE/src/MitMonoJet/config/boostedv.env;'
+alias mono='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitPhysics/Skim/bin/mitphysicsskim.sh;source $CMSSW_BASE/src/MitPhysics/Skim/config/monojet.env;'
 
 # ==== Run 2 starts SL6/ROOT6 from the starts ====
 
 alias cms040='export MIT_VERS=040;export MIT_TAG=Mit_040;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 7_4_0; cd $c/root'
+alias cms041='export MIT_VERS=041;export MIT_TAG=Mit_041;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 7_4_6; cd $c/root'
+alias cms042='export MIT_VERS=042;export MIT_TAG=master;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 7_4_6; cd $c/root'
 
-alias cms041='export MIT_VERS=041;export MIT_TAG=Mit_041;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 7_4_4; cd $c/root'
-
-alias cmsMaster='export MIT_VERS=040;export MIT_TAG=master;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 7_4_0; cd $c/root'
+alias cmsMaster='export MIT_VERS=041;export MIT_TAG=master;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 7_4_6; cd $c/root'
 
 alias tnp='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitExample/bin/mitexample.sh;source $CMSSW_BASE/src/MitExample/config/ntuples.env;'
 

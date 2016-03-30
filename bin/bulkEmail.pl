@@ -16,6 +16,7 @@ use List::MoreUtils qw(each_array);
 #        major re-write needs to be done getting ride of perl special packages and making it clean
 #        and modular. Maybe I should just rewrite it in python?!  ;-)
 #
+#  --> just wrote the corresponding python package.... BulkMail
 #                                                       Version 1.0:   Jan 28, 2014 (Christoph Paus)
 #                                                             Written: Aug 25, 2009 (Christoph Paus)
 #---------------------------------------------------------------------------------------------------

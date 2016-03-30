@@ -7,8 +7,8 @@ fi
 # User specific environment and startup programs
 function parse_git_branch () {   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/';  }
 #PS1="\[\033[1;31m\][\$(date +%H:%M)]\[\033[1;30m\][\u@\h:\[\033[1;31m\]\w]\[\033[0m\] "
+#PS1="[\[\033[1;31m\]\$(date +%H:%M)-\[\033[1;30m\]\u@\h:\[\033[1;34m\]\$MIT_VERS:\[\033[0m\]\[\033[1;32m\]\w\[\033[0m\]] "
 PS1="[\[\033[1;31m\]\$(date +%H:%M)-\$(parse_git_branch)-\[\033[1;30m\]\u@\h:\[\033[1;32m\]\w\[\033[0m\]] "
-
 
 PATH=$HOME/bin:$HOME/bin/photos:/bin:/usr/bin:/usr/local/bin:/usr/bin/X11
 PATH=${PATH}:/usr/krb5/bin:/usr/kerberos/bin:/sbin:/usr/sbin
