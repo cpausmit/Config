@@ -8,7 +8,8 @@ export PATH="$H/bin:${PATH}"
 alias cq="condor_q -global $USER"
 alias cqa="condor_q -global $USER -analyze"
 alias compile='cd $CMSSW_BASE/src/; scram b -j8; cd -'
-alias vomit='voms-proxy-init --valid 168:00 -voms cms'
+
+alias vomit='voms-proxy-init -voms cms --valid 168:00'
 
 # ==== Run 1 Era ====
 
