@@ -36,6 +36,7 @@ if [ -f "/home/$USER/CmsSetup/init.sh" ]
 then
   # initialize the cms aliases
   source $HOME/.aliases-cms
+  source /home/cmsprod/Tools/T2Tools/setup.sh
 fi
 
 if [ "`which git 2> /dev/null`" != "" ] && ! [ -e "/$HOME/.gitconfig" ]
