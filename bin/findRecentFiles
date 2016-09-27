@@ -5,7 +5,6 @@ shift
 DIRECTORIES="$*"
 
 # remaining parameters are assumed to be directories to search otherwise the 'pwd' is used
-
 if [ "$DAYS" == "-h" ]
 then 
   echo 
@@ -13,18 +12,31 @@ then
   echo 
   echo "   usage: findRecentFile  <LastNDays> [ <directories-to-search> = \"./\" ]"
   echo 
+  echo "     example:  findRecentFiles -1 /home/$USER   # finds files younger than a day"
+  echo "               findRecentFiles +1 /home/$USER   # finds files older than a day"
+  echo ""
+  echo "               findRecentFiles -1m /home/$USER   # finds files younger than a minute"
+  echo "               findRecentFiles +1m /home/$USER   # finds files older than a minute"
+  echo 
+
   exit 1
 fi
 
 # it seems trivial but I always have to research until I get it right
 if [ -z "$DAYS" ]
 then
-   DAYS="1"
+  DAYS="-1"
 fi
 if [ -z "$DIRECTORIES" ]
 then
-   DIRECTORIES="./"
+  DIRECTORIES="./"
 fi
 
-find $DIRECTORIES -ctime -$DAYS -type f \
-     | grep -v ^\\./\\.
+# want to use minutes?
+if [ "`echo $DAYS | grep m`" != "" ]
+then
+  MINS=`echo $DAYS | tr -d 'm'`
+  find $DIRECTORIES -cmin  $MINS -type f  | grep -v ^\\./\\.
+else
+  find $DIRECTORIES -ctime $DAYS -type f | grep -v ^\\./\\.
+fi
