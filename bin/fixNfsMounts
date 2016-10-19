@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# unmount the nfs mounts
+sudo umount -f /desk004
+sudo umount -f /t3
+
+# re-start th nfs-servers
+ssh root@t3desk004.mit.edu 'service nfs-server restart'
+ssh root@t3home000.mit.edu 'service nfs-server restart'
+
+# mount the local volumes
+sudo mount -t nfs t3desk004.mit.edu:/home /desk004
+sudo mount -t nfs t3home000.mit.edu:/home /t3
+
+exit 0;
