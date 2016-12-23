@@ -129,7 +129,7 @@ def newVideoData(data,model):
     return videoData
 
 def makePhotoFileList(path,debug):
-    cmd = 'find \"' + path + '\" \( -iname \*.jpg -o -iname \*.jpeg \)'
+    cmd = 'find \"' + path + '\" \( -iname %s\*.jpg -o -iname %s\*.jpeg \)'%(pattern,pattern)
     if debug:
         print ' Search: ' + cmd
     photoFileList = []
@@ -142,7 +142,8 @@ def makePhotoFileList(path,debug):
 
 def makeVideoFileList(path,debug):
     cmd = 'find \"' + path + \
-          '\" \( -iname \*.3gp -o -iname \*.mov -o -iname \*.mp4 -o -iname \*.avi \)'
+          '\" \( -iname %s\*.3gp -o -iname %s\*.mov -o -iname %s\*.mp4 -o -iname %s\*.avi \)' \
+          %(pattern,pattern,pattern,pattern)
     if debug:
         print ' Search: ' + cmd
     videoFileList = []
@@ -170,10 +171,10 @@ def execute(cmd,debug,test):
 # Main
 #===================================================================================================
 # Define string to explain usage of the script
-usage  = "\nUsage: orderPhotos.py  --help --album= --path=\n\n"
+usage  = "\nUsage: orderPhotos.py  --help --album= --path= [ --model=]\n\n"
 
 # Define the valid options which can be specified and check out the command line
-valid = ['help','debug','test','path=','album=','model=']
+valid = ['help','debug','test','path=','pattern=','album=','model=']
 try:
     opts, args = getopt.getopt(sys.argv[1:], "", valid)
 except getopt.GetoptError, ex:
@@ -189,6 +190,7 @@ debug = False
 test  = False
 album = '/export/photos/cpAlbum'
 path  = '/home/paus/Pictures'
+pattern = ''
 model = ''
 
 # Read new values from the command line
@@ -204,6 +206,8 @@ for opt, arg in opts:
         album = arg
     if opt == "--path":
         path  = arg
+    if opt == "--pattern":
+        pattern  = arg
     if opt == "--model":
         model = arg
 
@@ -279,7 +283,7 @@ for videoFile in videoFileList:
         print ' Execution failed with code: ' + str(rc)
 
 # Try to remove the directory if empty
-cmd = 'rmdir ' + path + ' >& /dev/null'
+cmd = 'rmdir \"' + path + '\" >& /dev/null'
 execute(cmd,debug,test)
 
 sys.exit(0)
