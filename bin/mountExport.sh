@@ -20,7 +20,7 @@ for drive in b c d
 do
   test=`sudo fdisk -l /dev/sd${drive} |tr -s ' '|grep dev/sd${drive}1 2> /dev/null`
   echo " -> tested drive: $drive -- result: $test"
-  if [ ".$test" == "./dev/sd${drive}1 63 3907024064 1953512001 c W95 FAT32 (LBA)" ]
+  if [ ".$test" == "./dev/sd${drive}1 63 3907029167 3907029105 1.8T 83 Linux" ]
   then
     echo "Try to mount /dev/sd${drive}"
     sudo mount /dev/sd${drive}1 /export
