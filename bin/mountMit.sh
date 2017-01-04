@@ -5,6 +5,7 @@
 MOUNT_SERVER="t3desk004.mit.edu"
 MOUNT_DIR="/home"
 MOUNT_POINT="/desk004"
+MOUNT_USER="paus"
 
 # check whether external already mounted
 test=`df -h| grep $MOUNT_POINT`
@@ -38,6 +39,12 @@ else
   read -p "press return!" q
   exit 1
 fi
+
+links="Documents text Work"
+for link in $links
+do
+  ln -s $MOUNT_POINT/$MOUNT_USER/$link
+done
 
 read -p "press return!" q
 exit 0
