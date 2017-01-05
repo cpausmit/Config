@@ -7,6 +7,15 @@ MOUNT_DIR="/home"
 MOUNT_POINT="/desk004"
 MOUNT_USER="paus"
 
+# check whether mount point exists and create if needed
+if [ -d "$MOUNT_POINT" ]
+then
+  echo " Mount point ($MOUNT_POINT) exists."
+else
+  echo " Mount point ($MOUNT_POINT) does not exists. Creating it now."
+  mkdir -p "$MOUNT_POINT"
+fi
+
 # check whether external already mounted
 test=`df -h| grep $MOUNT_POINT`
 if [ ".$test" != "." ]
