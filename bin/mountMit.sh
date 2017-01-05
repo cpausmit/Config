@@ -40,11 +40,17 @@ else
   exit 1
 fi
 
+# make sure we are in the home directory
+cd
 links="Documents text Work"
 for link in $links
 do
-  ln -s $MOUNT_POINT/$MOUNT_USER/$link
+  if ! [ -e "$link" ]
+  then
+    ln -s $MOUNT_POINT/$MOUNT_USER/$link
+  fi
 done
+ls -lhrt
 
 read -p "press return!" q
 exit 0
