@@ -25,12 +25,13 @@ sudo dnf group install -y lxde-desktop
 
 # other basic libraries and tools
 sudo dnf install -y tcsh ksh zsh xterm emacs nfs-utils nfs-utils-lib x2goclient \
-                    wget
+                    wget curl cabextract pidgin
 
-# additional fonts
-sudo dnf install -y 
-sudo dnf install -y texlive-zapfding texlive-texmf-fonts texlive-metapost texlive-dvisvgm \
-                    xorg-x11-fonts-misc bitmap-fonts
+# latex basics
+sudo dnf install -y tetex texlive-metapost texlive-dvisvgm
+
+# some graphics tools
+sudo dnf install -y gimp inkscape blender
 
 # multimedia everything
 sudo dnf install -y firefox vlc kodi \
@@ -64,13 +65,10 @@ gpgkey=http://linux.dropbox.com/fedora/rpm-public-key.asc
 sudo mv dropbox.repo /etc/yum.repos.d/dropbox.repo
 sudo dnf install -y nautilus-dropbox
 
-# some graphics tools
-sudo dnf install -y gimp inkscape blender pidgin
-
-# ms fonts (important to read ppt slides with math symbols)
-sudo dnf install -y curl cabextract xorg-x11-font-utils fontconfig
+# ms fonts and others (important to read ppt slides with math symbols)
+sudo dnf install -y xorg-x11-font-utils fontconfig
 sudo dnf install -y https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
-sudo dnf install -y mathgl-fonts jsmath-fonts
+sudo dnf install -y mathgl-fonts jsmath-fonts texlive-zapfding texlive-texmf-fontsxorg-x11-fonts-misc bitmap-fonts
 
 # enable sshd
 sudo systemctl start  sshd.service
