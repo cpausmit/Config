@@ -24,13 +24,13 @@ sudo dnf -y update
 #sudo dnf install -y goddard-kde-theme constantine-kde-theme bluecurve-kde-theme backintime-kde
 
 # other basic libraries and tools
-sudo dnf install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Protocol-https \
-                    tcsh ksh zsh xterm emacs nfs-utils nfs-utils-lib xorg-x11-fonts-misc bitmap-fonts \
-                    clive cclive wget lynx tetex texlive-endnotes
+sudo dnf install -y tcsh ksh zsh xterm emacs nfs-utils nfs-utils-lib x2goclient \
+                    wget
 
 # additional fonts
-sudo dnf install -y x2goclient
-sudo dnf install -y texlive-zapfding texlive-texmf-fonts texlive-metapost texlive-dvisvgm
+sudo dnf install -y 
+sudo dnf install -y texlive-zapfding texlive-texmf-fonts texlive-metapost texlive-dvisvgm \
+                    xorg-x11-fonts-misc bitmap-fonts
 
 # multimedia everything
 sudo dnf install -y firefox vlc kodi \
@@ -66,33 +66,6 @@ sudo dnf install -y nautilus-dropbox
 
 # some graphics tools
 sudo dnf install -y gimp inkscape blender pidgin
-
-# love root and install it
-sudo dnf install -y root*
-
-#
-# skype # Fedora 25 #
-sudo dnf install -y alsa-lib.i686 fontconfig.i686 freetype.i686 glib2.i686 libSM.i686 \
-                    libXScrnSaver.i686 libXi.i686 libXrandr.i686 libXrender.i686 libXv.i686 \
-		    libstdc++.i686 pulseaudio-libs.i686 qt.i686 qt-x11.i686 zlib.i686 \
-		    qtwebkit.i686
-sudo cd /tmp
-sudo wget --trust-server-names http://www.skype.com/go/getskype-linux-dynamic
-
-sudo mkdir /opt/skype
-sudo tar xvf skype-4.3* -C /opt/skype --strip-components=1
-sudo ln -s /opt/skype/skype.desktop /usr/share/applications/skype.desktop
-
-sudo su -
-  for icon in /opt/skype/icons/*; do
-    ressuffix="${icon##*_}"
-    res="${ressuffix%%.*}"
-    ln -s "$icon" /usr/share/icons/hicolor/"$res"/apps/skype.png
-  done
-  
-sudo gtk-update-icon-cache /usr/share/icons/hicolor
-sudo ln -s /opt/skype/skype /usr/bin/skype
-sudo chmod 755 /usr/bin/skype
 
 # ms fonts (important to read ppt slides with math symbols)
 sudo dnf install -y curl cabextract xorg-x11-font-utils fontconfig
