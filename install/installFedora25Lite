@@ -19,9 +19,9 @@ sudo dnf install -y --nogpgcheck \
 # update 
 sudo dnf -y update
 
-## we love kde
-#sudo dnf install -y @kde-desktop
-#sudo dnf install -y goddard-kde-theme constantine-kde-theme bluecurve-kde-theme backintime-kde
+## we love kde but .... a lite-weight windowmanager is also recommended
+sudo dnf group install -y kde-desktop
+sudo dnf group install -y lxde-desktop
 
 # other basic libraries and tools
 sudo dnf install -y tcsh ksh zsh xterm emacs nfs-utils nfs-utils-lib x2goclient \
