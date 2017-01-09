@@ -11,13 +11,13 @@ sudo mkdir /opt/skype
 sudo tar xvf skype-4.3* -C /opt/skype --strip-components=1
 sudo ln -s /opt/skype/skype.desktop /usr/share/applications/skype.desktop
 
-sudo su - \
-  for icon in /opt/skype/icons/*; do
-    ressuffix="${icon##*_}"
-    res="${ressuffix%%.*}"
-    ln -s "$icon" /usr/share/icons/hicolor/"$res"/apps/skype.png
-  done
-  
+for icon in /opt/skype/icons/*
+do
+  ressuffix="${icon##*_}"
+  res="${ressuffix%%.*}"
+  sudo ln -s "$icon" /usr/share/icons/hicolor/"$res"/apps/skype.png
+done
+
 sudo gtk-update-icon-cache /usr/share/icons/hicolor
 sudo ln -s /opt/skype/skype /usr/bin/skype
 sudo chmod 755 /usr/bin/skype
