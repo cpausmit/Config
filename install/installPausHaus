@@ -1,0 +1,16 @@
+# make sure mysql server is going
+sudo systemctl start  mariadb.service
+sudo systemctl enable mariadb.service
+
+# install apache server and a firewall configuration tool
+sudo dnf install httpd
+
+# allow http/https access
+sudo firewall-config
+sudo systemctl start  httpd.service
+sudo systemctl enable httpd.service
+
+# edit /etc/httpd/conf.d/userdir.conf
+
+# make sure se linux allows access to httpd
+setsebool httpd_read_user_content 1
