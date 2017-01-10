@@ -24,7 +24,8 @@ sudo dnf group install -y kde-desktop
 sudo dnf group install -y lxde-desktop
 
 # other basic libraries and tools
-sudo dnf install -y tcsh ksh zsh xterm emacs emacs-php-mode nfs-utils nfs-utils-lib x2goclient \
+sudo dnf install -y tcsh ksh zsh xterm emacs emacs-php-mode nfs-utils nfs-utils-lib \
+                    x2goclient x2goserver \
                     wget curl cabextract pidgin
 
 # latex basics
