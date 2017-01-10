@@ -3,7 +3,7 @@ sudo systemctl start  mariadb.service
 sudo systemctl enable mariadb.service
 
 # install apache server and a firewall configuration tool
-sudo dnf install httpd
+sudo dnf install httpd php-gd
 
 # allow http/https access
 sudo firewall-config
@@ -14,3 +14,5 @@ sudo systemctl enable httpd.service
 
 # make sure se linux allows access to httpd
 setsebool httpd_read_user_content 1
+setsebool httpd_can_network_connect 1
+setsebool httpd_unified 1
