@@ -3,9 +3,11 @@
 # call mountExport.sh and pipe the output to a logfile
 #===================================================================================
 
-touch                           /tmp/mountExport.log
-echo " "                     >> /tmp/mountExport.log 
-date                         >> /tmp/mountExport.log 
-/home/ana/bin/mountExport.sh >> /tmp/mountExport.log 
+touch                             /tmp/mountExport.log
+echo " "                       >> /tmp/mountExport.log 
+date                           >> /tmp/mountExport.log 
+echo " "                       >> /tmp/mountExport.log 
+date                           >> /tmp/mountExport.log 
+/home/$USER/bin/mountExport.sh >> /tmp/mountExport.log 
 
 exit 0
