@@ -49,6 +49,13 @@ linkDotFile ".bash_profile"
 linkDotFile ".Xdefaults"
 linkDotFile ".aliases-cms"
 
+
+# Install local fonts
+
+mkdir -p ~/.local/share/fonts
+cd       ~/.local/share/fonts
+tar fzx  $HOME/Config/tgz/mathTypeFonts.tgz
+
 echo ""
 echo " -- DONE --"
 
