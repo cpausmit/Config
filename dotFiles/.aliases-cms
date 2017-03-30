@@ -39,10 +39,10 @@ alias mono='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/M
 
 alias cms040='export MIT_VERS=040;export MIT_TAG=Mit_040;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 7_4_0; cd $c/root'
 alias cms041='export MIT_VERS=041;export MIT_TAG=Mit_041;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 7_4_6; cd $c/root'
-alias cms042='export MIT_VERS=042;export MIT_TAG=master;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 7_4_6; cd $c/root'
+alias cms042='export MIT_VERS=042;export MIT_TAG=Mit_042;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 7_4_6; cd $c/root'
+alias cms044='export MIT_VERS=044;export MIT_TAG=Mit_044;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 8_0_12; cd $c/root'
 
 alias cms045='export MIT_VERS=045;export MIT_TAG=master;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 8_0_12; cd $c/root'
-
 alias cmsMaster='export MIT_VERS=044;export MIT_TAG=master;c=$H/cms;mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 8_0_7_patch3; cd $c/root'
 
 alias tnp='source $CMSSW_BASE/src/MitAna/bin/mitana.sh;source $CMSSW_BASE/src/MitExample/bin/mitexample.sh;source $CMSSW_BASE/src/MitExample/config/ntuples.env;'
