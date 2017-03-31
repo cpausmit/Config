@@ -52,4 +52,5 @@ alias panda002='export MIT_VERS=002;export MIT_TAG=master; mkdir -p $C/$MIT_VERS
 
 alias monojet000='export MIT_VERS=000;export MIT_TAG=master; mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 8_0_26_patch1; cd $J'
 
-source /home/paus/Panda/FiBS/setup.sh
+## source /home/paus/Panda/FiBS/setup.sh
+source /home/cmsprod/Tools/FiBS/setup.sh
