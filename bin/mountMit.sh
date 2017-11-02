@@ -37,6 +37,7 @@ then
   if [ ".$?" != ".0"  ]
   then
     echo " $MOUNT_SERVER is online but not properly configured. Sorry!"
+    echo " try: ssh root@t3desk004.mit.edu service nfs-server restart"
     read -p "press return!" q
     exit 1
   else

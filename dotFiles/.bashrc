@@ -36,7 +36,11 @@ if [ -f "/home/$USER/CmsSetup/init.sh" ]
 then
   # initialize the cms aliases
   source $HOME/.aliases-cms
+  source /home/cmsprod/Tools/Dools/setup.sh
   source /home/cmsprod/Tools/T2Tools/setup.sh
+  # Panda
+  alias panda002='export MIT_VERS=002;export MIT_TAG=master; mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 8_0_26_patch1; cd $J'
+  alias monojet000='export MIT_VERS=000;export MIT_TAG=master; mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 8_0_26_patch1; cd $J'
 fi
 
 if [ "`which git 2> /dev/null`" != "" ] && ! [ -e "/$HOME/.gitconfig" ]
@@ -45,4 +49,8 @@ then
   git config --global user.email   paus@mit.edu
   git config --global push.default simple
 fi
-alias cms034='export MIT_VERS=034;export MIT_TAG=Mit_034;cd /home/paus/cms/cmssw/034;source ~cmsprod/CmsSetup/init.sh 5_3_14_patch2'
+
+if [ -f "/home/cmsprod/Tools/FiBS/setup.sh" ]
+then
+  source /home/cmsprod/Tools/FiBS/setup.sh
+fi
