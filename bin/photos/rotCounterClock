@@ -1,2 +1,2 @@
 #!/bin/bash
-/home/paus/bin/rotate.pl $1 270
+rotate.pl $1 270

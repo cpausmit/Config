@@ -186,15 +186,16 @@ xload.*.highlight:              Red
 xload.*.borderWidth:            0
 
 
-!  emacs
-emacs.borderWidth:              2
-emacs.cursorColor:              Red
-emacs.pointerColor:	        Blue
-emacs.pointerColorBackground:   White
-emacs*bitmapIcon:               on
-! emacs*font:                     9x15bold
-! emacs.font:                     9x15bold
-! emacs.fontsize:                 14
+!!!  emacs
+!!emacs.borderWidth:              2
+!!emacs.cursorColor:              Red
+!!emacs.pointerColor:	        Blue
+!!emacs.pointerColorBackground:   White
+!!emacs*bitmapIcon:               on
+!!! emacs*font:                     9x15bold
+!!! emacs.font:                     9x15bold
+!!! emacs.fontsize:                 14
+
 
 !  xdvi
 xdvi*foreground:               Black

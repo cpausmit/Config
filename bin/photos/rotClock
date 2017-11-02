@@ -1,4 +1,4 @@
 #!/bin/bash
 rm -f /tmp/rotate.log
 echo "Arguments $*" > /tmp/rotate.log
-/home/paus/bin/rotate.pl $* 90
+rotate.pl $* 90

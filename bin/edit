@@ -13,38 +13,31 @@
 #
 #================================================================================
 
-  n="`basename $0`>"
+n="`basename $0`>"
+editor=emacs
 
-  # careful giving a path screws up the colours because emacs*..
-  # are not recognized
-  emacs=emacs
+case $1 in
 
-  case $1 in
+  bw) shift; bg='#ffffff'; fg='#000000';;
+  rl) shift; bg='#fff0b4'; fg='#000000';;
+  gl) shift; bg='#f0ffbe'; fg='#000000';;
+  bl) shift; bg='#ffffe6'; fg='#000000';;
+  rr) shift; bg='#fff0b4'; fg='#d21400';;
+  gg) shift; bg='#f0ffbe'; fg='#1e9b00';;
+  bb) shift; bg='#ffffe6'; fg='#3c3cc8';;
+  tt) shift; bg='#f0f0b4'; fg='#000000';;
 
-    bw) shift; bg='#ffffff'; fg='#000000';;
-    rl) shift; bg='#fff0b4'; fg='#000000';;
-    gl) shift; bg='#f0ffbe'; fg='#000000';;
-    bl) shift; bg='#ffffe6'; fg='#000000';;
-    rr) shift; bg='#fff0b4'; fg='#d21400';;
-    gg) shift; bg='#f0ffbe'; fg='#1e9b00';;
-    bb) shift; bg='#ffffe6'; fg='#3c3cc8';;
-    tt) shift; bg='#f0f0b4'; fg='#000000';;
+  -h) echo "$n use: rl | gl | bl | rr | gg | bb other emacs options";exit 0;;
+   *) bg=white; fg=darkgreen;;
 
-    -h) echo "$n use: rl | gl | bl | rr | gg | bb other emacs options";exit 0;;
-     *) bg=white; fg=darkgreen;;
+esac
 
-  esac
+# start (x)emacs now
 
-  # start (x)emacs now
+#font=9x15bold
+font='-*-DejaVu Sans Mono-medium-r-*-*-*-248-*-*-*-*-*-*'
 
-  font=9x15bold
-  #font="-*-Fixed-bold-r-*-*-*-140-*-*-*-*-*-*"
+echo $editor -bg $bg -fg $fg -font "$font" $* 2>&1 &
+     $editor -bg $bg -fg $fg -font "$font" $* 2>&1 &
 
-  echo \
-  $emacs -bg $bg -fg $fg $* 2>&1 &
-  #$emacs -font $font -bg $bg -fg $fg $* 2>&1 &
-
-  $emacs -bg $bg -fg $fg $* 2>&1 &
-  #$emacs -font $font -bg $bg -fg $fg $* 2>&1 &
-
-  exit 0;
+exit 0;
