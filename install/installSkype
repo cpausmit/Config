@@ -1,3 +1,9 @@
+# skypeforlinux # Fedora 20-25 #
+cd /tmp
+wget https://repo.skype.com/latest/skypeforlinux-64.rpm
+sudo dnf install skypeforlinux-64.rpm
+rm -rf /tmp/skypeforlinux-64.r
+
 # skype # Fedora 20-25 #
 
 sudo dnf install -y alsa-lib.i686 fontconfig.i686 freetype.i686 glib2.i686 libSM.i686 \
