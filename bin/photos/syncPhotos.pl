@@ -10,7 +10,7 @@ sub show_documentation {
   ACTION
   ======
 
-    Small script to synchronize the code development between
+    Small script to synchronize the photo albums between local and backup.
 
         local:  $home
         backup: $machine:$backup
