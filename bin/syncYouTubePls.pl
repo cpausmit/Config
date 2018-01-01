@@ -85,12 +85,6 @@ sub downloadMissingTitles()
   my %existingTitlesHash = %{$_[2]};  # hash list of all already existing titles
 
   my $nDownloads = 0;
-
-  # print the existing title hashes
-  #printf " Existing hashes: \n";
-  #while ( my ( $key, $value ) = each %existingTitlesHash ) { 
-  #  printf " key: %s,  value: %s\n", $key,$value;
-  #}
   
   chdir($dir);
   for my $videoUrl (@urlList) {
@@ -133,6 +127,50 @@ sub downloadMissingTitles()
   return $nDownloads;
 }
 
+sub processListOfPlaylists()
+{
+  # get list of videos for a given playlist
+  my $listFile = shift(@_); # the file name of the list of playlists
+  my $regexp = shift(@_);   # regular expression to determine the mathcing list names
+
+  open (INPUT,"<$listFile");
+  while (<INPUT>) {
+  
+    chop($_);
+  
+    my @f = split(" ",$_);
+  
+    # the two parameters needed
+    my $dir  = $f[0];
+    my $plId = $f[1];
+  
+    # looping through
+    if ($regexp eq "" || $dir =~ /$regexp/) {
+    
+      if (! -d "$dir") {
+        mkdir "$dir";
+      }
+      
+      printf "\n============================================================\n";
+      printf "  Next Playlist  -->  dir=$dir  plId=$plId\n";
+      printf   "============================================================\n\n";
+    
+      # make a list of all URLs
+      my @urlList = &getVideosOfPlaylist($plId);
+      # find all already existing titles
+      my %existingTitlesHash = &getTitleHashList($dir);
+      # process the URLs in this list and download if needed
+      my $nDownloads = &downloadMissingTitles($dir,\@urlList,\%existingTitlesHash);
+  
+      printf " Downloaded new titles: %d\n", $nDownloads;
+    }
+  }
+
+  close(INPUT);
+  
+  return;
+}
+
 #===================================================================================================
 #                                                M A I N
 #===================================================================================================
@@ -146,8 +184,7 @@ else {
   exit 1;
 }
 
-# Is the List of PlayList really there?
-
+# sanity checks and printouts of what is going to happen
 if (-e "$PLAYLISTS") {
   printf " List of playlists (exists): $PLAYLISTS\n";
 }
@@ -157,42 +194,7 @@ else {
 }
 printf " Regular expression        : $REGEXP\n";
 
-# Start the loop through the play lists
-
-open (INPUT,"<$PLAYLISTS");
-while (<INPUT>) {
-
-  chop($_);
-
-  my @f = split(" ",$_);
-
-  # the two parameters needed
-  my $dir  = $f[0];
-  my $plId = $f[1];
-
-  # looping through
-  if ($REGEXP eq "" || $dir =~ /$REGEXP/) {
-  
-    if (! -d "$dir") {
-      mkdir "$dir";
-    }
-    
-    printf "\n============================================================\n";
-    printf "  Next Playlist  -->  dir=$dir  plId=$plId\n";
-    printf   "============================================================\n\n";
-  
-    # make a list of all URLs
-    my @urlList = &getVideosOfPlaylist($plId);
-    # find all already existing titles
-    my %existingTitlesHash = &getTitleHashList($dir);
-    # process the URLs in this list and download if needed
-    my $nDownloads = &downloadMissingTitles($dir,\@urlList,\%existingTitlesHash);
-
-    printf " Downloaded new titles: %d\n", $nDownloads;
-
-  }
-}
-
-close(INPUT);
+# process the list of playlists
+&processListOfPlaylists($PLAYLISTS,$REGEXP);
 
 exit 0;
