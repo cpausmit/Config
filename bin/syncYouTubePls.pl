@@ -16,9 +16,11 @@ use strict;
 #                                                                 Version 1.0 Ch.Paus (Jan 28, 2014)
 #                                                                 Version 2.0 Ch.Paus (Dec 30, 2017)
 #===================================================================================================
-my $DATABASE="$ENV{'HOME'}/Music";
-my $PLAYLISTS="./PlayLists.txt";
-my $REGEXP = "";
+my $YOUTUBE_DL = "youtube-dl";
+my $DATABASE   = "$ENV{'HOME'}/Music";
+my $PLAYLISTS  = "./PlayLists.txt";
+my $REGEXP     = "";
+
 if ($ARGV[0] ne "") {
   $PLAYLISTS = "$ARGV[0]";
 }
@@ -98,7 +100,7 @@ sub downloadMissingTitles()
     #printf "\nURL: $videoUrl -> $videoId\n";
 
     # get file name
-    my $dl_cmd = "youtube-dl -o '%(title)s.%(ext)s' https://www.youtube.com/watch?v=$videoId";
+    my $dl_cmd = "$YOUTUBE_DL -o '%(title)s.%(ext)s' https://www.youtube.com/watch?v=$videoId";
     my $file = `$dl_cmd --get-filename 2> /dev/null`;
     chop($file);
 
@@ -174,6 +176,17 @@ sub processListOfPlaylists()
 #===================================================================================================
 #                                                M A I N
 #===================================================================================================
+
+# Do we have youtube-dl?
+my $rc = system("$YOUTUBE_DL -help >& /dev/null");
+if ($rc != 0) {
+  printf("\n ERROR - youtube download package not installed? (test: $YOUTUBE_DL)\n");
+  printf("  ++ TRY ++  sudo dnf install -y youtube-dl\n\n");
+  exit -1;
+}
+else {
+  printf " Youtube download  (exists): $YOUTUBE_DL\n";
+}
 
 # Do we have a database directory?
 if (-d "$DATABASE") {
