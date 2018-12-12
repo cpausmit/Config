@@ -27,12 +27,12 @@ Desktop
 
 The main files are all on the server on a separate disk so there should not be too much of an issue. But there are a few things to check.
 
- 1. crontabs?
+1. crontabs?
     
-    | crontab -l
-    | sudo crontab -l
+   | crontab -l
+   | sudo crontab -l
 
-
+2. local data?
 
 Main Server
 ===========
