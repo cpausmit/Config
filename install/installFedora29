@@ -1,0 +1,7 @@
+# Install the most recent full fedora 29
+
+# start with lite
+source $HOME/Config/install/installFedora29Lite
+
+# include extras
+source $HOME/Config/install/installFedora29Extra
