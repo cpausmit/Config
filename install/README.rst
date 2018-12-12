@@ -4,7 +4,7 @@
 
 :Author: Christoph Paus
 :Contact: paus@mit.edu
-:URL: http://www.blosc.org
+:URL: http://web.mit.edu/physics/people/faculty/paus_christoph.html
 
 Initial Preparation
 ===================
