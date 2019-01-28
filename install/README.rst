@@ -43,3 +43,35 @@ Main Server
 ===========
 
 
+Post-Installation Process
+=========================
+
+Pull the basic configuration tools
+
+|  git clone http://github.com/cpausmit/Config
+|  cd Config
+|  ./Config.sh
+
+Install user account
+====================
+
+gnome-init
+
+Install root account
+====================
+
+Make the account by changing the password
+
+| sudo -i
+| passwd
+
+Logout and login as root.
+
+Adjust user account
+===================
+
+Make yourself super user
+
+groupadd -g 1399 zh
+usermod -u 5407 -g zh paus
+echo "paus ALL=(ALL) NOPASSWD:"
