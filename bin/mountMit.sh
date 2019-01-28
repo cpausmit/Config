@@ -13,7 +13,7 @@ then
   echo " Mount point ($MOUNT_POINT) exists."
 else
   echo " Mount point ($MOUNT_POINT) does not exists. Creating it now."
-  mkdir -p "$MOUNT_POINT"
+  sudo mkdir -p "$MOUNT_POINT"
 fi
 
 # check whether external already mounted

@@ -41,14 +41,13 @@ echo ""
 echo " Create soft link: ln -s $HOME/Config/latex $HOME/latex"; echo ""
 ln -s $HOME/Config/latex $HOME/latex
 
-
 # Next establish the dot files
 
 linkDotFile ".bashrc"
 linkDotFile ".bash_profile"
+linkDotFile ".emacs"
 linkDotFile ".Xdefaults"
 linkDotFile ".aliases-cms"
-
 
 # Install local fonts
 

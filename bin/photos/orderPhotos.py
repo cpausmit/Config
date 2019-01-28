@@ -51,6 +51,13 @@ def getDateTime(data):
 
     return dateTime
 
+def getChecksum(fn):
+    checksum = ''
+    cmd = 'md5sum "' + fn + '" | cut -d " " -f 1'
+    for line in os.popen(cmd).readlines():
+        checksum = line[:-1]
+    return checksum
+
 def getExif(fn,debug=False):
     cmd = 'exiftool \"' + fn + '"'
     ret = {}
@@ -79,16 +86,16 @@ def getVideoExif(fn):
         ret[key] = value
     return ret
 
-def newPhotoData(data,model):
+def newPhotoData(cksum,data,model):
     dateTime = getDateTime(data)
     model    = getCameraModelName(data,model)
-
+    
     f        = dateTime.split(' ')
     date     = f[0]
     time     = f[1]
     dateTime = dateTime.replace(' ','-')
     model    = model.replace(' ','-')
-    fileName = dateTime + '_' + model + '.jpg'
+    fileName = dateTime + '_' + model + '_' + cksum + '.jpg'
     f        = date.split(':')
 
     photoData = {}
@@ -100,7 +107,7 @@ def newPhotoData(data,model):
 
     return photoData
 
-def newVideoData(data,model):
+def newVideoData(cksum,data,model):
     dateTime = getDateTime(data)
     model    = getCameraModelName(data,model)
 
@@ -110,13 +117,13 @@ def newVideoData(data,model):
     dateTime = dateTime.replace(' ','-')
     model    = model.replace(' ','-')
     if   "avi" in data['FileName'].lower():
-        fileName = dateTime + '_' + model + '.avi'
+        fileName = dateTime + '_' + model + '_' + cksum + '.avi'
     elif "mov" in data['FileName'].lower():
-        fileName = dateTime + '_' + model + '.mov'
+        fileName = dateTime + '_' + model + '_' + cksum + '.mov'
     elif "mp4" in data['FileName'].lower():
-        fileName = dateTime + '_' + model + '.mp4'
+        fileName = dateTime + '_' + model + '_' + cksum + '.mp4'
     else:
-        fileName = dateTime + '_' + model + '.3gp'
+        fileName = dateTime + '_' + model + '_' + cksum + '.3gp'
     f        = date.split(':')
 
     videoData = {}
@@ -216,8 +223,9 @@ photoFileList = makePhotoFileList(path,debug)
 for photoFile in photoFileList:
     if debug:
         print photoFile
+    cksum     = getChecksum(photoFile)
     data      = getExif(photoFile,debug)
-    photoData = newPhotoData(data,model)
+    photoData = newPhotoData(cksum,data,model)
     if debug:
         print ' Time of picture------: ' + photoData['Time']
         print ' Year-----------------: ' + photoData['Year']
@@ -232,13 +240,18 @@ for photoFile in photoFileList:
     target = album + '/' + dir + '/' + photoData['FileName']
     if os.path.isfile(target):
         print ' File (%s) exists already.... %s'%(source,target)
-        # figure out whether they are the same
-        cmd = 'exiftool "' + source + '" | grep Brightness > source.brightness'
-        os.system(cmd)
-        cmd = 'exiftool "' + target + '" | grep Brightness > target.brightness'
-        os.system(cmd)
 
-        os.system('diff source.brightness target.brightness')
+        # figure out whether they are the same
+        cmd = 'md5sum "' + source + '" | cut -d " " -f 1'
+        for line in os.popen(cmd).readlines():
+            sourceCsm = line[:-1]
+        cmd = 'md5sum "' + target + '" | cut -d " " -f 1'
+        for line in os.popen(cmd).readlines():
+            targetCsm = line[:-1]
+
+        if sourceCsm != targetCsm:
+            print " Different Files:  %s  <>  %s"%(sourceCsm,targetCsm)
+
         continue
 
     cmd = 'mv \"' + photoFile + '\" ' + album + '/' + dir + '/' + photoData['FileName']
@@ -255,10 +268,11 @@ for photoFile in photoFileList:
 # Make list of viedos (movies) and move and rename
 videoFileList = makeVideoFileList(path,debug)
 for videoFile in videoFileList:
+    cksum     = getChecksum(videoFile)
     data      = getVideoExif(videoFile)
     if debug:
         print data
-    videoData = newVideoData(data,model)
+    videoData = newVideoData(cksum,data,model)
     if debug:
         print ' Time of movie--------: ' + videoData['Time']
         print ' Year-----------------: ' + videoData['Year']

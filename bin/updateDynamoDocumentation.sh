@@ -13,7 +13,7 @@ then
     exit 1
 fi
 
-
+# Do we want to update the repository and thus push to the readthedocs pages?
 if [ "$LOCAL" == "" ]
 then
     git pull
@@ -28,6 +28,7 @@ then
     git push -u origin master
 fi
 
+# local build
 sphinx-build -a -E . ~/dynamo-documentation
 rsync -Cavz --delete ~/dynamo-documentation t3home000.mit.edu:public_html
 

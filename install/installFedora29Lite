@@ -27,7 +27,7 @@ sudo dnf group install -y lxde-desktop
 sudo dnf install -y tcsh ksh zsh xterm emacs emacs-php-mode nfs-utils \
                     x2goclient x2goserver php-xml \
                     wget curl cabextract pidgin simple-mtpfs \
-		    ddclient
+		    ddclient okular
 
 # latex basics
 sudo dnf install -y tetex texlive-metapost texlive-dvisvgm
