@@ -26,7 +26,7 @@ sudo dnf group install -y lxde-desktop
 # other basic libraries and tools
 sudo dnf install -y tcsh ksh zsh xterm emacs emacs-php-mode nfs-utils \
                     x2goclient x2goserver php-xml \
-                    wget curl cabextract pidgin simple-mtpfs \
+                    wget curl cabextract pidgin purple-skypeweb purple-facebook simple-mtpfs \
 		    ddclient okular
 
 # latex basics

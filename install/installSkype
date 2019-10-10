@@ -1,4 +1,5 @@
 # skypeforlinux # Fedora 20-25 #
+
 cd /tmp
 wget https://repo.skype.com/latest/skypeforlinux-64.rpm
 sudo dnf install skypeforlinux-64.rpm
@@ -27,4 +28,3 @@ rm -rf /tmp/skypeforlinux-64.rpm
 # sudo gtk-update-icon-cache /usr/share/icons/hicolor
 # sudo ln -s /opt/skype/skype /usr/bin/skype
 # sudo chmod 755 /usr/bin/skype
-# 
