@@ -20,13 +20,14 @@ The installation has to be performed as user root (or using sudo), and it will c
 Quick Test
 ..........
 
-To see how this is all working on your system we have a script (make_test)that generates a test directory and a bunch of subdirectories and files. The area generated will be /home/test with a bunch a directories and very small files.
-
+To see how this is all working on your system we have a script (test_backup) that, if run as root, generates a test directory and a bunch of subdirectories and files. The area generated will be '/home/test' with a bunch a directories and very small files.
 
 
 Full Installation
 .................
 
+  cd Config/backup
+  ./install.sh /backup /home
 
 Configurations
 --------------
