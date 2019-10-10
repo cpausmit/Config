@@ -48,8 +48,13 @@ Configurations
 Changing Frequency
 ..................
 
-To change the frequency of the backup and fine tune the behaviour you can edit the crontab to your liking. Details of what the entries in the crantab mean can be found `here <https://www.adminschoice.com/crontab-quick-reference>`_.
+To change the frequency of the backup and fine tune the behaviour you can edit the crontab to your liking. Details of what the entries in the crontab mean can be found for example `here <https://www.adminschoice.com/crontab-quick-reference>`_.
 
 Excluding Directories
 .....................
+
+It is sometimes useful to be able to exclude certain directories from the backup. A typical example would be your dropbox folder that could be significant but has already a secure copy in a different place. The backup package will read all directories entered into the file '/home/user/.no-backup'. Each directory should be written in a separate line. So, en example could look like this:
+::
+   /home/user/Dropbox
+   /home/user/Videos
 
