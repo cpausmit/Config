@@ -26,6 +26,9 @@ To see how this is all working on your system we have a script (test_backup) tha
 Full Installation
 .................
 
+Make sure to identify the backup location (default: /backup) and the target directory (default: /home) you want to backup. Then install your system as root by doing:
+::
+
   cd Config/backup
   ./install.sh /backup /home
 
