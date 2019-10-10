@@ -1,0 +1,54 @@
+#!/bin/bash
+
+if [ `whoami` != 'root' ]
+then
+  echo ""
+  echo " ERROR - You have to be root to execute this script (you are: "`whoami`")"
+  echo ""
+  exit 1
+fi
+
+USER=test
+BASE=/tmp/backup
+TARGET=/home
+
+# --------------------------------------------------------------------------------------------------
+
+mkdir -p $TARGET/$USER
+mkdir -p $TARGET/$USER/bin
+mkdir -p $TARGET/$USER/Config
+mkdir -p "$TARGET/$USER/Dropbox (MIT)"
+
+echo b1 >> $TARGET/$USER/bin/b1.txt
+echo b2 >> $TARGET/$USER/bin/b2.sh
+
+echo c1 >> $TARGET/$USER/Config/c1.sh
+echo c2 >> $TARGET/$USER/Config/c2
+
+echo d1 >> "$TARGET/$USER/Dropbox (MIT)/d1.txt"
+echo d2 >> "$TARGET/$USER/Dropbox (MIT)/d2.bash"
+
+echo ""
+echo " Directory for user 'test' created"
+find $TARGET/$USER
+echo ""
+
+# cleanup backup area first
+rm -rf $BASE
+
+# clean install
+./install.sh $BASE $TARGET
+
+# prepare simple $USER run for user '$USER'
+sudo mkdir -p \
+           $BASE/log/$USER \
+           $BASE/complete/$USER \
+           $BASE/incremental/$USER \
+	   $BASE/timestamp/$USER
+
+echo " "
+echo "Try the following commands."
+echo " "
+echo " sudo $BASE/bin/backup-user-complete.sh $USER"
+echo " sudo touch $TARGET/$USER/bin/*"
+echo " sudo $BASE/bin/backup-user-incremental.sh $USER"
