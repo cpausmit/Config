@@ -36,15 +36,19 @@ Now locate the suggested crontabs (), review the parameters used and adjust and 
 ::
 
   cd Config/backup
-  emacs -nw ./new-crontab
-  crontab < ./new-crontab
+  cp ./new-crontab ./my-crontab
+  emacs -nw ./my-crontab
+  crontab < ./my-crontab
 
-  
+Now the backup get's executed and all should be done.
+   
 Configurations
 --------------
 
 Changing Frequency
 ..................
+
+To change the frequency of the backup and fine tune the behaviour you can edit the crontab to your liking. Details of what the entries in the crantab mean can be found `here <https://www.adminschoice.com/crontab-quick-reference>`_.
 
 Excluding Directories
 .....................
