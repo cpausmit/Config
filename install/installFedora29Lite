@@ -30,7 +30,7 @@ sudo dnf install -y tcsh ksh zsh xterm emacs emacs-php-mode nfs-utils \
 		    ddclient okular
 
 # latex basics
-sudo dnf install -y tetex texlive-metapost texlive-dvisvgm
+sudo dnf install -y tetex texlive-metapost texlive-dvisvgm texlive-nonfloat
 
 # some graphics tools
 sudo dnf install -y gimp inkscape blender
@@ -70,7 +70,7 @@ sudo dnf install -y nautilus-dropbox
 # ms fonts and others (important to read ppt slides with math symbols)
 sudo dnf install -y xorg-x11-font-utils fontconfig
 sudo dnf install -y https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
-sudo dnf install -y mathgl-fonts jsmath-fonts texlive-zapfding bitmap-fonts
+sudo dnf install -y mathgl-fonts jsmath-fonts texlive-zapfding bitmap-fonts 
 
 # enable sshd
 sudo systemctl start  sshd.service

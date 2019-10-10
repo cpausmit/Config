@@ -72,4 +72,3 @@ sudo yum install -y root*
 
 #sudo yum localinstall -y Downloads/skype-4.2.0.11-fedora.i586.rpm
 #sudo yum localinstall -y Downloads/opennx-0.16-725.fc18.x86_64.rpm
-

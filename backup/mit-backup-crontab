@@ -1,0 +1,5 @@
+# Complete backup on sundays, 3:00 am
+0 3 * * 0	/backup/bin/run-complete-backup-to-logfile.sh    >> /dev/null
+
+# Incremental any other day at 3:00 am
+0 3 * * 1-6	/backup/bin/run-incremental-backup-to-logfile.sh >> /dev/null

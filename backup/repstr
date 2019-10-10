@@ -1,0 +1,102 @@
+#!/bin/bash
+# --------------------------------------------------------------------------------------------------
+# One of my first more complex scripts. Still heavily used.
+#
+# - note the example: the fitting program in L3 is still called funplo not ewapic ;-)
+#
+#                                                                                     C.Paus (~1993)
+# --------------------------------------------------------------------------------------------------
+# will also run in korn shell ##!/bin/ksh
+
+# decode the arguments
+command=$0
+if (( $# <= 2 ))
+then
+  # error ending and function description
+  echo ' '
+  echo 'ACTION :'
+  echo '========'
+  echo '          First parameter is the search string second parameteris the'
+  echo '          replace string. All other parameter are files which will be'
+  echo '          searched through for the search string which will be replace'
+  echo '          as many times as is appeares in each line by the replace'
+  echo '          string. This option is sometimes slow. Then you can edit'
+  echo '          the program to only replace the first occurrence removing "g".'
+  echo ' '
+  echo 'SYNTAX :'
+  echo '========'
+  echo '        ' $command  'SEARCH_STRING REPLACE_SRING FILE_1 [FILE_2 ....]'
+  echo ' '
+  echo '           SEARCH_STRING    string to search for'
+  echo '           REPLACE_STRING   string to put instead of SEARCH_STRING'
+  echo ' '
+  echo 'EXAMPLE:'
+  echo '========'
+  echo '        ' $command  'IPRO_TAG  IPRO_MEM  funplo.*.car'
+  echo ' '
+  echo '          DEFINING "K" AS NEW DELMITER'
+  echo ' '
+  echo '        ' $command  'IPRO_TAG  IPRO_MEM  -d K funplo.*.car'
+  echo ' '
+  exit 1
+else
+  sstring="$1"; rstring="$2";
+  shift;        shift
+  echo 'ONLY FIRST OCCURRENCE PER LINE IS REPLACED'
+  echo "search>$sstring<   replace>$rstring<"
+#
+  if [ "$1" = "-d" ]
+  then
+    shift;DEL=$1;shift
+  else
+    DEL='@'
+  fi
+  DELg=`echo "$DEL g" | tr -d ' '`
+
+# check strings to avoid file loss
+
+  string_check_s=`echo $sstring |grep $DEL`
+  string_check_r=`echo $rstring |grep $DEL`
+  if [[ -z "$string_check_s" && -z "$string_check_r" ]]; then
+    echo ' '
+  else
+    echo "The current DELIMITER is $DEL which is part of the given strings."
+    echo "Choose a new with -d NEW_DELIMITER after the SEARCH and REPLACE"
+    echo "strings"
+    echo ' '
+    exit 1
+  fi
+
+# loop over the given files
+
+  files=$@
+
+  # sedstring=`echo "s$DEL$sstring$DEL$rstring$DELg"
+
+  for file in $files; do
+
+    if [ -d $file ]
+    then
+      echo "repstr> skipping directory ($file)"
+    else
+      echo 'repstr>' $file
+
+      # get permissions to use later when all is done
+      permissions=`stat -c "%a" $file`
+
+      # replace first occurrence in line
+      #sed "s$DEL$sstring$DEL$rstring$DEL" $file > $file.repstr
+
+      # gobal replace can be slow
+      sed "s$DEL$sstring$DEL$rstring$DELg" $file > $file.repstr
+      mv $file.repstr $file
+
+      # preserve permisssions
+      chmod $permissions $file
+
+    fi
+  done
+  echo ' '
+fi
+
+exit 0
