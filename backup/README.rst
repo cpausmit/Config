@@ -55,7 +55,7 @@ Excluding Directories
 
 It is sometimes useful to be able to exclude certain directories from the backup. A typical example would be your dropbox folder that could be significant but has already a secure copy in a different place. The backup package will read all directories entered into the file '/home/user/.no-backup'. Each directory should be written in a separate line. So, an example could look like this:
 ::
-   cat /home/user/.no-backup
+   $ cat /home/user/.no-backup
 
    /home/user/Dropbox
    /home/user/Videos
