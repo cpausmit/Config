@@ -38,7 +38,8 @@ sudo dnf install -y gimp inkscape blender
 # multimedia everything
 sudo dnf install -y firefox vlc kodi \
                     gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg \
-                    gstreamer-plugins-bad-nonfree
+                    gstreamer-plugins-bad-nonfree \
+		    purple-skypeweb purple-facebook
 		    
 # flash plugin
 sudo dnf install -y --nogpgcheck \
