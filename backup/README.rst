@@ -32,7 +32,7 @@ Make sure to identify the backup location (default: /backup) and the target dire
   cd Config/backup
   ./install.sh /backup /home
 
-Now locate the suggested crontabs (), review the parameters used and adjust and install them. *Be careful not to overwrite an existing crontab*.
+Now locate the suggested crontabs (), review the parameters used and adjust and install them. _Be careful not to overwrite an existing crontab_.
 ::
 
   cd Config/backup
