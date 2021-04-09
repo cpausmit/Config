@@ -31,6 +31,8 @@ do
     echo "Try to mount /dev/sd${drive}"
     sudo mount /dev/sd${drive}1 $MOUNT_POINT
     echo ""
+    ls -lhrt /export/
+    echo ""
     exit 0
   fi
 done
