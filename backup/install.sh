@@ -22,6 +22,7 @@ then
   echo " usage: ./$H  <backup-dir>  <backup-target>"
   exit 1
 fi
+
 # Test we are root, otherwise it makes no sense to start
 if [ `id -u` != 0 ]
 then
@@ -47,14 +48,23 @@ cp * $BU_BASE/bin/
 # configure scripts
 echo " configure script framework"
 cd $BU_BASE/bin
-./repstr "/backup" "$BU_BASE"   *.sh *.awk *crontab
-./repstr "/home"   "$BU_TARGET" *.sh *.awk *crontab
+./repstr "/backup" "$BU_BASE"   *.sh *.awk *crontab >> install.log
+./repstr "/home"   "$BU_TARGET" *.sh *.awk *crontab >> install.log
 chmod a+x *.sh
 
 # install crontab
-echo " install configured crontab"
-crontab -l             >  new-crontab
-cat mit-backup-crontab >> new-crontab
-crontab new-crontab
+echo " INFO - existing crontab"
+crontab -l
+echo ""
+echo -n "Do you want to add more crontab for the backup? [y/N]: "
+read yes
+if [ "$yes" == "y" ] || [ "$yes" == "Y" ]
+then
+  crontab -l             >  new-crontab
+  cat mit-backup-crontab >> new-crontab
+  crontab new-crontab
+else
+  echo " INFO - crontab is unchanged and as shown above"
+fi
 
 exit 0

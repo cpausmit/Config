@@ -5,8 +5,8 @@ sudo dnf install -y perl-Getopt-Long-Descriptive perl-Web-Scraper perl-LWP-Proto
 
 # additional fonts
 sudo dnf install -y x2goclient
-sudo dnf install -y texlive-zapfding texlive-texmf-fonts texlive-metapost texlive-dvisvgm \
-                    biber texlive-biblatex-phys texlive-ecobiblatex
+sudo dnf install -y texlive-esint texlive-zapfding texlive-texmf-fonts texlive-metapost \
+                    texlive-dvisvgm biber texlive-biblatex-phys texlive-ecobiblatex
 
 # love root and install it
 sudo dnf install -y root*

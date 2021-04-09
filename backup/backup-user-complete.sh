@@ -1,23 +1,16 @@
 #!/bin/bash
 
-export BU_BASE="/backup"
-export BU_TARGET="/home"
+source XX-BU_BASE-XX/setup.sh
 
 export BU_USER=$1
-export BU_TARCMD="tar cvzPf "
-export BU_PREFIX=backup
-export BU_SUFFIX=tgz
 export BU_DIR=$BU_BASE/complete/$BU_USER
-export BU_LOGZIP=gzip
-export BU_LOGSUF=log
-export BU_ZIPSUF=gz
 export BU_LOGDIR=$BU_BASE/log/$BU_USER
+export BU_LOGSUF=log
 export BU_TIMEDIR=$BU_BASE/timestamp/$BU_USER
-export BU_TIMESUF=complete
-
 export BU_FILE=$BU_DIR/$BU_USER`date +%m%d%y`.$BU_SUFFIX
 export BU_LOGFILE=$BU_LOGDIR/$BU_USER`date +%m%d%y`-$BU_LOGSUF
 export BU_TIMEFILE=$BU_TIMEDIR/$BU_USER`date +%m%d%y`.$BU_TIMESUF
+export BU_TIMESUF=complete
 
 echo ""
 echo "--- Complete backup BEGIN [`date`] --------------------"
@@ -29,9 +22,7 @@ echo "Timestamp              [${BU_TIMEFILE}]"
 echo ""
 
 echo "Removing old files... "
-rm -f $BU_TIMEFILE
-rm -f $BU_LOGFILE $BU_LOGFILE.$BU_ZIPSUF
-rm -f $BU_FILE
+rm -f $BU_TIMEFILE $BU_LOGFILE $BU_LOGFILE.$BU_ZIPSUF $BU_FILE
 
 echo "Creating timestamp ... "
 touch $BU_TIMEFILE

@@ -3,9 +3,6 @@
 export BU_BASE="/backup"
 export BU_TARGET="/home"
 
-export PRUNESCRIPT=$BU_BASE/bin/remove-user-overflow-backups.sh 
-export BU_SCRIPT=$BU_BASE/bin/backup-user-complete.sh
-
 echo "####====---- Starting MIT group backup [`date`] ----====####"
 echo ""
 
@@ -14,11 +11,12 @@ echo ""
 # -type d: We're only interested in directories.
 # -not -nouser: Must have owner UIDs defined in the passwd file (or NIS map).
 # -not -name lost+found: Useless to back this up.
+
 for LUZER in `find $BU_TARGET -mindepth 1 -maxdepth 1 -type d -and -not -nouser -and -not -name lost+found -printf "%f "`
 do
   echo "####====---- Backing up user [$LUZER] ----====#### "
-  $PRUNESCRIPT $LUZER
-  $BU_SCRIPT   $LUZER
+  $BU_BASE/bin/remove-user-overflow-backups.sh $LUZER
+  $BU_BASE/bin/backup-user-complete.sh         $LUZER
 done
 
 echo ""

@@ -3,8 +3,6 @@
 export BU_BASE="/backup"
 export BU_TARGET="/home"
 
-export BU_SCRIPT=$BU_BASE/bin/backup-user-incremental.sh
-
 echo "####====---- Starting MIT group incremental [`date`] ----====####"
 echo ""
 
@@ -16,9 +14,8 @@ echo ""
 for LUZER in `find $BU_TARGET -mindepth 1 -maxdepth 1 -type d -and -not -nouser -and -not -name lost+found -printf "%f "`
 do
   echo "####====---- Backing up user [$LUZER] ----====#### "
-  $BU_SCRIPT $LUZER
+  $BU_BASE/bin/backup-user-incremental.sh $LUZER
 done
 
 echo ""
 echo "####====---- MIT group incremental complete [`date`] ----====#### "
-

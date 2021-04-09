@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# If a user was not present before the backup ran or the backup runs
+# for the first time new directories might need to be created.
 
 subdir=$1
 homedir=$2

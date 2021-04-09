@@ -4,13 +4,14 @@ export BU_BASE="/backup"
 export BU_TARGET="/home"
 
 export BU_USER=$1
-export SUBDIRSCRIPT=$BU_BASE/bin/check-user-subdirectory.sh
 export BU_TARGET=$BU_TARGET/$BU_USER
 export BU_RMCMD="rm -f"
 export BU_COMPDIR=$BU_BASE/complete/$BU_USER
 export BU_INCRDIR=$BU_BASE/incremental/$BU_USER
 export BU_LOGDIR=$BU_BASE/log/$BU_USER
 export BU_TIMEDIR=$BU_BASE/timestamp/$BU_USER
+
+export SUBDIRSCRIPT=$BU_BASE/bin/check-user-subdirectory.sh
 
 $SUBDIRSCRIPT $BU_COMPDIR $BU_TARGET
 $SUBDIRSCRIPT $BU_INCRDIR $BU_TARGET
