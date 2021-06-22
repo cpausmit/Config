@@ -10,7 +10,6 @@ import sys,os,re,getopt
 from PIL import Image
 from PIL.ExifTags import TAGS
 
-
 def getCameraModelName(data,model):
     if model != '':
         print " Model name has been fixed to: " + model
@@ -86,18 +85,29 @@ def getVideoExif(fn):
         ret[key] = value
     return ret
 
-def newPhotoData(cksum,data,model):
+def newPhotoData(cksum,data,model,debug):
     dateTime = getDateTime(data)
     model    = getCameraModelName(data,model)
     
     f        = dateTime.split(' ')
+    if debug>0:
+        print " Array length: %d"%(len(f))
+        print f
+        if len(f)<2:
+            f = dateTime.split('-')
+    print ""
     date     = f[0]
     time     = f[1]
     dateTime = dateTime.replace(' ','-')
     model    = model.replace(' ','-')
     fileName = dateTime + '_' + model + '_' + cksum + '.jpg'
-    f        = date.split(':')
 
+    f        = date.split(':')
+    if debug>0:
+        print " Array length: %d"%(len(f))
+        print f
+        if len(f)<2:
+            f = dateTime.split('-')
     photoData = {}
     photoData['FileName'] = fileName
     photoData['Year']     = f[0]
@@ -107,7 +117,7 @@ def newPhotoData(cksum,data,model):
 
     return photoData
 
-def newVideoData(cksum,data,model):
+def newVideoData(cksum,data,model,debug):
     dateTime = getDateTime(data)
     model    = getCameraModelName(data,model)
 
@@ -225,7 +235,7 @@ for photoFile in photoFileList:
         print photoFile
     cksum     = getChecksum(photoFile)
     data      = getExif(photoFile,debug)
-    photoData = newPhotoData(cksum,data,model)
+    photoData = newPhotoData(cksum,data,model,debug)
     if debug:
         print ' Time of picture------: ' + photoData['Time']
         print ' Year-----------------: ' + photoData['Year']
@@ -265,14 +275,14 @@ for photoFile in photoFileList:
     if rc == 0:
         execute('rm -f ' + album + '/' + dir + '/' + photoData['FileName'] + '_original',debug,test)
 
-# Make list of viedos (movies) and move and rename
+# Make list of videos (movies) and move and rename
 videoFileList = makeVideoFileList(path,debug)
 for videoFile in videoFileList:
     cksum     = getChecksum(videoFile)
     data      = getVideoExif(videoFile)
     if debug:
         print data
-    videoData = newVideoData(cksum,data,model)
+    videoData = newVideoData(cksum,data,model,debug)
     if debug:
         print ' Time of movie--------: ' + videoData['Time']
         print ' Year-----------------: ' + videoData['Year']

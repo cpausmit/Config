@@ -1,0 +1,7 @@
+# Install the most recent full fedora 33
+
+# start with lite
+source $HOME/Config/install/installFedora33Lite
+
+# include extras
+source $HOME/Config/install/installFedora33Extra

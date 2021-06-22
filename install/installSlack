@@ -1,0 +1,4 @@
+mkdir -p ~/local
+cd ~/local
+wget https://downloads.slack-edge.com/linux_releases/slack-4.10.3-0.1.fc21.x86_64.rpm
+sudo dnf install slack-4.10.3-0.1.fc21.x86_64.rpm

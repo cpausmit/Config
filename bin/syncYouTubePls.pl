@@ -11,6 +11,7 @@ use strict;
 # again. So just incremental changes will be applied, avoiding long download times.
 #
 # Packages to install:  sudo yum install -y youtube-dl
+#                       most up-to-date at: https://github.com/ytdl-org/youtube-dl
 #
 #                                                                             Ch.Paus (Nov 06, 2011)
 #                                                                 Version 1.0 Ch.Paus (Jan 28, 2014)
@@ -19,6 +20,7 @@ use strict;
 my $YOUTUBE_DL = "youtube-dl";
 my $DATABASE   = "$ENV{'HOME'}/Music";
 my $PLAYLISTS  = "./PlayLists.txt";
+##my $PLAYLISTS  = "./Test.txt";
 my $REGEXP     = "";
 
 if ($ARGV[0] ne "") {
@@ -32,18 +34,25 @@ sub getVideosOfPlaylist()
 {
   # get list of videos for a given playlist
   my $plId = shift(@_); # the playlist Id as given by youtube
-
   my @urlList;
-  my $cmd = "wget  -O - https://www.youtube.com/playlist?list=".$plId." 2>/dev/null | ".
-      " grep 'a href=\"/watch?v='|".
-      " sed -e 's#^.*<a href=\"/watch?v=#https://www.youtube.com/watch?v=#'".
-      "     -e 's#\&amp;.*\$##'";
+  my $cmd = "wget  -O - https://www.youtube.com/playlist?list=".$plId." 2>/dev/null".
+      " | sed -e 's#\"url\":#\\nNEXT#g'".
+      " | grep watch?v=".
+      " | sed 's#NEXT\"#https://www.youtube.com#'".
+      " | grep www.youtube";
+
+#      " | sed -e 's#/watch?v=\(.*\)u0026#https://www.youtube.com/watch?v=\1u0026#'".
+#      " | grep https | sed 's#.*https://#https://#' ";
+
+  #print("$cmd");
   
   my $fh;
   open($fh,'-|',$cmd) or die $!;
   while (my $line = <$fh>) {
+    my @f = split(/\\/,$line);
+    #print "Video: $f[0]\n";
     chop($line);
-    push @urlList, $line;
+    push @urlList, $f[0];
   }
   
   return @urlList;
@@ -101,7 +110,9 @@ sub downloadMissingTitles()
 
     # get file name
     my $dl_cmd = "$YOUTUBE_DL -o '%(title)s.%(ext)s' https://www.youtube.com/watch?v=$videoId";
+    #printf("$dl_cmd\n");
     my $file = `$dl_cmd --get-filename 2> /dev/null`;
+    #print "$dl_cmd --get-filename";
     chop($file);
 
     if ($file eq "") {

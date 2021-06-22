@@ -10,4 +10,5 @@ echo " "                       >> /tmp/mountExport.log
 date                           >> /tmp/mountExport.log 
 /home/$USER/bin/mountExport.sh >> /tmp/mountExport.log 
 
+
 exit 0

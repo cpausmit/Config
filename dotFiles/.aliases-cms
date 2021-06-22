@@ -5,6 +5,7 @@ export C=$HOME/cms/cmssw
 export J=$HOME/cms/jobs
 export PATH="$H/bin:${PATH}"
 
+alias adr="less /desk004/paus/.calendar/address.gpg"
 alias cq="condor_q -global $USER"
 alias cqa="condor_q -global $USER -analyze"
 alias compile='cd $CMSSW_BASE/src/; scram b -j8; cd -'
