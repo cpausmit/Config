@@ -1,0 +1,69 @@
+##
+## As root:  echo "paus ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+##
+
+## Add group/user
+#sudo groupadd -g 1399 zh
+#sudo useradd  -s /bin/bash -d /home/paus -u 5407 -g zh -c 'Christoph Paus' paus
+#sudo dnf install -y git
+#cd; git clone http://github.com/cpausmit/Config
+#cd Config; ./Configure.sh
+
+# started with kde fedora 64bit liveusb
+
+# get the extra repositories
+sudo dnf install -y --nogpgcheck \
+  http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+  http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# update 
+sudo dnf -y update
+
+## we love kde but .... a lite-weight windowmanager is also recommended
+sudo dnf group install -y kde-desktop
+sudo dnf group install -y lxde-desktop
+
+# other basic libraries and tools
+sudo dnf install -y tcsh ksh zsh xterm emacs emacs-php-mode nfs-utils \
+                    x2goclient x2goserver php-xml \
+                    wget curl cabextract pidgin purple-skypeweb purple-facebook simple-mtpfs \
+		    ddclient okular
+
+# latex basics
+sudo dnf install -y tetex texlive-metapost texlive-dvisvgm texlive-nonfloat
+
+# some graphics tools
+sudo dnf install -y gimp inkscape blender
+
+# multimedia everything
+sudo dnf install -y firefox vlc kodi \
+                    gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg \
+                    gstreamer-plugins-bad-nonfree \
+		    purple-skypeweb purple-facebook
+		    
+## flash plugin
+#sudo dnf install -y --nogpgcheck \
+#  http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
+#sudo dnf install -y flash-plugin
+
+# Need chrome? hmmm, hate it but netflix runs on it
+echo "
+[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://dl.google.com/linux/linux_signing_key.pub
+" > google-chrome.repo
+sudo mv google-chrome.repo /etc/yum.repos.d/google-chrome.repo
+sudo dnf install -y google-chrome-stable
+
+
+# ms fonts and others (important to read ppt slides with math symbols)
+sudo dnf install -y xorg-x11-font-utils fontconfig
+sudo dnf install -y https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+sudo dnf install -y mathgl-fonts jsmath-fonts texlive-zapfding bitmap-fonts 
+
+# enable sshd
+sudo systemctl start  sshd.service
+sudo systemctl enable sshd.service
