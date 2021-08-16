@@ -1,3 +1,4 @@
+(set-cursor-color "#ff0000")
 (setq-default fill-column 80)
 (global-set-key (kbd "<f6>") 'delete-trailing-whitespace)
 (global-set-key (kbd "<f7>") 'visual-line-mode)
@@ -15,3 +16,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
 (default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 339 :width normal)))))
+
+;;;;(setq ring-bell-function 'ignore)

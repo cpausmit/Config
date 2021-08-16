@@ -21,18 +21,10 @@ TEXINPUTS="${TEXINPUTS}:/home/$USER/latex/sty:/home/$USER/latex/def:.";
 TEXINPUTS="${TEXINPUTS}:/usr/share/texlive/texmf-dist/tex/latex/base:/usr/share/texlive/texmf-dist/tex/latex/xcolor"
 export TEXINPUTS
 
-# Set general alias
-
-alias clb="clean.csh backup"
-alias cll="clean.csh backup-local"
-alias clc="clean.csh core"
-alias recent="findRecentFiles 1 ./"
-alias large="find $HOME -size +8000k -exec ls -sh {} \;"
-alias xterm="xterm -fa monospace -fs 16"
-
 # Set other more specific aliases if appropriate
 
-if [ -f "/home/$USER/CmsSetup/init.sh" ]
+source /home/$USER/.alias
+if [ -f "/home/$USER/Tools" ]
 then
   # initialize the cms aliases
   source $HOME/.aliases-cms
@@ -41,6 +33,16 @@ then
   # Panda
   alias panda002='export MIT_VERS=002;export MIT_TAG=master; mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 8_0_26_patch1; cd $J'
   alias monojet000='export MIT_VERS=000;export MIT_TAG=master; mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 8_0_26_patch1; cd $J'
+fi
+
+if [ -d "/home/$USER/Work/Tapas" ]
+then
+  source /home/$USER/Work/Tapas/tools/setup.sh
+fi
+
+if [ -d "/home/$USER/Work/BulkEm" ]
+then
+  source /home/$USER/Work/BulkEm/setup.sh
 fi
 
 if [ "`which git 2> /dev/null`" != "" ] && ! [ -e "/$HOME/.gitconfig" ]
