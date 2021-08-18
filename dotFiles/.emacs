@@ -1,4 +1,4 @@
-(set-cursor-color "#ff0000")
+(set-cursor-color "#00ff00")
 (setq-default fill-column 80)
 (global-set-key (kbd "<f6>") 'delete-trailing-whitespace)
 (global-set-key (kbd "<f7>") 'visual-line-mode)

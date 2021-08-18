@@ -47,6 +47,7 @@ linkDotFile ".bashrc"
 linkDotFile ".bash_profile"
 linkDotFile ".emacs"
 linkDotFile ".Xdefaults"
+linkDotFile ".aliases"
 linkDotFile ".aliases-cms"
 
 # Install local fonts
