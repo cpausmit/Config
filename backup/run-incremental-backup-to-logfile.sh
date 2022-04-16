@@ -1,7 +1,6 @@
 #!/bin/bash
 
-export BU_BASE="/backup"
-export BU_TARGET="/home"
+source XX-BU_BASE-XX/bin/setup.sh
 
 export DATESTAMP=`date +%m%d%y`
 export TOTALLOGDIR=$BU_BASE/html/log
