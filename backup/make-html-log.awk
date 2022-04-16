@@ -2,7 +2,7 @@
 # the same information as an HTML file.
 #
 # Sample input line:
-#/backup/complete/akorn/akorn033003.tgz/1049077464/Sun Mar 30 20:24:24 2003
+#XX-BU_BASE-XX/complete/paus/paus04152.tgz/1049077464/Sun Mar 30 20:24:24 2003
 # The input lines should be sorted by user name and in reverse order by field 6 (here
 # equal to 1049077464). Field delimiter is "/".
 #
@@ -32,10 +32,10 @@ END {
   print "<html>"
   print "<head>"
   print "<meta http-equiv=\"content-type\"" " content=\"text/html; charset=ISO-8859-15\">"
-  print "<title>Backups on mit1.fnal.gov</title>"
+  print "<title>Backups available</title>"
   print "</head>"
   print "<body style=\"color: rgb(0, 0, 0); background-color: rgb(255, 255, 204);\">"
-  print "<h1>Home directory backups and log files on mit1:/backup</h1>"
+  print "<h1>Home directory backups and log files: XX-BU_BASE-XX</h1>"
   print "<h3>Last updated <!--#flastmod file=\"index.shtml\" --><h3>"
 
   # Emit links to users.
@@ -48,21 +48,21 @@ END {
     print "<br><br>"
     print "<center><h2 style=\"text-decoration: underline; color: rgb(255, 102, 102);\"><a name=\"" ordusers[i] "\">" ordusers[i] "</a></h2></center>"
 
-    print "<h3 style=\"color: rgb(51, 102, 255);\">Complete backups in /backup/complete/" ordusers[i] "</h3>"
+    print "<h3 style=\"color: rgb(51, 102, 255);\">Complete backups in XX-BU_BASE-XX/complete/" ordusers[i] "</h3>"
     print "<table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"text-align: left; width: 100%;\">"
     print "<tbody>"
     print complete[ordusers[i]]
     print "</tbody>"
     print "</table>"
 
-    print "<h3 style=\"color: rgb(51, 102, 255);\">Incremental backups in /backup/incremental/" ordusers[i] "</h3>"
+    print "<h3 style=\"color: rgb(51, 102, 255);\">Incremental backups in XX-BU_BASE-XX/incremental/" ordusers[i] "</h3>"
     print "<table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"text-align: left; width: 100%;\">"
     print "<tbody>"
     print incremental[ordusers[i]]
     print "</tbody>"
     print "</table>"
 
-    print "<h3 style=\"color: rgb(51, 102, 255);\">Log files in /backup/log/" ordusers[i] "</h3>"
+    print "<h3 style=\"color: rgb(51, 102, 255);\">Log files in XX-BU_BASE-XX/log/" ordusers[i] "</h3>"
     print "<table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"text-align: left; width: 100%;\">"
     print "<tbody>"
     print logs[ordusers[i]]

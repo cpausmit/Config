@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source XX-BU_BASE-XX/setup.sh
+source XX-BU_BASE-XX/bin/setup.sh
 
 export BU_USER=$1
 export BU_DIR=$BU_BASE/complete/$BU_USER
@@ -9,8 +9,8 @@ export BU_LOGSUF=log
 export BU_TIMEDIR=$BU_BASE/timestamp/$BU_USER
 export BU_FILE=$BU_DIR/$BU_USER`date +%m%d%y`.$BU_SUFFIX
 export BU_LOGFILE=$BU_LOGDIR/$BU_USER`date +%m%d%y`-$BU_LOGSUF
-export BU_TIMEFILE=$BU_TIMEDIR/$BU_USER`date +%m%d%y`.$BU_TIMESUF
 export BU_TIMESUF=complete
+export BU_TIMEFILE=$BU_TIMEDIR/$BU_USER`date +%m%d%y`.$BU_TIMESUF
 
 echo ""
 echo "--- Complete backup BEGIN [`date`] --------------------"
@@ -38,6 +38,8 @@ then
 fi
 
 echo "Executing backup command ... "
+
+
 EXEC="date; $BU_TARCMD $BU_FILE ${OPT[*]} $BU_TARGET/$BU_USER"
 echo "$EXEC > $BU_LOGFILE"
 eval  $EXEC > $BU_LOGFILE    # eval splits up the string properly into the pieces
