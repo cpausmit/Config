@@ -66,7 +66,7 @@ echo "Creating timestamp ... "
 touch $BU_TIMEFILE
 
 echo "Executing backup command ... "
-$BU_TARCMD $BU_FILE -T $BU_TMPFILE > $BU_LOGFILE
+$BU_TARCMD $BU_FILE $BU_TAROPT -T $BU_TMPFILE > $BU_LOGFILE
 echo "Compressing backup log file..."
 $BU_LOGZIP $BU_LOGFILE
 

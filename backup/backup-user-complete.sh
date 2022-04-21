@@ -40,7 +40,7 @@ fi
 echo "Executing backup command ... "
 
 
-EXEC="date; $BU_TARCMD $BU_FILE ${OPT[*]} $BU_TARGET/$BU_USER"
+EXEC="date; $BU_TARCMD $BU_FILE $BU_TAROPT ${OPT[*]} $BU_TARGET/$BU_USER"
 echo "$EXEC > $BU_LOGFILE"
 eval  $EXEC > $BU_LOGFILE    # eval splits up the string properly into the pieces
 echo "Compressing backup log file..."
