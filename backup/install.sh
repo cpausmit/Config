@@ -56,6 +56,8 @@ chmod a+x *.sh
 echo " INFO - existing crontab"
 crontab -l
 echo ""
+echo " INFO - more crontab ?"
+cat mit-backup-crontab
 echo -n "Do you want to add more crontab for the backup? [y/N]: "
 read yes
 if [ "$yes" == "y" ] || [ "$yes" == "Y" ]
@@ -64,7 +66,8 @@ then
   cat mit-backup-crontab >> new-crontab
   crontab new-crontab
 else
-  echo " INFO - crontab is unchanged and as shown above"
+  echo " INFO - crontab is unchanged, see below"
+  crontab -l
 fi
 
 exit 0

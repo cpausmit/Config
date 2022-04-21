@@ -5,7 +5,7 @@
 # timestamp dated today must be removed before setting BU_LASTTIME in
 # order that we use the timestamp of the previous day's backup.
 
-source XX-BU_BASE-XX/setup.sh
+source XX-BU_BASE-XX/bin/setup.sh
 
 export BU_USER=$1
 export BU_DIR=$BU_BASE/incremental/$BU_USER

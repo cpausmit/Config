@@ -32,7 +32,9 @@ Make sure to identify the backup location (default: /backup) and the target dire
   cd Config/backup
   ./install.sh /backup /home
 
-Now locate the suggested crontabs (), review the parameters used and adjust and install them. **Be careful not to overwrite an existing crontab**.
+The standard installation already installs a default crontab. If you select not to install it because you want to first tune it The following instructions tell you how to do it.
+
+Locate the suggested crontabs, review the parameters used and adjust and install them. **Be careful not to overwrite an existing crontab**.
 ::
 
   cd Config/backup
@@ -53,10 +55,19 @@ To change the frequency of the backup and fine tune the behaviour you can edit t
 Excluding Directories
 .....................
 
-It is sometimes useful to be able to exclude certain directories from the backup. A typical example would be your dropbox folder that could be significant but has already a secure copy in a different place. The backup package will read all directories entered into the file '/home/user/.no-backup'. Each directory should be written in a separate line. So, an example could look like this:
+It is sometimes useful to be able to exclude certain directories from the backup. A typical example would be your dropbox folder that could be significant but has already a secure copy in a different place. The backup package will read all directories entered into the file '/home/<user>/.no-backup'. Each directory should be written in a separate line. So, an example could look like this:
 ::
    $ cat /home/user/.no-backup
 
    /home/user/Dropbox
    /home/user/Videos
 
+   
+Display what we have
+--------------------
+
+The listing of files in the backup can be easily seen by looking at
+
+   firefox file:///backup/Public/index.shtml
+
+Assuming that your backup location is /backup, otherwise replace accordingly.
