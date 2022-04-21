@@ -1,7 +1,0 @@
-# Install the most recent full fedora 34
-
-# start with lite
-source $HOME/Config/install/installFedora34Lite
-
-# include extras
-source $HOME/Config/install/installFedora34Extra
