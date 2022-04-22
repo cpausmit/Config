@@ -22,7 +22,7 @@ echo "--- PRUNING old backups BEGIN [`date`] --------------------"
 echo ""
 
 # We want to keep only one prior set of (full backup+incrementals).
-export BU_LASTKEEPLONG=`ls -rt1 $BU_TIMEDIR/*.complete | tail -1`
+export BU_LASTKEEPLONG=`ls -rt1 $BU_TIMEDIR/*.complete 2> /dev/null | tail -1`
 if [ ".$BU_LASTKEEPLONG" != "." ]
 then
   export BU_LASTKEEPSHORT=`basename $BU_LASTKEEPLONG`
