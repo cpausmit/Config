@@ -18,7 +18,8 @@ do
 
   if [ ".`echo " $EXCLUDE_USERS " | grep " $LUZER "`" != "." ]
   then
-    echo " Exclude user $LUZER from backup."
+    echo "####====---- EXCLUDE user $LUZER from backup. ----====####"
+    echo ""
   else
     echo "####====---- Backing up user [$LUZER] ----====#### "
     $BU_BASE/bin/remove-user-overflow-backups.sh $LUZER
