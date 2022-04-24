@@ -11,11 +11,20 @@ echo ""
 # -not -nouser: Must have owner UIDs defined in the passwd file (or NIS map).
 # -not -name lost+found: Useless to back this up.
 
+export EXCLUDE_USERS=`cat $BU_TARGET/.exclude-users | tr '\n' ' ' 2> /dev/null`
+
 for LUZER in `find $BU_TARGET -mindepth 1 -maxdepth 1 -type d -and -not -nouser -and -not -name lost+found -printf "%f "`
 do
-  echo "####====---- Backing up user [$LUZER] ----====#### "
-  $BU_BASE/bin/remove-user-overflow-backups.sh $LUZER
-  $BU_BASE/bin/backup-user-complete.sh         $LUZER
+
+  if [ ".`echo " $EXCLUDE_USERS " | grep " $LUZER "`" != "." ]
+  then
+    echo " Exclude user $LUZER from backup."
+  else
+    echo "####====---- Backing up user [$LUZER] ----====#### "
+    $BU_BASE/bin/remove-user-overflow-backups.sh $LUZER
+    $BU_BASE/bin/backup-user-complete.sh         $LUZER
+  fi
+
 done
 
 echo ""
