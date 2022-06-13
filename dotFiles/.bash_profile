@@ -6,6 +6,5 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-
 PATH=$PATH:$HOME/bin:$HOME/bin/photos
 export PATH

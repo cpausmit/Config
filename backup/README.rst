@@ -60,3 +60,16 @@ It is sometimes useful to be able to exclude certain directories from the backup
    /home/user/Dropbox
    /home/user/Videos
 
+
+Retrieving a backup file or directory
+-------------------------------------
+
+Use the command retrieve_backup.sh. It is simple to use: The first parameter is a directory or just one file you want to retrive from the archive. So let's assume I want to retrieve the last backup of the file.
+
+   <user>/my_directory/this_file
+
+   $ retrieve_backup.sh my_directory/this_file
+
+If I want to retrieve the entire directory my_directory
+
+   $ retrieve_backup.sh my_directory

@@ -1,5 +1,4 @@
 # Source global definitions
-
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
@@ -17,32 +16,37 @@ export PATH
 export EDITOR=emacs
 export VISUAL=emacs
 
-TEXINPUTS="${TEXINPUTS}:/home/$USER/latex/sty:/home/$USER/latex/def:.";
+TEXINPUTS="${TEXINPUTS}:$HOME/latex/sty:$HOME/latex/def:.";
 TEXINPUTS="${TEXINPUTS}:/usr/share/texlive/texmf-dist/tex/latex/base:/usr/share/texlive/texmf-dist/tex/latex/xcolor"
 export TEXINPUTS
 
 # Set other more specific aliases if appropriate
 
-source /home/$USER/.alias
-if [ -f "/home/$USER/Tools" ]
+source $HOME/.alias
+if [ -d "$HOME/Tools" ]
 then
   # initialize the cms aliases
   source $HOME/.aliases-cms
-  source /home/cmsprod/Tools/Dools/setup.sh
-  source /home/cmsprod/Tools/T2Tools/setup.sh
+  source $HOME/Tools/Dools/setup.sh
+  source $HOME/Tools/T2Tools/setup.sh
   # Panda
   alias panda002='export MIT_VERS=002;export MIT_TAG=master; mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 8_0_26_patch1; cd $J'
   alias monojet000='export MIT_VERS=000;export MIT_TAG=master; mkdir -p $C/$MIT_VERS;cd $C/$MIT_VERS;source $S/init.sh 8_0_26_patch1; cd $J'
 fi
 
-if [ -d "/home/$USER/Work/Tapas" ]
+if [ -f "$HOME/Tools/FiBS/setup.sh" ]
 then
-  source /home/$USER/Work/Tapas/tools/setup.sh
+  source $HOME/Tools/FiBS/setup.sh
 fi
 
-if [ -d "/home/$USER/Work/BulkEm" ]
+if [ -d "$HOME/Work/Tapas" ]
 then
-  source /home/$USER/Work/BulkEm/setup.sh
+  source $HOME/Work/Tapas/tools/setup.sh
+fi
+
+if [ -d "$HOME/Work/BulkEm" ]
+then
+  source $HOME/Work/BulkEm/setup.sh
 fi
 
 if [ "`which git 2> /dev/null`" != "" ] && ! [ -e "/$HOME/.gitconfig" ]
@@ -52,7 +56,18 @@ then
   git config --global push.default simple
 fi
 
-if [ -f "/home/cmsprod/Tools/FiBS/setup.sh" ]
-then
-  source /home/cmsprod/Tools/FiBS/setup.sh
-fi
+### >>> conda initialize >>>
+### !! Contents within this block are managed by 'conda init' !!
+##__conda_setup="$('/home/submit/roche/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+##if [ $? -eq 0 ]; then
+##    eval "$__conda_setup"
+##else
+##    if [ -f "/home/submit/roche/miniconda3/etc/profile.d/conda.sh" ]; then
+##        . "/home/submit/roche/miniconda3/etc/profile.d/conda.sh"
+##    else
+##        export PATH="/home/submit/roche/miniconda3/bin:$PATH"
+##    fi
+##fi
+##unset __conda_setup
+### <<< conda initialize <<<
+
