@@ -4,7 +4,7 @@
 #
 # For my 'laptop'-desktop I installed with:
 #
-#    sudo ./install.sh  /backup/paus/bu  /home
+#    sudo ./install.sh  /backup  /home
 #                                                                                  Ch.Paus, Jan 2010
 #---------------------------------------------------------------------------------------------------
 H=`basename $0`
@@ -26,7 +26,7 @@ fi
 # Test we are root, otherwise it makes no sense to start
 if [ `id -u` != 0 ]
 then
-  echo " to successfully execute this script you need to me root. exit now!"
+  echo " to successfully execute this script you need to be root. exit now!"
   exit 2
 fi
 
@@ -48,14 +48,16 @@ cp * $BU_BASE/bin/
 # configure scripts
 echo " configure script framework"
 cd $BU_BASE/bin
-./repstr "/backup" "$BU_BASE"   *.sh *.awk *crontab >> install.log
-./repstr "/home"   "$BU_TARGET" *.sh *.awk *crontab >> install.log
+./repstr "XX-BU_BASE-XX"   "$BU_BASE"   *.sh *.awk *crontab >> install.log
+./repstr "XX-BU_TARGET-XX" "$BU_TARGET" *.sh *.awk *crontab >> install.log
 chmod a+x *.sh
 
 # install crontab
 echo " INFO - existing crontab"
 crontab -l
 echo ""
+echo " INFO - more crontab ?"
+cat mit-backup-crontab
 echo -n "Do you want to add more crontab for the backup? [y/N]: "
 read yes
 if [ "$yes" == "y" ] || [ "$yes" == "Y" ]
@@ -64,7 +66,8 @@ then
   cat mit-backup-crontab >> new-crontab
   crontab new-crontab
 else
-  echo " INFO - crontab is unchanged and as shown above"
+  echo " INFO - crontab is unchanged, see below"
+  crontab -l
 fi
 
 exit 0

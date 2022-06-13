@@ -5,7 +5,7 @@
 # timestamp dated today must be removed before setting BU_LASTTIME in
 # order that we use the timestamp of the previous day's backup.
 
-source XX-BU_BASE-XX/setup.sh
+source XX-BU_BASE-XX/bin/setup.sh
 
 export BU_USER=$1
 export BU_DIR=$BU_BASE/incremental/$BU_USER
@@ -66,7 +66,7 @@ echo "Creating timestamp ... "
 touch $BU_TIMEFILE
 
 echo "Executing backup command ... "
-$BU_TARCMD $BU_FILE -T $BU_TMPFILE > $BU_LOGFILE
+$BU_TARCMD $BU_FILE $BU_TAROPT -T $BU_TMPFILE > $BU_LOGFILE
 echo "Compressing backup log file..."
 $BU_LOGZIP $BU_LOGFILE
 

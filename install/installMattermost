@@ -1,3 +1,4 @@
+
 echo " Generic Linux package
 Download the latest version of the Mattermost desktop app:
 
@@ -10,3 +11,10 @@ Extract the archive to a convenient location. You can then execute mattermost-de
 
 To create a Desktop launcher, open the file README.md and follow the instructions in the Desktop launcher section.
 "
+
+cd $HOME/local
+#wget https://releases.mattermost.com/desktop/4.6.2/mattermost-desktop-4.6.2-linux-x64.tar.gz
+MM=mattermost-desktop-4.6.2-linux-x64
+#tar fzx ${MM}.tar.gz
+cd $MM
+./create_desktop_file.sh
