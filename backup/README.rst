@@ -88,8 +88,8 @@ Use the command retrieve_backup.sh. It is simple to use: The first parameter is 
 
    <user>/my_directory/this_file
 
-   $ retrieve_backup.sh my_directory/this_file
+   $ retrieve_backup.sh <user>/my_directory/this_file
 
 If I want to retrieve the entire directory my_directory
 
-   $ retrieve_backup.sh my_directory
+   $ retrieve_backup.sh <user>/my_directory
