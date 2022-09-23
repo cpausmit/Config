@@ -1,0 +1,1 @@
+rsync -Cavz t3desk008.mit.edu:Documents/teaching/8.13-S2022 ~/

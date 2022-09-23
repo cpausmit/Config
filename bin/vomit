@@ -1,0 +1,6 @@
+#!/bin/bash
+SERVER=submit04.mit.edu
+
+ssh $SERVER "voms-proxy-init -voms cms --valid 168:00; ls -lhrt /tmp/x509up_u`id -u`;"
+scp $SERVER:/tmp/x509up_u`id -u` /tmp
+ls -lhrt  /tmp/x509up_u`id -u`

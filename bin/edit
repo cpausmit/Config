@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #================================================================================
 #
 # Tiny script to get emacs in the right colors.
@@ -37,6 +37,7 @@ esac
 #font=9x15bold
 font='-*-DejaVu Sans Mono-medium-r-*-*-*-248-*-*-*-*-*-*'
 
+setxkbmap us
 echo $editor -bg $bg -fg $fg -font "$font" $* 2>&1 &
      $editor -bg $bg -fg $fg -font "$font" $* 2>&1 &
 

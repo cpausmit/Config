@@ -1,0 +1,85 @@
+#!/bin/bash
+#---------------------------------------------------------------------------------------------------
+# Execute this to install the Cern-VM file system client on this node
+#---------------------------------------------------------------------------------------------------
+
+usage () {
+  echo "Usage: installCvmfs.sh [OPTION]"
+  echo "Install CVMFS mount points cms.cern.ch and cvmfs.cmsaf.mit.edu."
+  echo ""
+  echo "  -f               Force reinstall even if CVMFS is already mounted."
+  echo "  -h               Display this help and exit."
+  echo ""
+
+  exit $1
+}
+
+FORCE=false
+while getopts fh OPT; do
+  case $OPT in
+    f)
+      FORCE=true
+      ;;
+    h)
+      usage 0
+      ;;
+    \?)
+      echo " Invalid option: -$OPTARG" >& 2
+      usage 1
+      ;;
+  esac
+done
+
+# check whether the client is already running and the cvmfs repo is visible
+if [ -d "/cvmfs/cms.cern.ch" ] &&
+    ! $FORCE
+then
+  echo " cvmfs already installed and working : exiting... "
+  exit 0
+fi
+
+# install the packages
+dnf install ~/local/rpms/cvmfs*.rpm
+
+# get the file system configuration files
+mkdir -p    ~/tmp/cvmfs
+cd          ~/tmp/cvmfs
+tar fzx     ~/local/tgz/cvmfs.tgz
+
+# copy 
+cp ./config/cvmfs/fuse.conf.template /etc/fuse.conf
+cp ./config/cvmfs/cern.ch.local.template /etc/cvmfs/domain.d/cern.ch.local
+cp ./config/cvmfs/cvmfs.cmsaf.mit.edu.conf.template /etc/cvmfs/config.d/cvmfs.cmsaf.mit.edu.conf
+cp ./etc/cvmfs/keys/cvmfs.cmsaf.mit.edu.pub /etc/cvmfs/keys/cvmfs.cmsaf.mit.edu.pub
+cp ./config/cvmfs/default.local.template /etc/cvmfs/default.local
+
+# cleanup
+rm -rf ~/tmp/cvmfs
+
+# add cvmfs filesystem mount line in auto.master
+if [ ".`grep /etc/auto.cvmfs /etc/auto.master`" == "." ]
+then
+  echo "# please do not comment - cmssw is mounted through cvmfs" >> /etc/auto.master
+  echo "/cvmfs /etc/auto.cvmfs"                                   >> /etc/auto.master
+fi
+
+mkdir -p /var/cache/cvmfs
+chcon -Rv unconfined_u:object_r:var_lib_t:s0 /var/cache/cvmfs
+service autofs stop
+service autofs start
+service autofs status
+
+# test the configuration
+echo ""
+echo " Testing the configuration by probing the mount points: ls /cvmfs/cms.cern.ch"
+echo ""
+ls /cvmfs/cms.cern.ch
+echo ""
+echo ""
+#echo " Testing the configuration by probing the mount points: ls /cvmfs/cvmfs.cmsaf.mit.edu"
+#echo ""
+#ls /cvmfs/cvmfs.cmsaf.mit.edu
+echo ""
+echo ""
+
+exit 0

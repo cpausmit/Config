@@ -2,6 +2,7 @@
 (global-set-key (kbd "<f6>") 'delete-trailing-whitespace)
 (global-set-key (kbd "<f7>") 'visual-line-mode)
 (global-set-key (kbd "<f8>") 'set-buffer-file-coding-system)
+(global-set-key (kbd "<f9>") 'hangul-input-method-deactivate)
 (setq-default fill-column 80)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

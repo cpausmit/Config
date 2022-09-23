@@ -1,0 +1,7 @@
+dnf install autofs
+cd /etc/
+tar fzx $1
+service autofs status
+service autofs start
+service autofs status
+systemctl enable autofs
