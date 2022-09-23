@@ -52,17 +52,26 @@ Changing Frequency
 
 To change the frequency of the backup and fine tune the behaviour you can edit the crontab to your liking. Details of what the entries in the crontab mean can be found for example `here <https://www.adminschoice.com/crontab-quick-reference>`_.
 
+Excluding Users from Backup
+...........................
+
+Some users do not or should not be backed up (ex. condor or slurm). In the backup target directory the file .exclude-users can specify users that should be excluded from the backup (ex. /home/.exclude-users).
+
+Excluding Files with Certain Extensions
+.......................................
+
+The backup is foreseen to backup files that are difficult to reproduce and usually small. Typically this should not exclude data files. Therefore it is possible to exclude certain extensions from the backup. By default the file excluded-extensions in the home directory specifies the *.root pattern. Other patterns can be added, one per line.
+
 Excluding Directories
 .....................
 
-It is sometimes useful to be able to exclude certain directories from the backup. A typical example would be your dropbox folder that could be significant but has already a secure copy in a different place. The backup package will read all directories entered into the file '/home/<user>/.no-backup'. Each directory should be written in a separate line. So, an example could look like this:
+It is sometimes useful for users to be able to exclude certain directories from the backup. A typical example would be your dropbox folder that could be significant but has already a secure copy in a different place. The backup package will read all directories entered into the file '/home/<user>/.no-backup'. Each directory should be written in a separate line. So, an example could look like this:
 ::
    $ cat /home/user/.no-backup
 
    /home/user/Dropbox
    /home/user/Videos
 
-   
 Display what we have
 --------------------
 
@@ -71,3 +80,16 @@ The listing of files in the backup can be easily seen by looking at
    firefox file:///backup/Public/index.shtml
 
 Assuming that your backup location is /backup, otherwise replace accordingly.
+
+Retrieving a backup file or directory
+-------------------------------------
+
+Use the command retrieve_backup.sh. It is simple to use: The first parameter is a directory or just one file you want to retrive from the archive. So let's assume I want to retrieve the last backup of the file.
+
+   <user>/my_directory/this_file
+
+   $ retrieve_backup.sh <user>/my_directory/this_file
+
+If I want to retrieve the entire directory my_directory
+
+   $ retrieve_backup.sh <user>/my_directory

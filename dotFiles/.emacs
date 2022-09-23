@@ -20,5 +20,4 @@
  )
 
 ;;(setq epa-pinentry-mode 'loopback)
-
 ;;;;(setq ring-bell-function 'ignore)
