@@ -1,0 +1,7 @@
+# Install the most recent full fedora 36
+
+# start with lite
+source $HOME/Config/install/installFedora36Lite
+
+# include extras
+source $HOME/Config/install/installFedora36Extra

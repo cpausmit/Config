@@ -27,11 +27,6 @@ sudo dnf install -y firefox vlc kodi \
                     gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg \
                     gstreamer-plugins-bad-nonfree \
 		    purple-skypeweb purple-facebook
-		    
-## flash plugin
-#sudo dnf install -y --nogpgcheck \
-#  http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
-#sudo dnf install -y flash-plugin
 
 # Need chrome? hmmm, hate it but netflix runs on it
 echo "
