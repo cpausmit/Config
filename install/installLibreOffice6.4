@@ -1,0 +1,8 @@
+mkdir -p ~/local
+cd ~/local
+#wget https://downloadarchive.documentfoundation.org/libreoffice/old/6.4.7.2/rpm/x86_64/LibreOffice_6.4.7.2_Linux_x86-64_rpm.tar.gz
+tar -xvf LibreOffice_6.4.7.2_Linux_x86-64_rpm.tar.gz
+cd LibreOffice_6.4.7.2_Linux_x86-64_rpm
+sudo dnf install -y RPMS/*.rpm
+sudo dnf install -y java-latest-openjdk
+cd -

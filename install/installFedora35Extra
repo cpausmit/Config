@@ -10,3 +10,11 @@ sudo dnf install -y texlive-zapfding texlive-texmf-fonts texlive-metapost texliv
 
 # love root and install it
 sudo dnf install -y root*
+
+## install cuda and nvidia graphics drivers
+#cd ~/local
+#wget https://developer.download.nvidia.com/compute/cuda/11.7.1/local_installers/cuda-repo-fedora35-11-7-local-11.7.1_515.65.01-1.x86_64.rpm
+#sudo dnf install ./cuda-repo-fedora35-11-7-local-11.7.1_515.65.01-1.x86_64.rpm
+#sudo dnf clean all
+#sudo dnf -y module install nvidia-driver:latest-dkms
+#sudo dnf -y install cuda
