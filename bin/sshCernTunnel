@@ -14,8 +14,8 @@ then
   kinit -f
 fi
 
-ssh -YttL 8080:svmit01:80     \
-       -L 50070:svmit01:50070 \
+ssh -YttL 8080:ppc.mit.edu:80     \
+       -L 50070:ppc.mit.edu:50070 \
        -L 8081:svmit06:4000   \
        -L 2222:${Machine}:22  \
     lxplus.cern.ch
