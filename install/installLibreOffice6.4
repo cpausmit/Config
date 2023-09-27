@@ -1,18 +1,22 @@
-mkdir -p ~/local
-cd ~/local
+# this is the best that still works for the images
 version=6.4.7.2
 package=LibreOffice_${version}_Linux_x86-64_rpm
-echo -h " Do you need to download the pac"
-read answer
 
-#
+# local installations go here
+mkdir -p ~/local
+cd ~/local
+
+# did we already download this file?
 if ! [ -e ${package}.tar.gz ] || ! [ -e ${package} ]
 then
     wget https://downloadarchive.documentfoundation.org/libreoffice/old/$version/rpm/x86_64/${package}.tar.gz
 else
     echo " Not downloading again. Using existing file: ${package}.tar.gz"
 fi
+
+# unpack and install
 tar -xvf ${package}.tar.gz
+
 cd ${package}
 sudo dnf install -y RPMS/*.rpm
 sudo dnf install -y java-latest-openjdk
