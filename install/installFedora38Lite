@@ -23,7 +23,7 @@ sudo dnf install -y tetex texlive-metapost texlive-dvisvgm texlive-nonfloat
 sudo dnf install -y gimp inkscape blender
 
 # multimedia everything
-sudo dnf install -y firefox vlc kodi \
+sudo dnf install -y firefox thunderbird vlc kodi \
                     gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg \
                     gstreamer-plugins-bad-nonfree \
 		    purple-skypeweb purple-facebook
