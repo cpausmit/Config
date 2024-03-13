@@ -1,0 +1,7 @@
+# Install the most recent full fedora 38
+
+# start with lite
+source $HOME/Config/install/installFedora38Lite
+
+# include extras
+source $HOME/Config/install/installFedora38Extra

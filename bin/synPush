@@ -1,1 +1,6 @@
-rsync -Cavz 8.13-S2022 t3desk008.mit.edu:Documents/teaching
+OPT=$1
+SERVER=t3desk008.mit.edu
+ping -W 2 -c 2 -q t3desk008.mit.edu > /dev/null || SERVER=t3desk004.mit.edu
+
+rsync -Cavz $OPT ~/8.01-F2022 $SERVER:Documents/teaching
+rsync -Cavz $OPT ~/2022       $SERVER:text

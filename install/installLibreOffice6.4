@@ -1,8 +1,23 @@
+# this is the best that still works for the images
+version=6.4.7.2
+package=LibreOffice_${version}_Linux_x86-64_rpm
+
+# local installations go here
 mkdir -p ~/local
 cd ~/local
-#wget https://downloadarchive.documentfoundation.org/libreoffice/old/6.4.7.2/rpm/x86_64/LibreOffice_6.4.7.2_Linux_x86-64_rpm.tar.gz
-tar -xvf LibreOffice_6.4.7.2_Linux_x86-64_rpm.tar.gz
-cd LibreOffice_6.4.7.2_Linux_x86-64_rpm
+
+# did we already download this file?
+if ! [ -e ${package}.tar.gz ] || ! [ -e ${package} ]
+then
+    wget https://downloadarchive.documentfoundation.org/libreoffice/old/$version/rpm/x86_64/${package}.tar.gz
+else
+    echo " Not downloading again. Using existing file: ${package}.tar.gz"
+fi
+
+# unpack and install
+tar -xvf ${package}.tar.gz
+
+cd ${package}
 sudo dnf install -y RPMS/*.rpm
 sudo dnf install -y java-latest-openjdk
 cd -
