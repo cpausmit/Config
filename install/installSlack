@@ -1,5 +1,6 @@
 #SLACK=slack-4.10.3-0.1.fc21.x86_64.rpm
-SLACK=slack-4.23.0-0.1.fc21.x86_64.rpm 
+#SLACK=slack-4.23.0-0.1.fc21.x86_64.rpm
+SLACK=slack-4.28.184-0.1.el8.x86_64.rpm
 mkdir -p ~/local/rpms
 cd ~/local/rpms
 mv ~/Downloads/$SLACK ./

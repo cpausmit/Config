@@ -2,9 +2,9 @@
 #===================================================================================================
 # Try to mount the external drive from t3desk004.mit.edu
 #===================================================================================================
-MOUNT_SERVER="t3desk004.mit.edu"
+MOUNT_SERVER="ppc.mit.edu"
 MOUNT_DIR="/home"
-MOUNT_POINT="/desk004"
+MOUNT_POINT="/ppc"
 MOUNT_USER="paus"
 
 # check whether mount point exists and create if needed

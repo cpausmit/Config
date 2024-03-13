@@ -12,7 +12,7 @@ from PIL.ExifTags import TAGS
 
 def getCameraModelName(data,model):
     if model != '':
-        print " Model name has been fixed to: " + model
+        print(" Model name has been fixed to: " + model)
     else:
         try:
             model = data['CameraModelName']
@@ -20,7 +20,7 @@ def getCameraModelName(data,model):
             try:
                 model = data['Make']
             except:
-                print " ERROR - no model name found."
+                print(" ERROR - no model name found.")
                 sys.exit(1)
 
     return model
@@ -68,7 +68,7 @@ def getExif(fn,debug=False):
         key   = key.replace('/','')
         value = f[1]
         if debug:
-            print key + ' ' + value
+            print(key + ' ' + value)
         ret[key] = value
     return ret
 
@@ -91,11 +91,11 @@ def newPhotoData(cksum,data,model,debug):
     
     f        = dateTime.split(' ')
     if debug>0:
-        print " Array length: %d"%(len(f))
-        print f
+        print(" Array length: %d"%(len(f)))
+        print(f)
         if len(f)<2:
             f = dateTime.split('-')
-    print ""
+    print("")
     date     = f[0]
     time     = f[1]
     dateTime = dateTime.replace(' ','-')
@@ -104,8 +104,8 @@ def newPhotoData(cksum,data,model,debug):
 
     f        = date.split(':')
     if debug>0:
-        print " Array length: %d"%(len(f))
-        print f
+        print(" Array length: %d"%(len(f)))
+        print(f)
         if len(f)<2:
             f = dateTime.split('-')
     photoData = {}
@@ -148,12 +148,12 @@ def newVideoData(cksum,data,model,debug):
 def makePhotoFileList(path,debug):
     cmd = 'find \"' + path + '\" \( -iname %s\*.jpg -o -iname %s\*.jpeg \)'%(pattern,pattern)
     if debug:
-        print ' Search: ' + cmd
+        print(' Search: ' + cmd)
     photoFileList = []
     for photoFile in os.popen(cmd).readlines():
         photoFile = photoFile[:-1]
         if debug:
-            print ' Photo: ' + photoFile
+            print(' Photo: ' + photoFile)
         photoFileList.append(photoFile)
     return photoFileList
 
@@ -162,12 +162,12 @@ def makeVideoFileList(path,debug):
           '\" \( -iname %s\*.3gp -o -iname %s\*.mov -o -iname %s\*.mp4 -o -iname %s\*.avi \)' \
           %(pattern,pattern,pattern,pattern)
     if debug:
-        print ' Search: ' + cmd
+        print(' Search: ' + cmd)
     videoFileList = []
     for videoFile in os.popen(cmd).readlines():
         videoFile = videoFile[:-1]
         if debug:
-            print ' Video: ' + videoFile
+            print(' Video: ' + videoFile)
         videoFileList.append(videoFile)
     return videoFileList
 
@@ -176,10 +176,10 @@ def execute(cmd,debug,test):
 
     if not test:
         if debug:
-            print ' Executing: ' + cmd            
+            print(' Executing: ' + cmd)
         rc = os.system(cmd)
     else:
-        print ' Testing: ' + cmd
+        print(' Testing: ' + cmd)
 
     return rc
 
@@ -194,9 +194,9 @@ usage  = "\nUsage: orderPhotos.py  --help --album= --path= [ --model=]\n\n"
 valid = ['help','debug','test','path=','pattern=','album=','model=']
 try:
     opts, args = getopt.getopt(sys.argv[1:], "", valid)
-except getopt.GetoptError, ex:
-    print usage
-    print str(ex)
+except getopt.GetoptError as ex:
+    print(usage)
+    print(str(ex))
     sys.exit(1)
 
 # --------------------------------------------------------------------------------------------------
@@ -213,7 +213,7 @@ model = ''
 # Read new values from the command line
 for opt, arg in opts:
     if opt == "--help":
-        print usage
+        print(usage)
         sys.exit(0)
     if opt == "--debug":
         debug = True
@@ -232,16 +232,16 @@ for opt, arg in opts:
 photoFileList = makePhotoFileList(path,debug)
 for photoFile in photoFileList:
     if debug:
-        print photoFile
+        print(photoFile)
     cksum     = getChecksum(photoFile)
     data      = getExif(photoFile,debug)
     photoData = newPhotoData(cksum,data,model,debug)
     if debug:
-        print ' Time of picture------: ' + photoData['Time']
-        print ' Year-----------------: ' + photoData['Year']
-        print ' Month----------------: ' + photoData['Month']
-        print ' Day------------------: ' + photoData['Day']
-        print ' Standardized filename: ' + photoData['FileName']
+        print(' Time of picture------: ' + photoData['Time'])
+        print(' Year-----------------: ' + photoData['Year'])
+        print(' Month----------------: ' + photoData['Month'])
+        print(' Day------------------: ' + photoData['Day'])
+        print(' Standardized filename: ' + photoData['FileName'])
     dir = photoData['Year'] + '/' + photoData['Month']
     cmd = 'mkdir -p ' + album + '/' + dir
     execute(cmd,debug,test)
@@ -249,7 +249,7 @@ for photoFile in photoFileList:
     source = photoFile
     target = album + '/' + dir + '/' + photoData['FileName']
     if os.path.isfile(target):
-        print ' File (%s) exists already.... %s'%(source,target)
+        print(' File (%s) exists already.... %s'%(source,target))
 
         # figure out whether they are the same
         cmd = 'md5sum "' + source + '" | cut -d " " -f 1'
@@ -260,17 +260,17 @@ for photoFile in photoFileList:
             targetCsm = line[:-1]
 
         if sourceCsm != targetCsm:
-            print " Different Files:  %s  <>  %s"%(sourceCsm,targetCsm)
+            print(" Different Files:  %s  <>  %s"%(sourceCsm,targetCsm))
 
         continue
 
     cmd = 'mv \"' + photoFile + '\" ' + album + '/' + dir + '/' + photoData['FileName']
-    print ' Cmd: ' + cmd
+    print(' Cmd: ' + cmd)
     execute(cmd,debug,test)
 
     cmd = 'exiftool -Model=\"' + model + '\" -DateTimeOriginal=\"' + getDateTime(data) + \
         '\" ' + album + '/' + dir + '/' + photoData['FileName']
-    print ' Cmd: ' + cmd
+    print(' Cmd: ' + cmd)
     rc = execute(cmd,debug,test)
     if rc == 0:
         execute('rm -f ' + album + '/' + dir + '/' + photoData['FileName'] + '_original',debug,test)
@@ -281,30 +281,30 @@ for videoFile in videoFileList:
     cksum     = getChecksum(videoFile)
     data      = getVideoExif(videoFile)
     if debug:
-        print data
+        print(data)
     videoData = newVideoData(cksum,data,model,debug)
     if debug:
-        print ' Time of movie--------: ' + videoData['Time']
-        print ' Year-----------------: ' + videoData['Year']
-        print ' Month----------------: ' + videoData['Month']
-        print ' Day------------------: ' + videoData['Day']
-        print ' Standardized filename: ' + videoData['FileName']
+        print(' Time of movie--------: ' + videoData['Time'])
+        print(' Year-----------------: ' + videoData['Year'])
+        print(' Month----------------: ' + videoData['Month'])
+        print(' Day------------------: ' + videoData['Day'])
+        print(' Standardized filename: ' + videoData['FileName'])
     dir = videoData['Year'] + '/' + videoData['Month']
     cmd = 'mkdir -p ' + album + '/' + dir
     execute(cmd,debug,test)
     cmd = 'mv \"' + videoFile + '\" ' + album + '/' + dir + '/' + videoData['FileName']
-    print ' Cmd: ' + cmd
+    print(' Cmd: ' + cmd)
     execute(cmd,debug,test)
 
     cmd = 'exiftool -Model=\"' + model + '\" -DateTimeOriginal=\"' + getDateTime(data) + \
         '\" ' + album + '/' + dir + '/' + videoData['FileName']
-    print ' Cmd: ' + cmd
+    print(' Cmd: ' + cmd)
     rc = execute(cmd,debug,test)
     if rc == 0:
-        print ' Execution worked with code: ' + str(rc)
+        print(' Execution worked with code: ' + str(rc))
     #    execute('rm -f ' + album + '/' + dir + '/' + photoData['FileName'] + '_original',debug,test)
     else:
-        print ' Execution failed with code: ' + str(rc)
+        print(' Execution failed with code: ' + str(rc))
 
 # Try to remove the directory if empty
 cmd = 'rmdir \"' + path + '\" >& /dev/null'
