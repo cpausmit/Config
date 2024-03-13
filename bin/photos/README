@@ -18,15 +18,15 @@ Camera Downloads
 
 SSHelper
 
-Make sure your cell phone is connected to the same wireless network that your computer to which you download is connected to.
+Make sure your cell phone is connected to the same wireless network (dragocolositito) that your computer to which you download is connected to.
 
 Start the SSHelper application on the phone. Check it is working and find the IP address and port (2222) to be used for the download.
 
   export USER=paus
   export IP=192.168.X.X
 
-  cd /home/paus/Picture/$USER
-  ssh $IP -p 2222
+  cd /home/paus/Pictures/$USER
+  ssh $IP -p 2222 du -sh SDCard/DCIM/*
   scp -r -P 2222 $IP:SDCard/DCIM ./
 
   check whether complete:
