@@ -1,7 +1,15 @@
 #!/bin/env python
 import os,sys,glob,datetime
 from optparse import OptionParser
+from pathlib import Path
 
+def clear_oldest(directory):
+    paths = sorted([fi for fi in Path(directory).iterdir() if '.tar' in str(fi) ], key=os.path.getmtime)
+    for path in paths[2:-3]:
+        print(f" removing: {path}")
+        os.system(f"rm {path}")
+    return
+    
 def find_secret(directory,file_name):
     with open(f"{directory}/{file_name}",'r') as f:
         secret = f.read()
@@ -64,4 +72,7 @@ else:
     print(f" backup storage failed {rc}.")
 
 # clear out older versions
-# TO BE IMPLEMENTED
+clear_oldest(options.target)
+
+cmd = f"du -sh {options.target}"
+rc = os.system(cmd)
