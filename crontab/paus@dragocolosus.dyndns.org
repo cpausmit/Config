@@ -1,0 +1,2 @@
+# backup wordpress
+7 2 * * * /home/paus/bin/save-it.py -n paushaus -s .paushaus -t /export/backup/paushaus >& /home/paus/save-it.log

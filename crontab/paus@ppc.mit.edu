@@ -1,0 +1,2 @@
+# backup wordpress
+28 1 * * * /home/paus/bin/save-it.py >& /home/paus/save-it.log
