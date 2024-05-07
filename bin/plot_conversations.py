@@ -9,13 +9,13 @@ import numpy as np
 
 NOW = datetime.datetime.now().strftime("%m/%d/%y, %H:%M")
 NCALLS = "0 - 0"
-log_dir = '/home/submit/paus/logs/a2rchi'
-#log_dir = '/home/paus/logs/a2rchi'
-public_html = '/home/submit/paus/public_html/a2rchi'
-#public_html = '/home/paus/a2rchi'
+#log_dir = '/home/submit/paus/logs/a2rchi'
+log_dir = '/home/paus/logs/a2rchi'
+#public_html = '/home/submit/paus/public_html/a2rchi'
+public_html = '/home/paus/a2rchi'
 
 server = "a2rchi.mit.edu"
-#server = "submit06.mit.edu"
+server = "submit06.mit.edu"
 file_path = "/root/data/conversations_test.json"
 process_name = "prod-801-data-manager-prod-801"
 
