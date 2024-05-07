@@ -1,0 +1,2 @@
+#!/bin/bash
+okular `ls  /tmp/tdr_bld_*/*pdf|tail -1` &
