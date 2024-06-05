@@ -7,5 +7,5 @@ alias recent="findRecentFiles 1 ./"
 alias large="find $HOME -size +8000k -exec ls -sh {} \;"
 alias xterm="xterm -fa monospace -fs 16"
 
-alias adr='less /desk004/paus/.calendar/address.gpg'
+alias adr='less /ppc/paus/.calendar/address.gpg'
 alias h='history | grep'
