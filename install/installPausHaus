@@ -13,6 +13,19 @@ sudo systemctl enable httpd.service
 # edit /etc/httpd/conf.d/userdir.conf
 
 # make sure se linux allows access to httpd
-setsebool httpd_read_user_content 1
-setsebool httpd_can_network_connect 1
-setsebool httpd_unified 1
+sudo setsebool httpd_read_user_content 1
+sudo setsebool httpd_can_network_connect 1
+sudo setsebool httpd_unified 1
+
+# setting up mariadb/mysql
+# mysql -uroot -p
+# ALTER USER 'root'@'localhost' IDENTIFIED BY 'root_password';
+# FLUSH PRIVILEGES;
+# ( mysql -uroot -p )
+# CREATE USER 'paushaus'@'localhost' IDENTIFIED  BY 'paushaus_password';
+# CREATE DATABASE paushaus;
+# GRANT ALL PRIVILEGES ON paushaus.* TO 'paushaus'@'localhost' WITH GRANT OPTION;
+# FLUSH PRIVILEGES;
+# USE paushaus;
+# SOURCE dump_paushaus.sql
+# ... put back the tar file with images..

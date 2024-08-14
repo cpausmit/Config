@@ -1,0 +1,7 @@
+# Install the most recent full fedora 40
+
+# start with lite
+source $HOME/Config/install/installFedora40Lite
+
+# include extras
+source $HOME/Config/install/installFedora40Extra

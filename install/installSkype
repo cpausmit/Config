@@ -1,3 +1,17 @@
+sudo cat > /etc/yum.repos.d/microsoft-skype.repo <<EOF
+[microsoft-skype]
+name=Microsoft Skype
+baseurl=https://repo.skype.com/rpm/stable/
+gpgkey=file:///usr/share/distribution-gpg-keys/skype/SKYPE-GPG-KEY
+enabled=1
+
+[microsoft-skype-unstable]
+name=Microsoft Skype Unstable
+baseurl=https://repo.skype.com/rpm/unstable/
+gpgkey=file:///usr/share/distribution-gpg-keys/skype/SKYPE-GPG-KEY
+enabled=0
+EOF
+
 sudo curl https://repo.skype.com/rpm/stable/skype-stable.repo \
                         -o /etc/yum.repos.d/skype-stable.repo
 sudo dnf install -y skypeforlinux
