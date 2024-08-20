@@ -11,7 +11,7 @@ sudo dnf group install -y kde-desktop
 sudo dnf group install -y lxde-desktop
 
 # other basic libraries and tools
-sudo dnf install -y tcsh ksh zsh xterm emacs nfs-utils autofs \
+sudo dnf install -y tcsh ksh zsh cronie xterm emacs nfs-utils autofs \
                     x2goclient x2goserver php-xml \
                     wget curl cabextract pidgin purple-facebook \
 		    ddclient okular
