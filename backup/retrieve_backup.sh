@@ -2,7 +2,7 @@
 
 usage=" retrieve_backup.sh <file or directory>"
 
-source XX-BU_BASE-XX/setup.sh
+source XX-BU_BASE-XX/bin/setup.sh
 
 echo " You are user: $USER"
 
