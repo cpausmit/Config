@@ -50,7 +50,7 @@ Pull the basic configuration tools
 
 |  git clone http://github.com/cpausmit/Config
 |  cd Config
-|  ./Config.sh
+|  ./Configure.sh
 
 Install user account
 ====================
