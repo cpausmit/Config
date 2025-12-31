@@ -74,4 +74,4 @@ Make yourself super user
 
 | groupadd -g 1399 zh
 | usermod -u 21390 -g zh paus
-| echo "paus ALL=(ALL) NOPASSWD:" >> /etc/sudoers
+| echo "paus ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
