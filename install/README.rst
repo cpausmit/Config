@@ -72,6 +72,6 @@ Adjust user account
 
 Make yourself super user
 
-groupadd -g 1399 zh
-usermod -u 5407 -g zh paus
-echo "paus ALL=(ALL) NOPASSWD:"
+| groupadd -g 1399 zh
+| usermod -u 5407 -g zh paus
+| echo "paus ALL=(ALL) NOPASSWD:" >> /etc/sudoers
